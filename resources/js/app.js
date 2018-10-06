@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('nearby-restaurants', require('./components/NearbyRestaurants.vue'));
 
 const app = new Vue({
     el: '#app'

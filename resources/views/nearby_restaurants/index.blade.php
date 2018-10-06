@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    search
+     <nearby-restaurants></nearby-restaurants>
 @endsection
