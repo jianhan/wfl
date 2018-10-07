@@ -48402,6 +48402,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -48425,20 +48428,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             place: null,
             form: {
-                email: '',
-                name: '',
-                food: null,
-                checked: []
+                latitude: '',
+                longitude: ''
             }
         };
     },
 
+    watch: {
+        place: function place(val) {
+            var latitude = _.get(val, 'geometry.location.lat', false);
+            var longitude = _.get(val, 'geometry.location.lng', false);
+            if (latitude && longitude) {
+                this.form.latitude = latitude();
+                this.form.longitude = longitude();
+            }
+        }
+    },
     methods: {
         setPlace: function setPlace(place) {
             this.place = place;
         },
-        handleSubmit: function handleSubmit(evt) {},
-        handleReset: function handleReset(evt) {}
+        handleSubmit: function handleSubmit(e) {},
+        handleReset: function handleReset(e) {}
     },
     mounted: function mounted() {}
 });
@@ -50552,10 +50563,27 @@ var render = function() {
         "b-form",
         { on: { submit: _vm.handleSubmit, reset: _vm.handleReset } },
         [
-          _c("gmap-autocomplete", {
-            staticClass: "form-control",
-            on: { place_changed: _vm.setPlace }
-          })
+          _c(
+            "b-form-group",
+            {
+              attrs: {
+                id: "current_address",
+                description: "Enter your current address",
+                label: "Address",
+                "label-for": "location"
+              }
+            },
+            [
+              _c("gmap-autocomplete", {
+                staticClass: "form-control",
+                on: { place_changed: _vm.setPlace }
+              }),
+              _vm._v(
+                "\n            " + _vm._s(_vm.form.latitude) + "\n        "
+              )
+            ],
+            1
+          )
         ],
         1
       )

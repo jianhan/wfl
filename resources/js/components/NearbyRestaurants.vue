@@ -1,7 +1,10 @@
 <template>
     <div>
         <b-form @submit="handleSubmit" @reset="handleReset">
-            <gmap-autocomplete @place_changed="setPlace" class="form-control"></gmap-autocomplete>
+            <b-form-group id="current_address" description="Enter your current address" label="Address" label-for="location">
+                <gmap-autocomplete @place_changed="setPlace" class="form-control"></gmap-autocomplete>
+                {{ form.latitude }}
+            </b-form-group>
         </b-form>
     </div>
 </template>
@@ -29,10 +32,18 @@
             return {
                 place: null,
                 form: {
-                    email: '',
-                    name: '',
-                    food: null,
-                    checked: []
+                    latitude: '',
+                    longitude: '',
+                }
+            }
+        },
+        watch: {
+            place: function(val) {
+                const latitude = _.get(val, 'geometry.location.lat', false)
+                const longitude = _.get(val, 'geometry.location.lng', false)
+                if (latitude && longitude) {
+                    this.form.latitude = latitude()
+                    this.form.longitude = longitude()
                 }
             }
         },
@@ -40,12 +51,9 @@
             setPlace(place) {
                 this.place = place
             },
-            handleSubmit(evt) {
-            },
-            handleReset(evt) {
-            }
+            handleSubmit(e) {},
+            handleReset(e) {}
         },
-        mounted() {
-        }
+        mounted() {}
     };
 </script>
