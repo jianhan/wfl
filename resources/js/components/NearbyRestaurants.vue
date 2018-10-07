@@ -1,10 +1,14 @@
 <template>
     <div>
         <b-form @submit="handleSubmit" @reset="handleReset">
-            <b-form-group id="current_address" description="Enter your current address" label="Address" label-for="location">
+            <b-form-group description="Enter your current address as starting location" label="Address" label-for="location">
                 <gmap-autocomplete @place_changed="setPlace" class="form-control"></gmap-autocomplete>
-                {{ form.latitude }}
             </b-form-group>
+            <b-form-group label="Radius" description="Searching radius defines the distance (in meters) within which will search be performed">
+                <b-form-radio-group v-model="form.radius" :options="radiusOptions">
+                </b-form-radio-group>
+            </b-form-group>
+            <img src="images/zomato.svg" />
         </b-form>
     </div>
 </template>
@@ -17,6 +21,7 @@
     import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select'
     import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox'
     import bFormCheckboxGroup from 'bootstrap-vue/es/components/form-checkbox/form-checkbox-group'
+    import bFormRadioGroup from 'bootstrap-vue/es/components/form-radio/form-radio-group'
     
     export default {
         components: {
@@ -27,6 +32,7 @@
             'b-form-select': bFormSelect,
             'b-form-checkbox': bFormCheckbox,
             'b-form-checkbox-group': bFormCheckboxGroup,
+            'b-form-radio-group': bFormRadioGroup,
         },
         data() {
             return {
@@ -34,7 +40,25 @@
                 form: {
                     latitude: '',
                     longitude: '',
-                }
+                    radius: 500
+                },
+                radiusOptions: [{
+                        text: '500',
+                        value: 500
+                    },
+                    {
+                        text: '1000',
+                        value: 1000
+                    },
+                    {
+                        text: '2000',
+                        value: 2000
+                    },
+                    {
+                        text: '5000',
+                        value: 5000
+                    },
+                ]
             }
         },
         watch: {
