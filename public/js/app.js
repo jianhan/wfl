@@ -14908,8 +14908,9 @@ module.exports = __webpack_require__(78);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_google_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__env__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_google_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -14932,9 +14933,11 @@ Vue.component('nearby-restaurants', __webpack_require__(54));
 
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__, {
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__, {
   load: {
-    key: 'AIzaSyD__qUGtSdBol5HgE-J8y51AraV8ryYbBg',
+    key: __WEBPACK_IMPORTED_MODULE_0__env__["a" /* GOOGLE_MAP_API */],
     libraries: 'places'
   },
   installComponents: true
@@ -53462,6 +53465,14 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-2c922d06", module.exports)
   }
 }
+
+/***/ }),
+/* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GOOGLE_MAP_API; });
+var GOOGLE_MAP_API = "AIzaSyD__qUGtSdBol5HgE-J8y51AraV8ryYbBg";
 
 /***/ })
 /******/ ]);
