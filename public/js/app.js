@@ -49522,6 +49522,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -51710,20 +51718,18 @@ var render = function() {
               _c(
                 "b-card",
                 {
-                  staticClass: "text-center",
+                  staticClass: "text-center border-info",
                   attrs: {
-                    title: "Zomato",
                     "img-src": "images/zomato.svg",
                     "img-alt": "Img",
                     "img-top": ""
                   }
                 },
                 [
-                  _c("b-button", { attrs: { href: "#", variant: "primary" } }, [
-                    _vm._v("Go somewhere")
+                  _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+                    _c("h5", [_vm._v("Zomato")])
                   ])
-                ],
-                1
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -51731,18 +51737,16 @@ var render = function() {
                 {
                   staticClass: "text-center",
                   attrs: {
-                    title: "Google",
                     "img-src": "images/google.svg",
                     "img-alt": "Img",
                     "img-top": ""
                   }
                 },
                 [
-                  _c("b-button", { attrs: { href: "#", variant: "primary" } }, [
-                    _vm._v("Go somewhere")
+                  _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+                    _c("h5", [_vm._v("Google")])
                   ])
-                ],
-                1
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -51750,18 +51754,16 @@ var render = function() {
                 {
                   staticClass: "text-center",
                   attrs: {
-                    title: "Here",
                     "img-src": "images/here.svg",
                     "img-alt": "Img",
                     "img-top": ""
                   }
                 },
                 [
-                  _c("b-button", { attrs: { href: "#", variant: "primary" } }, [
-                    _vm._v("Go somewhere")
+                  _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+                    _c("h5", [_vm._v("Here")])
                   ])
-                ],
-                1
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -51769,18 +51771,16 @@ var render = function() {
                 {
                   staticClass: "text-center",
                   attrs: {
-                    title: "Yelp",
                     "img-src": "images/yelp.svg",
                     "img-alt": "Img",
                     "img-top": ""
                   }
                 },
                 [
-                  _c("b-button", { attrs: { href: "#", variant: "primary" } }, [
-                    _vm._v("Go somewhere")
+                  _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+                    _c("h5", [_vm._v("Yelp")])
                   ])
-                ],
-                1
+                ]
               )
             ],
             1

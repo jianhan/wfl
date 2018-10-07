@@ -1,32 +1,40 @@
 <template>
     <div>
         <b-form @submit="handleSubmit" @reset="handleReset">
-
+    
             <b-form-group description="Enter your current address as starting location" label="Address" label-for="location">
                 <gmap-autocomplete @place_changed="setPlace" class="form-control"></gmap-autocomplete>
             </b-form-group>
-
+    
             <b-form-group label="Radius" description="Searching radius defines the distance (in meters) within which will search be performed">
                 <b-form-radio-group buttons button-variant="outline-primary" size="md" v-model="form.radius" :options="radiusOptions" />
             </b-form-group>
-
-
+    
+    
             <b-card-group deck>
-                <b-card title="Zomato" img-src="images/zomato.svg" img-alt="Img" img-top class="text-center">
-                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                <b-card img-src="images/zomato.svg" img-alt="Img" img-top class="text-center border-info">
+                    <div slot="footer">
+                        <h5>Zomato</h5>
+                    </div>
                 </b-card>
-                <b-card title="Google" img-src="images/google.svg" img-alt="Img" img-top class="text-center">
-                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                <b-card img-src="images/google.svg" img-alt="Img" img-top class="text-center">
+                    <div slot="footer">
+                        <h5>Google</h5>
+                    </div>
                 </b-card>
-                <b-card title="Here" img-src="images/here.svg" img-alt="Img" img-top class="text-center">
-                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                <b-card img-src="images/here.svg" img-alt="Img" img-top class="text-center">
+                    <div slot="footer">
+                        <h5>Here</h5>
+                    </div>
                 </b-card>
-                <b-card title="Yelp" img-src="images/yelp.svg" img-alt="Img" img-top class="text-center">
-                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                <b-card img-src="images/yelp.svg" img-alt="Img" img-top class="text-center">
+                    <div slot="footer">
+                        <h5>Yelp</h5>
+                    </div>
                 </b-card>
             </b-card-group>
         </b-form>
-    </div>
+        </div>
 </template>
 
 <script>
