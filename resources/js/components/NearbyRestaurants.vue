@@ -1,14 +1,30 @@
 <template>
     <div>
         <b-form @submit="handleSubmit" @reset="handleReset">
+
             <b-form-group description="Enter your current address as starting location" label="Address" label-for="location">
                 <gmap-autocomplete @place_changed="setPlace" class="form-control"></gmap-autocomplete>
             </b-form-group>
+
             <b-form-group label="Radius" description="Searching radius defines the distance (in meters) within which will search be performed">
-                <b-form-radio-group v-model="form.radius" :options="radiusOptions">
-                </b-form-radio-group>
+                <b-form-radio-group buttons button-variant="outline-primary" size="md" v-model="form.radius" :options="radiusOptions" />
             </b-form-group>
-            <img src="images/zomato.svg" />
+
+
+            <b-card-group deck>
+                <b-card title="Zomato" img-src="images/zomato.svg" img-alt="Img" img-top class="text-center">
+                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                </b-card>
+                <b-card title="Google" img-src="images/google.svg" img-alt="Img" img-top class="text-center">
+                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                </b-card>
+                <b-card title="Here" img-src="images/here.svg" img-alt="Img" img-top class="text-center">
+                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                </b-card>
+                <b-card title="Yelp" img-src="images/yelp.svg" img-alt="Img" img-top class="text-center">
+                    <b-button href="#" variant="primary">Go somewhere</b-button>
+                </b-card>
+            </b-card-group>
         </b-form>
     </div>
 </template>
@@ -22,6 +38,8 @@
     import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox'
     import bFormCheckboxGroup from 'bootstrap-vue/es/components/form-checkbox/form-checkbox-group'
     import bFormRadioGroup from 'bootstrap-vue/es/components/form-radio/form-radio-group'
+    import bCard from 'bootstrap-vue/es/components/card/card'
+    import bCardGroup from 'bootstrap-vue/es/components/card/card-group'
     
     export default {
         components: {
@@ -33,6 +51,8 @@
             'b-form-checkbox': bFormCheckbox,
             'b-form-checkbox-group': bFormCheckboxGroup,
             'b-form-radio-group': bFormRadioGroup,
+            'b-card': bCard,
+            'b-card-group': bCardGroup,
         },
         data() {
             return {
@@ -43,19 +63,19 @@
                     radius: 500
                 },
                 radiusOptions: [{
-                        text: '500',
+                        text: '500m',
                         value: 500
                     },
                     {
-                        text: '1000',
+                        text: '1000m',
                         value: 1000
                     },
                     {
-                        text: '2000',
+                        text: '2000m',
                         value: 2000
                     },
                     {
-                        text: '5000',
+                        text: '5000m',
                         value: 5000
                     },
                 ]
