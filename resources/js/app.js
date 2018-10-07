@@ -18,6 +18,16 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('nearby-restaurants', require('./components/NearbyRestaurants.vue'));
 
+import * as VueGoogleMaps from 'vue2-google-maps'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyD__qUGtSdBol5HgE-J8y51AraV8ryYbBg',
+    libraries: 'places', 
+  },
+  installComponents: true,
+})
+
 const app = new Vue({
     el: '#app'
 });
