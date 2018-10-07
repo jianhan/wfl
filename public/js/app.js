@@ -49517,6 +49517,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -49578,6 +49582,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    computed: {
+        canShowOptions: function canShowOptions() {
+            return this.selectedDatasource !== null;
+        }
+    },
     watch: {
         place: function place(val) {
             var latitude = _.get(val, 'geometry.location.lat', false);
@@ -49591,6 +49600,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         setPlace: function setPlace(place) {
             this.place = place;
+        },
+        setDatasource: function setDatasource(index) {
+            this.selectedDatasource = index;
         },
         handleSubmit: function handleSubmit(e) {},
         handleReset: function handleReset(e) {}
@@ -51740,7 +51752,14 @@ var render = function() {
                         [
                           _c(
                             "b-button",
-                            { attrs: { href: "#", variant: "primary" } },
+                            {
+                              attrs: { variant: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.setDatasource(i)
+                                }
+                              }
+                            },
                             [_vm._v("Select")]
                           )
                         ],
@@ -51752,7 +51771,19 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("b-form-group", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.canShowOptions,
+                expression: "canShowOptions"
+              }
+            ],
+            attrs: { description: "Extra options", label: "Extra Options" }
+          })
         ],
         1
       )

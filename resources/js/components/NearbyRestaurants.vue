@@ -14,10 +14,14 @@
                 <b-card-group deck>
                     <b-card v-for="(ds,i) in datasources" v-bind:key="i" :img-src="'images/'+ds.name+'.svg'" img-top class="text-center">
                         <div slot="footer">
-                            <b-button href="#" variant="primary">Select</b-button>
+                            <b-button @click="setDatasource(i)" variant="primary">Select</b-button>
                         </div>
                     </b-card>
                 </b-card-group>
+            </b-form-group>
+
+            <b-form-group description="Extra options" label="Extra Options" v-show="canShowOptions">
+                
             </b-form-group>
     
         </b-form>
@@ -92,6 +96,11 @@
                 ]
             }
         },
+        computed: {
+            canShowOptions: function() {
+                return this.selectedDatasource !== null
+            }
+        },
         watch: {
             place: function(val) {
                 const latitude = _.get(val, 'geometry.location.lat', false)
@@ -105,6 +114,9 @@
         methods: {
             setPlace(place) {
                 this.place = place
+            },
+            setDatasource(index) {
+                this.selectedDatasource = index
             },
             handleSubmit(e) {},
             handleReset(e) {}
