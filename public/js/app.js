@@ -49517,19 +49517,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -49557,6 +49544,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
+            selectedDatasource: null,
+            datasources: [{
+                'name': 'zomato'
+            }, {
+
+                'name': 'google'
+            }, {
+                'name': 'yelp'
+
+            }, {
+                'name': 'here'
+            }],
             place: null,
             form: {
                 latitude: '',
@@ -51669,8 +51668,7 @@ var render = function() {
             {
               attrs: {
                 description: "Enter your current address as starting location",
-                label: "Address",
-                "label-for": "location"
+                label: "Address"
               }
             },
             [
@@ -51712,75 +51710,45 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "b-card-group",
-            { attrs: { deck: "" } },
+            "b-form-group",
+            {
+              attrs: {
+                description:
+                  "Datasource determines where you would like results to be fetched from",
+                label: "Select Datasource"
+              }
+            },
             [
               _c(
-                "b-card",
-                {
-                  staticClass: "text-center border-info",
-                  attrs: {
-                    "img-src": "images/zomato.svg",
-                    "img-alt": "Img",
-                    "img-top": ""
-                  }
-                },
-                [
-                  _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                    _c("h5", [_vm._v("Zomato")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "b-card",
-                {
-                  staticClass: "text-center",
-                  attrs: {
-                    "img-src": "images/google.svg",
-                    "img-alt": "Img",
-                    "img-top": ""
-                  }
-                },
-                [
-                  _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                    _c("h5", [_vm._v("Google")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "b-card",
-                {
-                  staticClass: "text-center",
-                  attrs: {
-                    "img-src": "images/here.svg",
-                    "img-alt": "Img",
-                    "img-top": ""
-                  }
-                },
-                [
-                  _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                    _c("h5", [_vm._v("Here")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "b-card",
-                {
-                  staticClass: "text-center",
-                  attrs: {
-                    "img-src": "images/yelp.svg",
-                    "img-alt": "Img",
-                    "img-top": ""
-                  }
-                },
-                [
-                  _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                    _c("h5", [_vm._v("Yelp")])
-                  ])
-                ]
+                "b-card-group",
+                { attrs: { deck: "" } },
+                _vm._l(_vm.datasources, function(ds, i) {
+                  return _c(
+                    "b-card",
+                    {
+                      key: i,
+                      staticClass: "text-center",
+                      attrs: {
+                        "img-src": "images/" + ds.name + ".svg",
+                        "img-top": ""
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { attrs: { slot: "footer" }, slot: "footer" },
+                        [
+                          _c(
+                            "b-button",
+                            { attrs: { href: "#", variant: "primary" } },
+                            [_vm._v("Select")]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                })
               )
             ],
             1

@@ -2,7 +2,7 @@
     <div>
         <b-form @submit="handleSubmit" @reset="handleReset">
     
-            <b-form-group description="Enter your current address as starting location" label="Address" label-for="location">
+            <b-form-group description="Enter your current address as starting location" label="Address">
                 <gmap-autocomplete @place_changed="setPlace" class="form-control"></gmap-autocomplete>
             </b-form-group>
     
@@ -10,31 +10,18 @@
                 <b-form-radio-group buttons button-variant="outline-primary" size="md" v-model="form.radius" :options="radiusOptions" />
             </b-form-group>
     
+            <b-form-group description="Datasource determines where you would like results to be fetched from" label="Select Datasource">
+                <b-card-group deck>
+                    <b-card v-for="(ds,i) in datasources" v-bind:key="i" :img-src="'images/'+ds.name+'.svg'" img-top class="text-center">
+                        <div slot="footer">
+                            <b-button href="#" variant="primary">Select</b-button>
+                        </div>
+                    </b-card>
+                </b-card-group>
+            </b-form-group>
     
-            <b-card-group deck>
-                <b-card img-src="images/zomato.svg" img-alt="Img" img-top class="text-center border-info">
-                    <div slot="footer">
-                        <h5>Zomato</h5>
-                    </div>
-                </b-card>
-                <b-card img-src="images/google.svg" img-alt="Img" img-top class="text-center">
-                    <div slot="footer">
-                        <h5>Google</h5>
-                    </div>
-                </b-card>
-                <b-card img-src="images/here.svg" img-alt="Img" img-top class="text-center">
-                    <div slot="footer">
-                        <h5>Here</h5>
-                    </div>
-                </b-card>
-                <b-card img-src="images/yelp.svg" img-alt="Img" img-top class="text-center">
-                    <div slot="footer">
-                        <h5>Yelp</h5>
-                    </div>
-                </b-card>
-            </b-card-group>
         </b-form>
-        </div>
+    </div>
 </template>
 
 <script>
@@ -64,6 +51,22 @@
         },
         data() {
             return {
+                selectedDatasource: null,
+                datasources: [{
+                        'name': 'zomato'
+                    },
+                    {
+    
+                        'name': 'google'
+                    },
+                    {
+                        'name': 'yelp'
+    
+                    },
+                    {
+                        'name': 'here'
+                    }
+                ],
                 place: null,
                 form: {
                     latitude: '',
