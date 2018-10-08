@@ -49651,7 +49651,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -49700,16 +49699,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 radius: 500
             },
             googleNearbySearch: {
-                minprice: 0,
-                maxprice: 0,
+                minprice: null,
+                maxprice: null,
                 rankby: 'prominence'
             },
             googleNearbySearchRankbyOptions: [{
-                text: 'prominence',
+                text: 'rank by prominence',
                 value: 'prominence'
             }, {
-                text: 'distance',
+                text: 'rank by distance',
                 value: 'distance'
+            }],
+            googleNearbySearchPriceOptions: [{
+                text: 'select price',
+                value: null
+            }, {
+                text: 'most affortable',
+                value: 0
+            }, {
+                text: 'affortable',
+                value: 1
+            }, {
+                text: 'average',
+                value: 2
+            }, {
+                text: 'expensive',
+                value: 3
+            }, {
+                text: 'luxury',
+                value: 4
             }],
             radiusOptions: [{
                 text: '500m',
@@ -52260,7 +52278,6 @@ var render = function() {
               _c(
                 "b-form-radio-group",
                 {
-                  attrs: { name: "test", id: "test" },
                   model: {
                     value: _vm.selectedDatasource,
                     callback: function($$v) {
@@ -52328,6 +52345,30 @@ var render = function() {
                     _vm.$set(_vm.googleNearbySearch, "rankby", $$v)
                   },
                   expression: "googleNearbySearch.rankby"
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-select", {
+                staticClass: "mb-3",
+                attrs: { options: _vm.googleNearbySearchPriceOptions },
+                model: {
+                  value: _vm.googleNearbySearch.minprice,
+                  callback: function($$v) {
+                    _vm.$set(_vm.googleNearbySearch, "minprice", $$v)
+                  },
+                  expression: "googleNearbySearch.minprice"
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-select", {
+                staticClass: "mb-3",
+                attrs: { options: _vm.googleNearbySearchPriceOptions },
+                model: {
+                  value: _vm.googleNearbySearch.maxprice,
+                  callback: function($$v) {
+                    _vm.$set(_vm.googleNearbySearch, "maxprice", $$v)
+                  },
+                  expression: "googleNearbySearch.maxprice"
                 }
               })
             ],

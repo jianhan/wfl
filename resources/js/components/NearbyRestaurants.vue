@@ -10,11 +10,8 @@
                 <b-form-radio-group buttons button-variant="outline-primary" size="md" v-model="form.radius" :options="radiusOptions" />
             </b-form-group>
     
-    
-    
-    
             <b-form-group description="Datasource determines where you would like results to be fetched from" label="Select Datasource">
-                <b-form-radio-group v-model="selectedDatasource" name="test" id="test">
+                <b-form-radio-group v-model="selectedDatasource">
                     <b-card-group deck>
                         <b-card v-for="(ds,i) in datasources" v-bind:key="i" :img-src="'images/'+ds.name+'.svg'" img-top class="text-center">
                             <div slot="footer">
@@ -28,6 +25,8 @@
     
             <b-form-group description="Google search extra options" label="Extra Options" v-show="canShowGoogleOptions">
                 <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions" class="mb-3" />
+                <b-form-select v-model="googleNearbySearch.minprice" :options="googleNearbySearchPriceOptions" class="mb-3" />
+                <b-form-select v-model="googleNearbySearch.maxprice" :options="googleNearbySearchPriceOptions" class="mb-3" />
             </b-form-group>
     
         </b-form>
@@ -86,18 +85,42 @@
                     radius: 500
                 },
                 googleNearbySearch: {
-                    minprice: 0,
-                    maxprice: 0,
+                    minprice: null,
+                    maxprice: null,
                     rankby: 'prominence',
                 },
                 googleNearbySearchRankbyOptions: [{
-                        text: 'prominence',
+                        text: 'rank by prominence',
                         value: 'prominence'
                     },
                     {
-                        text: 'distance',
+                        text: 'rank by distance',
                         value: 'distance'
                     },
+                ],
+                googleNearbySearchPriceOptions: [{
+                        text: 'select price',
+                        value: null
+                    }, {
+                        text: 'most affortable',
+                        value: 0
+                    },
+                    {
+                        text: 'affortable',
+                        value: 1
+                    },
+                    {
+                        text: 'average',
+                        value: 2
+                    },
+                    {
+                        text: 'expensive',
+                        value: 3
+                    },
+                    {
+                        text: 'luxury',
+                        value: 4
+                    }
                 ],
                 radiusOptions: [{
                         text: '500m',
