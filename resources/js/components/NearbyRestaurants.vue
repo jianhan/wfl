@@ -14,14 +14,14 @@
                 <b-card-group deck>
                     <b-card v-for="(ds,i) in datasources" v-bind:key="i" :img-src="'images/'+ds.name+'.svg'" img-top class="text-center">
                         <div slot="footer">
-                            <b-button @click="setDatasource(i)" variant="primary">Select</b-button>
+                            <b-button size="sm" @click="setDatasource(i)" variant="primary">Select</b-button>
                         </div>
                     </b-card>
                 </b-card-group>
             </b-form-group>
 
-            <b-form-group description="Extra options" label="Extra Options" v-show="canShowOptions">
-                
+            <b-form-group description="Google search extra options" label="Extra Options" v-show="canShowGoogleOptions">
+                <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions" class="mb-3" />
             </b-form-group>
     
         </b-form>
@@ -77,6 +77,21 @@
                     longitude: '',
                     radius: 500
                 },
+                googleNearbySearch: {
+                    minprice: 0,
+                    maxprice: 0,
+                    rankby: 'prominence',
+                },
+                googleNearbySearchRankbyOptions: [
+                    {
+                        text: 'prominence',
+                        value: 'prominence'
+                    },
+                    {
+                        text: 'distance',
+                        value: 'distance'
+                    },
+                ],
                 radiusOptions: [{
                         text: '500m',
                         value: 500
@@ -97,8 +112,8 @@
             }
         },
         computed: {
-            canShowOptions: function() {
-                return this.selectedDatasource !== null
+            canShowGoogleOptions: function() {
+                return this.selectedDatasource === 1
             }
         },
         watch: {
