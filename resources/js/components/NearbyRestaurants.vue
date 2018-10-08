@@ -10,16 +10,22 @@
                 <b-form-radio-group buttons button-variant="outline-primary" size="md" v-model="form.radius" :options="radiusOptions" />
             </b-form-group>
     
+    
+    
+    
             <b-form-group description="Datasource determines where you would like results to be fetched from" label="Select Datasource">
-                <b-card-group deck>
-                    <b-card v-for="(ds,i) in datasources" v-bind:key="i" :img-src="'images/'+ds.name+'.svg'" img-top class="text-center">
-                        <div slot="footer">
-                            <b-button size="sm" @click="setDatasource(i)" variant="primary">Select</b-button>
-                        </div>
-                    </b-card>
-                </b-card-group>
+                <b-form-radio-group v-model="selectedDatasource" name="test" id="test">
+                    <b-card-group deck>
+                        <b-card v-for="(ds,i) in datasources" v-bind:key="i" :img-src="'images/'+ds.name+'.svg'" img-top class="text-center">
+                            <div slot="footer">
+                                <b-form-radio :value="i"></b-form-radio>
+                            </div>
+                        </b-card>
+                    </b-card-group>
+                </b-form-radio-group>
             </b-form-group>
-
+    
+    
             <b-form-group description="Google search extra options" label="Extra Options" v-show="canShowGoogleOptions">
                 <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions" class="mb-3" />
             </b-form-group>
@@ -36,6 +42,7 @@
     import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select'
     import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox'
     import bFormCheckboxGroup from 'bootstrap-vue/es/components/form-checkbox/form-checkbox-group'
+    import bFormRadio from 'bootstrap-vue/es/components/form-radio/form-radio'
     import bFormRadioGroup from 'bootstrap-vue/es/components/form-radio/form-radio-group'
     import bCard from 'bootstrap-vue/es/components/card/card'
     import bCardGroup from 'bootstrap-vue/es/components/card/card-group'
@@ -49,6 +56,7 @@
             'b-form-select': bFormSelect,
             'b-form-checkbox': bFormCheckbox,
             'b-form-checkbox-group': bFormCheckboxGroup,
+            'b-form-radio': bFormRadio,
             'b-form-radio-group': bFormRadioGroup,
             'b-card': bCard,
             'b-card-group': bCardGroup,
@@ -82,8 +90,7 @@
                     maxprice: 0,
                     rankby: 'prominence',
                 },
-                googleNearbySearchRankbyOptions: [
-                    {
+                googleNearbySearchRankbyOptions: [{
                         text: 'prominence',
                         value: 'prominence'
                     },

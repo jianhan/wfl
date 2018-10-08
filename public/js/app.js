@@ -49612,9 +49612,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_es_components_form_select_form_select__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_es_components_form_checkbox_form_checkbox__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_es_components_form_checkbox_form_checkbox_group__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_radio_form_radio_group__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_card_card__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_radio_form_radio__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio_group__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_card_card__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(99);
 //
 //
 //
@@ -49645,6 +49646,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -49666,9 +49674,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'b-form-select': __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_es_components_form_select_form_select__["a" /* default */],
         'b-form-checkbox': __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_es_components_form_checkbox_form_checkbox__["a" /* default */],
         'b-form-checkbox-group': __WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_es_components_form_checkbox_form_checkbox_group__["a" /* default */],
-        'b-form-radio-group': __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_radio_form_radio_group__["a" /* default */],
-        'b-card': __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_card_card__["a" /* default */],
-        'b-card-group': __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_card_card_group__["a" /* default */]
+        'b-form-radio': __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_radio_form_radio__["a" /* default */],
+        'b-form-radio-group': __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio_group__["a" /* default */],
+        'b-card': __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_card_card__["a" /* default */],
+        'b-card-group': __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_card_card_group__["a" /* default */]
     },
     data: function data() {
         return {
@@ -52249,42 +52258,45 @@ var render = function() {
             },
             [
               _c(
-                "b-card-group",
-                { attrs: { deck: "" } },
-                _vm._l(_vm.datasources, function(ds, i) {
-                  return _c(
-                    "b-card",
-                    {
-                      key: i,
-                      staticClass: "text-center",
-                      attrs: {
-                        "img-src": "images/" + ds.name + ".svg",
-                        "img-top": ""
-                      }
+                "b-form-radio-group",
+                {
+                  attrs: { name: "test", id: "test" },
+                  model: {
+                    value: _vm.selectedDatasource,
+                    callback: function($$v) {
+                      _vm.selectedDatasource = $$v
                     },
-                    [
-                      _c(
-                        "div",
-                        { attrs: { slot: "footer" }, slot: "footer" },
+                    expression: "selectedDatasource"
+                  }
+                },
+                [
+                  _c(
+                    "b-card-group",
+                    { attrs: { deck: "" } },
+                    _vm._l(_vm.datasources, function(ds, i) {
+                      return _c(
+                        "b-card",
+                        {
+                          key: i,
+                          staticClass: "text-center",
+                          attrs: {
+                            "img-src": "images/" + ds.name + ".svg",
+                            "img-top": ""
+                          }
+                        },
                         [
                           _c(
-                            "b-button",
-                            {
-                              attrs: { size: "sm", variant: "primary" },
-                              on: {
-                                click: function($event) {
-                                  _vm.setDatasource(i)
-                                }
-                              }
-                            },
-                            [_vm._v("Select")]
+                            "div",
+                            { attrs: { slot: "footer" }, slot: "footer" },
+                            [_c("b-form-radio", { attrs: { value: i } })],
+                            1
                           )
-                        ],
-                        1
+                        ]
                       )
-                    ]
+                    })
                   )
-                })
+                ],
+                1
               )
             ],
             1
