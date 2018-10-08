@@ -23,10 +23,16 @@
             </b-form-group>
     
     
-            <b-form-group description="Google search extra options" label="Extra Options" v-show="canShowGoogleOptions">
-                <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions" class="mb-3" />
-                <b-form-select v-model="googleNearbySearch.minprice" :options="googleNearbySearchPriceOptions" class="mb-3" />
-                <b-form-select v-model="googleNearbySearch.maxprice" :options="googleNearbySearchPriceOptions" class="mb-3" />
+            <b-form-group label="Rank By" description="Specify the ranking of results" v-show="canShowGoogleOptions">
+                <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions" />
+            </b-form-group>
+
+            <b-form-group label="Minimal Price" description="Set minimal price for searching" v-show="canShowGoogleOptions">
+                <b-form-select v-model="googleNearbySearch.minprice" :options="googleNearbySearchPriceOptions"/>
+            </b-form-group>
+
+             <b-form-group label="Max Price" description="Set max price for searching" v-show="canShowGoogleOptions">   
+                <b-form-select v-model="googleNearbySearch.maxprice" :options="googleNearbySearchPriceOptions" />
             </b-form-group>
     
         </b-form>

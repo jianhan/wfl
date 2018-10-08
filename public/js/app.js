@@ -49651,6 +49651,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -52331,13 +52337,12 @@ var render = function() {
                 }
               ],
               attrs: {
-                description: "Google search extra options",
-                label: "Extra Options"
+                label: "Rank By",
+                description: "Specify the ranking of results"
               }
             },
             [
               _c("b-form-select", {
-                staticClass: "mb-3",
                 attrs: { options: _vm.googleNearbySearchRankbyOptions },
                 model: {
                   value: _vm.googleNearbySearch.rankby,
@@ -52346,10 +52351,29 @@ var render = function() {
                   },
                   expression: "googleNearbySearch.rankby"
                 }
-              }),
-              _vm._v(" "),
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-form-group",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.canShowGoogleOptions,
+                  expression: "canShowGoogleOptions"
+                }
+              ],
+              attrs: {
+                label: "Minimal Price",
+                description: "Set minimal price for searching"
+              }
+            },
+            [
               _c("b-form-select", {
-                staticClass: "mb-3",
                 attrs: { options: _vm.googleNearbySearchPriceOptions },
                 model: {
                   value: _vm.googleNearbySearch.minprice,
@@ -52358,10 +52382,29 @@ var render = function() {
                   },
                   expression: "googleNearbySearch.minprice"
                 }
-              }),
-              _vm._v(" "),
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-form-group",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.canShowGoogleOptions,
+                  expression: "canShowGoogleOptions"
+                }
+              ],
+              attrs: {
+                label: "Max Price",
+                description: "Set max price for searching"
+              }
+            },
+            [
               _c("b-form-select", {
-                staticClass: "mb-3",
                 attrs: { options: _vm.googleNearbySearchPriceOptions },
                 model: {
                   value: _vm.googleNearbySearch.maxprice,
