@@ -24,7 +24,7 @@
     
             <div class="row" v-show="canShowGoogleOptions">
                 <b-form-group label="Rank By" description="Specify the ranking of results" class="col-md-4">
-                    <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions"/>
+                    <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions" />
                 </b-form-group>
                 <b-form-group label="Minimal Price" description="Set minimal price for searching" class="col-md-4">
                     <b-form-select v-model="googleNearbySearch.minprice" :options="googleNearbySearchPriceOptions" />
@@ -33,15 +33,20 @@
                     <b-form-select v-model="googleNearbySearch.maxprice" :options="googleNearbySearchPriceOptions" />
                 </b-form-group>
             </div>
-
+    
             <b-alert show v-if="errors !== null" variant="warning">
                 {{ errors.message }}
-            </b-alert> 
+                <ul>
+                    <li v-for="(e, i) in errors.errors" v-bind:key="i">
+                        {{ e[0] }}
+                    </li>
+                </ul>
+            </b-alert>
             <b-button @click="handleSearch" variant="success" v-if="selectedDatasource !== null">
                 <i class="fas fa-spinner fa-spin" v-if="isSearching"></i>
                 <i class="fas fa-search" v-if="!isSearching"></i> Search
             </b-button>
-
+    
         </b-form>
     </div>
 </template>
@@ -193,7 +198,9 @@
                     if (e.response.status == 422) {
                         this.errors = e.response.data
                     } else {
-                        this.errors = {message: `${e.response.status} : ${e.response.statusText}`}
+                        this.errors = {
+                            message: `${e.response.status} : ${e.response.statusText}`
+                        }
                     }
                 })
             }
@@ -201,3 +208,9 @@
         mounted() {}
     };
 </script>
+
+<style>
+    ul {
+        list-style: none;
+    }
+</style>
