@@ -22,7 +22,7 @@
                 </b-form-radio-group>
             </b-form-group>
     
-            <div class="row" v-show="canShowGoogleOptions" >
+            <div class="row" v-show="canShowGoogleOptions">
                 <b-form-group label="Rank By" description="Specify the ranking of results" class="col-md-4">
                     <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions"/>
                 </b-form-group>
@@ -34,7 +34,7 @@
                 </b-form-group>
             </div>
 
-            <b-button variant="success">Search</b-button>
+            <b-button @click="handleSearch" variant="success" v-if="selectedDatasource !== null"><i class="fas fa-search"></i> Search</b-button>
 
         </b-form>
     </div>
@@ -52,6 +52,7 @@
     import bFormRadioGroup from 'bootstrap-vue/es/components/form-radio/form-radio-group'
     import bCard from 'bootstrap-vue/es/components/card/card'
     import bCardGroup from 'bootstrap-vue/es/components/card/card-group'
+    import * as envs from '../.env'
     
     export default {
         components: {
@@ -69,6 +70,7 @@
         },
         data() {
             return {
+                isSearching: false,
                 selectedDatasource: null,
                 datasources: [{
                         'name': 'zomato'
@@ -171,7 +173,14 @@
                 this.selectedDatasource = index
             },
             handleSubmit(e) {},
-            handleReset(e) {}
+            handleReset(e) {},
+            handleSearch() {
+                axios.post(`${envs.HOST_URL}nearby-restaurants/google`).then(r => {
+                    console.log(r)
+                }).catch(e => {
+                    console.log(e.response)
+                })
+            }
         },
         mounted() {}
     };
