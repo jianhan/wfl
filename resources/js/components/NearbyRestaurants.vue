@@ -22,19 +22,20 @@
                 </b-form-radio-group>
             </b-form-group>
     
-    
-            <b-form-group label="Rank By" description="Specify the ranking of results" v-show="canShowGoogleOptions">
-                <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions" />
-            </b-form-group>
+            <div class="row" v-show="canShowGoogleOptions" >
+                <b-form-group label="Rank By" description="Specify the ranking of results" class="col-md-4">
+                    <b-form-select v-model="googleNearbySearch.rankby" :options="googleNearbySearchRankbyOptions"/>
+                </b-form-group>
+                <b-form-group label="Minimal Price" description="Set minimal price for searching" class="col-md-4">
+                    <b-form-select v-model="googleNearbySearch.minprice" :options="googleNearbySearchPriceOptions" />
+                </b-form-group>
+                <b-form-group label="Max Price" description="Set max price for searching" class="col-md-4">
+                    <b-form-select v-model="googleNearbySearch.maxprice" :options="googleNearbySearchPriceOptions" />
+                </b-form-group>
+            </div>
 
-            <b-form-group label="Minimal Price" description="Set minimal price for searching" v-show="canShowGoogleOptions">
-                <b-form-select v-model="googleNearbySearch.minprice" :options="googleNearbySearchPriceOptions"/>
-            </b-form-group>
+            <b-button variant="success">Search</b-button>
 
-             <b-form-group label="Max Price" description="Set max price for searching" v-show="canShowGoogleOptions">   
-                <b-form-select v-model="googleNearbySearch.maxprice" :options="googleNearbySearchPriceOptions" />
-            </b-form-group>
-    
         </b-form>
     </div>
 </template>
