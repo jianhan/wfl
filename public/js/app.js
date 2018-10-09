@@ -49713,8 +49713,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_radio_form_radio__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio_group__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_card_card__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__env__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_alert_alert__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__env__ = __webpack_require__(101);
 //
 //
 //
@@ -49757,6 +49758,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
@@ -49783,11 +49787,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'b-form-radio': __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_radio_form_radio__["a" /* default */],
         'b-form-radio-group': __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio_group__["a" /* default */],
         'b-card': __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_card_card__["a" /* default */],
-        'b-card-group': __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_card_card_group__["a" /* default */]
+        'b-card-group': __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_es_components_card_card_group__["a" /* default */],
+        'b-alert': __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_alert_alert__["a" /* default */]
     },
     data: function data() {
         return {
             isSearching: false,
+            errors: null,
             selectedDatasource: null,
             datasources: [{
                 'name': 'zomato'
@@ -49878,10 +49884,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handleSubmit: function handleSubmit(e) {},
         handleReset: function handleReset(e) {},
         handleSearch: function handleSearch() {
-            axios.post(__WEBPACK_IMPORTED_MODULE_11__env__["b" /* HOST_URL */] + 'nearby-restaurants/google').then(function (r) {
-                console.log(r);
-            }).catch(function (e) {
-                console.log(e.response);
+            var _this = this;
+
+            this.errors = null;
+            axios.post(__WEBPACK_IMPORTED_MODULE_12__env__["b" /* HOST_URL */] + 'nearby-restaurants/google').then(function (r) {}).catch(function (e) {
+                if (e.response.status == 422) {
+                    _this.errors = e.response.data;
+                } else {
+                    _this.errors = { message: e.response.status + ' : ' + e.response.statusText };
+                }
             });
         }
     },
@@ -52425,6 +52436,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _vm.errors !== null
+            ? _c("b-alert", { attrs: { show: "", variant: "warning" } }, [
+                _vm._v(
+                  "\n            " + _vm._s(_vm.errors.message) + "\n        "
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _vm.selectedDatasource !== null
             ? _c(
                 "b-button",
@@ -54493,6 +54512,241 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 135 */,
+/* 136 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_button_close__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert_css__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__alert_css__);
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  components: { bButtonClose: __WEBPACK_IMPORTED_MODULE_0__button_button_close__["a" /* default */] },
+  render: function render(h) {
+    if (!this.localShow) {
+      // If not showing, render placeholder
+      return h(false);
+    }
+    var dismissBtn = h(false);
+    if (this.dismissible) {
+      // Add dismiss button
+      dismissBtn = h('b-button-close', { attrs: { 'aria-label': this.dismissLabel }, on: { click: this.dismiss } }, [this.$slots.dismiss]);
+    }
+    var alert = h('div', { class: this.classObject, attrs: { role: 'alert', 'aria-live': 'polite', 'aria-atomic': true } }, [dismissBtn, this.$slots.default]);
+    return !this.fade ? alert : h('transition', { props: { name: 'fade', appear: true } }, [alert]);
+  },
+
+  model: {
+    prop: 'show',
+    event: 'input'
+  },
+  data: function data() {
+    return {
+      countDownTimerId: null,
+      dismissed: false
+    };
+  },
+
+  computed: {
+    classObject: function classObject() {
+      return ['alert', this.alertVariant, this.dismissible ? 'alert-dismissible' : ''];
+    },
+    alertVariant: function alertVariant() {
+      var variant = this.variant;
+      return 'alert-' + variant;
+    },
+    localShow: function localShow() {
+      return !this.dismissed && (this.countDownTimerId || this.show);
+    }
+  },
+  props: {
+    variant: {
+      type: String,
+      default: 'info'
+    },
+    dismissible: {
+      type: Boolean,
+      default: false
+    },
+    dismissLabel: {
+      type: String,
+      default: 'Close'
+    },
+    show: {
+      type: [Boolean, Number],
+      default: false
+    },
+    fade: {
+      type: Boolean,
+      default: false
+    }
+  },
+  watch: {
+    show: function show() {
+      this.showChanged();
+    }
+  },
+  mounted: function mounted() {
+    this.showChanged();
+  },
+  destroyed /* istanbul ignore next */: function destroyed() {
+    this.clearCounter();
+  },
+
+  methods: {
+    dismiss: function dismiss() {
+      this.clearCounter();
+      this.dismissed = true;
+      this.$emit('dismissed');
+      this.$emit('input', false);
+      if (typeof this.show === 'number') {
+        this.$emit('dismiss-count-down', 0);
+        this.$emit('input', 0);
+      } else {
+        this.$emit('input', false);
+      }
+    },
+    clearCounter: function clearCounter() {
+      if (this.countDownTimerId) {
+        clearInterval(this.countDownTimerId);
+        this.countDownTimerId = null;
+      }
+    },
+    showChanged: function showChanged() {
+      var _this = this;
+
+      // Reset counter status
+      this.clearCounter();
+      // Reset dismiss status
+      this.dismissed = false;
+      // No timer for boolean values
+      if (this.show === true || this.show === false || this.show === null || this.show === 0) {
+        return;
+      }
+      // Start counter
+      var dismissCountDown = this.show;
+      this.countDownTimerId = setInterval(function () {
+        if (dismissCountDown < 1) {
+          _this.dismiss();
+          return;
+        }
+        dismissCountDown--;
+        _this.$emit('dismiss-count-down', dismissCountDown);
+        _this.$emit('input', dismissCountDown);
+      }, 1000);
+    }
+  }
+});
+
+/***/ }),
+/* 137 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__(0);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var props = {
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  ariaLabel: {
+    type: String,
+    default: 'Close'
+  },
+  textVariant: {
+    type: String,
+    default: null
+  }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  functional: true,
+  props: props,
+  render: function render(h, _ref) {
+    var props = _ref.props,
+        data = _ref.data,
+        listeners = _ref.listeners,
+        slots = _ref.slots;
+
+    var componentData = {
+      staticClass: 'close',
+      class: _defineProperty({}, 'text-' + props.textVariant, props.textVariant),
+      attrs: {
+        type: 'button',
+        disabled: props.disabled,
+        'aria-label': props.ariaLabel ? String(props.ariaLabel) : null
+      },
+      on: {
+        click: function click(e) {
+          // Ensure click on button HTML content is also disabled
+          if (props.disabled && e instanceof Event) {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        }
+      }
+      // Careful not to override the slot with innerHTML
+    };if (!slots().default) {
+      componentData.domProps = { innerHTML: '&times;' };
+    }
+    return h('button', Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, componentData), slots().default);
+  }
+});
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(139);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(86)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../css-loader/index.js!./alert.css", function() {
+			var newContent = require("!!../../../../css-loader/index.js!./alert.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(17)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transition: opacity .15s linear;\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

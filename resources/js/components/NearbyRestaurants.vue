@@ -33,7 +33,9 @@
                     <b-form-select v-model="googleNearbySearch.maxprice" :options="googleNearbySearchPriceOptions" />
                 </b-form-group>
             </div>
-
+            <b-alert show v-if="errors !== null" variant="warning">
+                {{ errors.message }}
+            </b-alert> 
             <b-button @click="handleSearch" variant="success" v-if="selectedDatasource !== null"><i class="fas fa-search"></i> Search</b-button>
 
         </b-form>
@@ -51,6 +53,7 @@
     import bFormRadio from 'bootstrap-vue/es/components/form-radio/form-radio'
     import bFormRadioGroup from 'bootstrap-vue/es/components/form-radio/form-radio-group'
     import bCard from 'bootstrap-vue/es/components/card/card'
+    import bAlert from 'bootstrap-vue/es/components/alert/alert'
     import bCardGroup from 'bootstrap-vue/es/components/card/card-group'
     import * as envs from '../.env'
     
@@ -67,10 +70,12 @@
             'b-form-radio-group': bFormRadioGroup,
             'b-card': bCard,
             'b-card-group': bCardGroup,
+            'b-alert': bAlert,
         },
         data() {
             return {
                 isSearching: false,
+                errors: null,
                 selectedDatasource: null,
                 datasources: [{
                         'name': 'zomato'
@@ -175,10 +180,14 @@
             handleSubmit(e) {},
             handleReset(e) {},
             handleSearch() {
+                this.errors = null
                 axios.post(`${envs.HOST_URL}nearby-restaurants/google`).then(r => {
-                    console.log(r)
                 }).catch(e => {
-                    console.log(e.response)
+                    if (e.response.status == 422) {
+                        this.errors = e.response.data
+                    } else {
+                        this.errors = {message: `${e.response.status} : ${e.response.statusText}`}
+                    }
                 })
             }
         },
