@@ -33,10 +33,14 @@
                     <b-form-select v-model="googleNearbySearch.maxprice" :options="googleNearbySearchPriceOptions" />
                 </b-form-group>
             </div>
+
             <b-alert show v-if="errors !== null" variant="warning">
                 {{ errors.message }}
             </b-alert> 
-            <b-button @click="handleSearch" variant="success" v-if="selectedDatasource !== null"><i class="fas fa-search"></i> Search</b-button>
+            <b-button @click="handleSearch" variant="success" v-if="selectedDatasource !== null">
+                <i class="fas fa-spinner fa-spin" v-if="isSearching"></i>
+                <i class="fas fa-search" v-if="!isSearching"></i> Search
+            </b-button>
 
         </b-form>
     </div>
@@ -180,9 +184,12 @@
             handleSubmit(e) {},
             handleReset(e) {},
             handleSearch() {
+                this.isSearching = true
                 this.errors = null
                 axios.post(`${envs.HOST_URL}nearby-restaurants/google`).then(r => {
+                    this.isSearching = false
                 }).catch(e => {
+                    this.isSearching = false
                     if (e.response.status == 422) {
                         this.errors = e.response.data
                     } else {

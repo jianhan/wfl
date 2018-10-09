@@ -49760,6 +49760,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -49886,8 +49890,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handleSearch: function handleSearch() {
             var _this = this;
 
+            this.isSearching = true;
             this.errors = null;
-            axios.post(__WEBPACK_IMPORTED_MODULE_12__env__["b" /* HOST_URL */] + 'nearby-restaurants/google').then(function (r) {}).catch(function (e) {
+            axios.post(__WEBPACK_IMPORTED_MODULE_12__env__["b" /* HOST_URL */] + 'nearby-restaurants/google').then(function (r) {
+                _this.isSearching = false;
+            }).catch(function (e) {
+                _this.isSearching = false;
                 if (e.response.status == 422) {
                     _this.errors = e.response.data;
                 } else {
@@ -52451,7 +52459,16 @@ var render = function() {
                   attrs: { variant: "success" },
                   on: { click: _vm.handleSearch }
                 },
-                [_c("i", { staticClass: "fas fa-search" }), _vm._v(" Search")]
+                [
+                  _vm.isSearching
+                    ? _c("i", { staticClass: "fas fa-spinner fa-spin" })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.isSearching
+                    ? _c("i", { staticClass: "fas fa-search" })
+                    : _vm._e(),
+                  _vm._v(" Search\n        ")
+                ]
               )
             : _vm._e()
         ],
