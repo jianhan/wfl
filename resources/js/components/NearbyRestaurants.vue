@@ -191,7 +191,9 @@
             handleSearch() {
                 this.isSearching = true
                 this.errors = null
-                axios.post(`${envs.HOST_URL}nearby-restaurants/google`).then(r => {
+                axios.post(`${envs.HOST_URL}nearby-restaurants/google`, {
+                    params: Object.assign({}, this.form, this.googleNearbySearch)
+                }).then(r => {
                     this.isSearching = false
                 }).catch(e => {
                     this.isSearching = false

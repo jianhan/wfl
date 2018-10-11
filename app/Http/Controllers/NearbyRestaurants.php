@@ -14,6 +14,11 @@ class NearbyRestaurants extends Controller
 
     public function google(Request $request)
     {
+        $r = (new \GuzzleHttp\Client())->request('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json', [
+            'query' => ['key' => env('GOOGLE_MAP_API_KEY')],
+        ]);
+        $body = json_decode((string) $r->getBody());
+        dd($body);
         $request->validate([
             'key' => 'required',
             'latitude' => 'required',
