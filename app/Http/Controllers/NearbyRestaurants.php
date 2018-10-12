@@ -27,8 +27,8 @@ class NearbyRestaurants extends Controller
         $r = (new \GuzzleHttp\Client())->request('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json', [
             'query' => array_merge($data, ['location' => $request->get('latitude') . ',' . $request->get('longitude')], ['key' => env('GOOGLE_MAP_API_KEY')]),
         ]);
-        $body = json_decode((string) $r->getBody());
-        dd($body);
+
+        return (string) $r->getBody();
     }
 
     public function zomato(Request $request)
