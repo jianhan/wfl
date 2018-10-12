@@ -14,24 +14,21 @@ class NearbyRestaurants extends Controller
 
     public function google(Request $request)
     {
-        $r = (new \GuzzleHttp\Client())->request('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json', [
-            'query' => ['key' => env('GOOGLE_MAP_API_KEY')],
-        ]);
-        $body = json_decode((string) $r->getBody());
-        dd($body);
         $request->validate([
-            'key' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
-            'radius' => 'required|between:50,50000',
+            'radius' => 'required|numeric|max:50000|min:50',
             'rankby' => Rule::in(['prominence', 'distance']),
             'minprice' => 'between:0,4|lte:maxprice',
             'maxprice' => 'between:0,4',
         ]);
 
-        $data = $request->only(['key', 'latitude', 'longitude', 'radius', 'rankby', 'opennow', 'minprice', 'maxprice', 'pagetoken']);
-
-        dd($data);
+        $data = $request->only(['key', 'radius', 'rankby', 'opennow', 'pagetoken']);
+        $r = (new \GuzzleHttp\Client())->request('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json', [
+            'query' => array_merge($data, ['location' => $request->get('latitude') . ',' . $request->get('longitude')], ['key' => env('GOOGLE_MAP_API_KEY')]),
+        ]);
+        $body = json_decode((string) $r->getBody());
+        dd($body);
     }
 
     public function zomato(Request $request)
