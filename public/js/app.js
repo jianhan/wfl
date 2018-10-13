@@ -54962,17 +54962,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -55020,83 +55009,13 @@ var render = function() {
     ? _c(
         "ul",
         { staticClass: "list-unstyled" },
-        [
-          _c(
-            "b-media",
-            { attrs: { tag: "li" } },
-            [
-              _c("b-img", {
-                attrs: {
-                  slot: "aside",
-                  blank: "",
-                  "blank-color": "#abc",
-                  width: "64",
-                  alt: "placeholder"
-                },
-                slot: "aside"
-              }),
-              _vm._v(" "),
-              _c("h5", { staticClass: "mt-0 mb-1" }, [
-                _vm._v("List-based media object")
-              ]),
-              _vm._v(
-                "\n        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n    "
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-media",
-            { staticClass: "my-4", attrs: { tag: "li" } },
-            [
-              _c("b-img", {
-                attrs: {
-                  slot: "aside",
-                  blank: "",
-                  "blank-color": "#cba",
-                  width: "64",
-                  alt: "placeholder"
-                },
-                slot: "aside"
-              }),
-              _vm._v(" "),
-              _c("h5", { staticClass: "mt-0 mb-1" }, [
-                _vm._v("List-based media object")
-              ]),
-              _vm._v(
-                "\n        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n    "
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-media",
-            { attrs: { tag: "li" } },
-            [
-              _c("b-img", {
-                attrs: {
-                  slot: "aside",
-                  blank: "",
-                  "blank-color": "#bac",
-                  width: "64",
-                  alt: "placeholder"
-                },
-                slot: "aside"
-              }),
-              _vm._v(" "),
-              _c("h5", { staticClass: "mt-0 mb-1" }, [
-                _vm._v("List-based media object")
-              ]),
-              _vm._v(
-                "\n        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n    "
-              )
-            ],
-            1
-          )
-        ],
-        1
+        _vm._l(_vm.googleResults.results, function(item, index) {
+          return _c("b-media", { key: index, attrs: { tag: "li" } }, [
+            _c("h5", { staticClass: "mt-0 mb-1" }, [_vm._v(_vm._s(item.name))]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(item.vicinity))])
+          ])
+        })
       )
     : _vm._e()
 }
