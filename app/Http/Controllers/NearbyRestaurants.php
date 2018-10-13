@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class NearbyRestaurants extends Controller
 {
@@ -19,23 +18,31 @@ class NearbyRestaurants extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'radius' => 'required|numeric|max:50000|min:50',
-            'rankby' => Rule::in(['prominence', 'distance']),
             'minprice' => 'between:0,4|lte:maxprice',
             'maxprice' => 'between:0,4',
         ]);
 
-        // make request
+        // construct params
         $queryParams = [];
         if ($request->get('pagetoken', false)) {
             $queryParams = ['pagetoken' => $request->get('pagetoken')];
         } else {
             $queryParams = array_merge(
-                $request->only(['key', 'radius', 'rankby', 'pagetoken']),
-                ['location' => $request->get('latitude') . ',' . $request->get('longitude'), 'opennow' => true],
+                $request->only(['key', 'radius', 'pagetoken']),
+                ['location' => $request->get('latitude') . ',' . $request->get('longitude'), 'opennow' => true, 'type' => 'restaurant'],
                 ['key' => env('GOOGLE_MAP_API_KEY')]
             );
+
+            if ($request->get('minprice', false)) {
+                $queryParams['minprice'] = $request->get('minprice');
+            }
+
+            if ($request->get('maxprice', false)) {
+                $queryParams['maxprice'] = $request->get('maxprice');
+            }
         }
 
+        // make request
         $r = (new \GuzzleHttp\Client())->request('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json', [
             'query' => $queryParams,
         ]);

@@ -50212,9 +50212,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -50269,16 +50266,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             googleNearbySearch: {
                 minprice: null,
-                maxprice: null,
-                rankby: 'prominence'
+                maxprice: null
             },
-            googleNearbySearchRankbyOptions: [{
-                text: 'rank by prominence',
-                value: 'prominence'
-            }, {
-                text: 'rank by distance',
-                value: 'distance'
-            }],
             googleNearbySearchPriceOptions: [{
                 text: 'select price',
                 value: null
@@ -52701,31 +52690,7 @@ var render = function() {
               _c(
                 "b-form-group",
                 {
-                  staticClass: "col-md-4",
-                  attrs: {
-                    label: "Rank By",
-                    description: "Specify the ranking of results"
-                  }
-                },
-                [
-                  _c("b-form-select", {
-                    attrs: { options: _vm.googleNearbySearchRankbyOptions },
-                    model: {
-                      value: _vm.googleNearbySearch.rankby,
-                      callback: function($$v) {
-                        _vm.$set(_vm.googleNearbySearch, "rankby", $$v)
-                      },
-                      expression: "googleNearbySearch.rankby"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                {
-                  staticClass: "col-md-4",
+                  staticClass: "col-md-6",
                   attrs: {
                     label: "Minimal Price",
                     description: "Set minimal price for searching"
@@ -52749,7 +52714,7 @@ var render = function() {
               _c(
                 "b-form-group",
                 {
-                  staticClass: "col-md-4",
+                  staticClass: "col-md-6",
                   attrs: {
                     label: "Max Price",
                     description: "Set max price for searching"
