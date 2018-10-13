@@ -25,12 +25,19 @@ class NearbyRestaurants extends Controller
         ]);
 
         // make request
-        $r = (new \GuzzleHttp\Client())->request('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json', [
-            'query' => array_merge(
-                $request->only(['key', 'radius', 'rankby', 'opennow', 'pagetoken']),
-                ['location1' => $request->get('latitude') . ',' . $request->get('longitude')],
+        $queryParams = [];
+        if ($request->get('pagetoken', false)) {
+            $queryParams = ['pagetoken' => $request->get('pagetoken')];
+        } else {
+            $queryParams = array_merge(
+                $request->only(['key', 'radius', 'rankby', 'pagetoken']),
+                ['location' => $request->get('latitude') . ',' . $request->get('longitude'), 'opennow' => true],
                 ['key' => env('GOOGLE_MAP_API_KEY')]
-            ),
+            );
+        }
+
+        $r = (new \GuzzleHttp\Client())->request('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json', [
+            'query' => $queryParams,
         ]);
 
         // check error
