@@ -50,6 +50,7 @@
             </b-button-group>
     
         </b-form>
+        <google-results :googleResults="googleResults"></google-results>
     </div>
 </template>
 
@@ -68,6 +69,7 @@
     import bAlert from 'bootstrap-vue/es/components/alert/alert'
     import bCardGroup from 'bootstrap-vue/es/components/card/card-group'
     import * as envs from '../.env'
+    import GoogleResults from './GoogleResults'
     
     export default {
         components: {
@@ -84,6 +86,7 @@
             'b-card-group': bCardGroup,
             'b-alert': bAlert,
             'b-button-group': bButtonGroup,
+            'google-results': GoogleResults,
         },
         data() {
             return {
@@ -155,7 +158,8 @@
                         text: '5000m',
                         value: 5000
                     },
-                ]
+                ],
+                googleResults: null
             }
         },
         computed: {
@@ -183,11 +187,15 @@
             handleSubmit(e) {},
             handleReset(e) {},
             handleSearch() {
+                this.googleResults = null
                 this.isSearching = true
                 this.errors = null
                 axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
                     Object.assign({}, this.form, this.googleNearbySearch)
                 ).then(r => {
+                    if (this.selectedDatasource == 1) {
+                        this.googleResults = r.data
+                    }
                     this.isSearching = false
                 }).catch(e => {
                     this.isSearching = false
