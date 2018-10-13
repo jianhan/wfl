@@ -50350,8 +50350,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (e.response.status == 422) {
                     _this.errors = e.response.data;
                 } else {
+                    var message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''));
                     _this.errors = {
-                        message: e.response.status + ' : ' + e.response.statusText
+                        message: e.response.status + ' : ' + message
                     };
                 }
             });

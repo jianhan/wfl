@@ -200,8 +200,9 @@
                     if (e.response.status == 422) {
                         this.errors = e.response.data
                     } else {
+                        const message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''))
                         this.errors = {
-                            message: `${e.response.status} : ${e.response.statusText}`
+                            message: `${e.response.status} : ${message}`
                         }
                     }
                 })
