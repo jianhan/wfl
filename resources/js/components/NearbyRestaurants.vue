@@ -216,6 +216,7 @@
                     minprice: null,
                     maxprice: null
                 }
+                this.googleResults = null
             }
         },
         mounted() {
