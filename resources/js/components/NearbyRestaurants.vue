@@ -50,7 +50,9 @@
             </b-button-group>
     
         </b-form>
-        <google-results :googleResults="googleResults"></google-results>
+        <google-results :googleResults="googleResults">
+            <slot name="pagination">test</slot>
+        </google-results>
     </div>
 </template>
 

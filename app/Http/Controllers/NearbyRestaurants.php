@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class NearbyRestaurants extends Controller
 {
@@ -42,37 +43,43 @@ class NearbyRestaurants extends Controller
             }
         }
 
-        // make request
-        $r = (new \GuzzleHttp\Client())->request('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json', [
-            'query' => $queryParams,
-        ]);
+        // load cache
+        $cacheKey = json_encode($queryParams);
+        $dataStr = Cache::get($cacheKey, false);
+        if (!$dataStr) {
+            // make request
+            $r = (new \GuzzleHttp\Client())->request('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json', [
+                'query' => $queryParams,
+            ]);
 
-        // check error
-        $dataStr = (string) $r->getBody();
-        $data = json_decode($dataStr);
-        $statusCode = 400;
-        if ($data->status != 'OK') {
-            $message = '';
-            switch ($data->status) {
-                case 'ZERO_RESULTS':
-                    $message = 'No results found';
-                    break;
-                case 'OVER_QUERY_LIMIT':
-                    $message = 'Limit exceeded please contact administrator';
-                    $statusCode = 500;
-                    break;
-                case 'INVALID_REQUEST':
-                    $message = 'Request is invalid';
-                    break;
-                case 'UNKNOWN_ERROR':
-                default:
-                    $message = 'Unknown error';
-                    $statusCode = 500;
+            // check error
+            $dataStr = (string) $r->getBody();
+            $data = json_decode($dataStr);
+            $statusCode = 400;
+            if ($data->status != 'OK') {
+                $message = '';
+                switch ($data->status) {
+                    case 'ZERO_RESULTS':
+                        $message = 'No results found';
+                        break;
+                    case 'OVER_QUERY_LIMIT':
+                        $message = 'Limit exceeded please contact administrator';
+                        $statusCode = 500;
+                        break;
+                    case 'INVALID_REQUEST':
+                        $message = 'Request is invalid';
+                        break;
+                    case 'UNKNOWN_ERROR':
+                    default:
+                        $message = 'Unknown error';
+                        $statusCode = 500;
+                }
+
+                throw new \App\Exceptions\SearchResult($message, $statusCode);
             }
-
-            throw new \App\Exceptions\SearchResult($message, $statusCode);
         }
 
+        Cache::store('redis')->put($cacheKey, $dataStr, 10);
         return $dataStr;
     }
 

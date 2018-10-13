@@ -19,5 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/nearby-restaurants', 'NearbyRestaurants@index')->name('NearbyRestaurants.index');
-Route::post('/nearby-restaurants/google', 'NearbyRestaurants@google')->name('NearbyRestaurants.google');
+Route::post('/nearby-restaurants/google', 'NearbyRestaurants@google')->name('NearbyRestaurants.google')->middleware('cacheResponse:10');
 Route::post('/nearby-restaurants/zomato', 'NearbyRestaurants@zomato')->name('NearbyRestaurants.zomato');

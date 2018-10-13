@@ -50466,6 +50466,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -52711,6 +52713,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -53091,64 +53097,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.canShow
-    ? _c(
-        "ul",
-        { staticClass: "list-unstyled" },
-        _vm._l(_vm.googleResults.results, function(item, index) {
-          return _c(
-            "b-media",
-            { key: index, attrs: { tag: "li" } },
-            [
-              item.icon
-                ? _c("b-img", {
+  return _c(
+    "div",
+    [
+      _vm.canShow
+        ? _c(
+            "ul",
+            { staticClass: "list-unstyled" },
+            _vm._l(_vm.googleResults.results, function(item, index) {
+              return _c(
+                "b-media",
+                { key: index, attrs: { tag: "li" } },
+                [
+                  item.icon
+                    ? _c("b-img", {
+                        attrs: {
+                          slot: "aside",
+                          src: item.icon,
+                          "blank-color": "#abc",
+                          width: "64",
+                          alt: "placeholder"
+                        },
+                        slot: "aside"
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "mt-0 mb-1" }, [
+                    _vm._v(_vm._s(item.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("star-rating", {
                     attrs: {
-                      slot: "aside",
-                      src: item.icon,
-                      "blank-color": "#abc",
-                      width: "64",
-                      alt: "placeholder"
+                      "read-only": true,
+                      increment: 0.1,
+                      "max-rating": 5,
+                      "star-size": 15
                     },
-                    slot: "aside"
+                    model: {
+                      value: item.rating,
+                      callback: function($$v) {
+                        _vm.$set(item, "rating", $$v)
+                      },
+                      expression: "item.rating"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(item.vicinity))]),
+                  _vm._v(" "),
+                  _vm._l(item.types, function(tValue, tIndex) {
+                    return _c("b-badge", {
+                      key: tIndex,
+                      staticClass: "mr-1",
+                      attrs: { pill: "", variant: "secondary" },
+                      domProps: { innerHTML: _vm._s(tValue) }
+                    })
                   })
-                : _vm._e(),
-              _vm._v(" "),
-              _c("h4", { staticClass: "mt-0 mb-1" }, [
-                _vm._v(_vm._s(item.name))
-              ]),
-              _vm._v(" "),
-              _c("star-rating", {
-                attrs: {
-                  "read-only": true,
-                  increment: 0.1,
-                  "max-rating": 5,
-                  "star-size": 20
-                },
-                model: {
-                  value: item.rating,
-                  callback: function($$v) {
-                    _vm.$set(item, "rating", $$v)
-                  },
-                  expression: "item.rating"
-                }
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(item.vicinity))]),
-              _vm._v(" "),
-              _vm._l(item.types, function(tValue, tIndex) {
-                return _c("b-badge", {
-                  key: tIndex,
-                  staticClass: "mr-1",
-                  attrs: { pill: "", variant: "secondary" },
-                  domProps: { innerHTML: _vm._s(tValue) }
-                })
-              })
-            ],
-            2
+                ],
+                2
+              )
+            })
           )
-        })
-      )
-    : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c("template", { slot: "header" })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53403,7 +53417,12 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("google-results", { attrs: { googleResults: _vm.googleResults } })
+      _c(
+        "google-results",
+        { attrs: { googleResults: _vm.googleResults } },
+        [_vm._t("pagination", [_vm._v("test")])],
+        2
+      )
     ],
     1
   )
