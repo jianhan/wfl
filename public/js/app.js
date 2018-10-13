@@ -52808,7 +52808,7 @@ var render = function() {
                       on: { click: _vm.handleReset }
                     },
                     [
-                      _c("i", { staticClass: "fas fa-refresh" }),
+                      _c("i", { staticClass: "fas fa-sync" }),
                       _vm._v(" Reset\n            ")
                     ]
                   )

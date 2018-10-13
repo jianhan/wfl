@@ -48,7 +48,8 @@ class NearbyRestaurants extends Controller
         ]);
 
         // check error
-        $data = json_decode((string) $r->getBody());
+        $dataStr = (string) $r->getBody();
+        $data = json_decode($dataStr);
         $statusCode = 400;
         if ($data->status != 'OK') {
             $message = '';
@@ -72,7 +73,7 @@ class NearbyRestaurants extends Controller
             throw new \App\Exceptions\SearchResult($message, $statusCode);
         }
 
-        return (string) $r->getBody();
+        return $dataStr;
     }
 
     public function zomato(Request $request)

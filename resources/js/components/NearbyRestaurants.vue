@@ -45,7 +45,7 @@
                     <i class="fas fa-search" v-if="!isSearching"></i> Search
                 </b-button>
                 <b-button @click="handleReset" variant="default">
-                    <i class="fas fa-refresh"></i> Reset
+                    <i class="fas fa-sync"></i> Reset
                 </b-button>
             </b-button-group>
     
