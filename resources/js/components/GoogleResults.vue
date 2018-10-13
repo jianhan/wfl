@@ -1,5 +1,6 @@
 <template>
     <div>
+        <slot name="pagination"></slot>
         <ul class="list-unstyled" v-if="canShow">
             <b-media tag="li" v-bind:key="index" v-for="(item,index) in googleResults.results ">
                 <b-img slot="aside" :src="item.icon" blank-color="#abc" width="64" alt="placeholder" v-if="item.icon" />
@@ -9,8 +10,7 @@
                 <b-badge class="mr-1" pill variant="secondary" v-bind:key="tIndex" v-for="(tValue,tIndex) in item.types" v-html="tValue"></b-badge>
             </b-media>
         </ul>
-        <template slot="header">
-        </template>
+        <slot name="pagination"></slot>
     </div>
 </template>
 

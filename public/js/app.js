@@ -50468,6 +50468,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -50567,6 +50569,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     computed: {
         canShowGoogleOptions: function canShowGoogleOptions() {
             return this.selectedDatasource === 1;
+        },
+        canShowGoogleNextPage: function canShowGoogleNextPage() {
+            return _.get(this.googleResults, 'next_page_token', false);
         }
     },
     watch: {
@@ -50591,25 +50596,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         handleSearch: function handleSearch() {
             var _this = this;
 
-            this.googleResults = null;
             this.isSearching = true;
             this.errors = null;
-            axios.post(__WEBPACK_IMPORTED_MODULE_13__env__["b" /* HOST_URL */] + 'nearby-restaurants/google', Object.assign({}, this.form, this.googleNearbySearch)).then(function (r) {
-                if (_this.selectedDatasource == 1) {
+
+            if (this.selectedDatasource == 1) {
+                this.googleResults = null;
+                axios.post(__WEBPACK_IMPORTED_MODULE_13__env__["b" /* HOST_URL */] + 'nearby-restaurants/google', Object.assign({}, this.form, this.googleNearbySearch)).then(function (r) {
                     _this.googleResults = r.data;
-                }
-                _this.isSearching = false;
-            }).catch(function (e) {
-                _this.isSearching = false;
-                if (e.response.status == 422) {
-                    _this.errors = e.response.data;
-                } else {
-                    var message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''));
-                    _this.errors = {
-                        message: e.response.status + ' : ' + message
-                    };
-                }
-            });
+                    _this.isSearching = false;
+                    if (_.get(_this.googleResults, 'next_page_token', false)) {
+                        _this.googleNearbySearch['pagetoken'] = _.get(_this.googleResults, 'next_page_token');
+                    }
+                }).catch(function (e) {
+                    _this.isSearching = false;
+                    if (e.response.status == 422) {
+                        _this.errors = e.response.data;
+                    } else {
+                        var message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''));
+                        _this.errors = {
+                            message: e.response.status + ' : ' + message
+                        };
+                    }
+                });
+            }
         }
     }, 'handleReset', function handleReset() {
         this.form.radius = 500;
@@ -53100,6 +53109,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _vm._t("pagination"),
+      _vm._v(" "),
       _vm.canShow
         ? _c(
             "ul",
@@ -53159,7 +53170,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("template", { slot: "header" })
+      _vm._t("pagination")
     ],
     2
   )
@@ -53417,11 +53428,24 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c("google-results", { attrs: { googleResults: _vm.googleResults } }),
+      _vm._v(" "),
       _c(
-        "google-results",
-        { attrs: { googleResults: _vm.googleResults } },
-        [_vm._t("pagination", [_vm._v("test")])],
-        2
+        "button",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.canShowGoogleNextPage,
+              expression: "canShowGoogleNextPage"
+            }
+          ],
+          attrs: { slot: "pagination" },
+          on: { click: _vm.handleSearch },
+          slot: "pagination"
+        },
+        [_vm._v("Next")]
       )
     ],
     1

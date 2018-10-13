@@ -51,8 +51,10 @@
     
         </b-form>
         <google-results :googleResults="googleResults">
-            <slot name="pagination">test</slot>
         </google-results>
+    
+        <button slot="pagination" v-show="canShowGoogleNextPage" @click="handleSearch">Next</button>
+    
     </div>
 </template>
 
@@ -167,6 +169,9 @@
         computed: {
             canShowGoogleOptions: function() {
                 return this.selectedDatasource === 1
+            },
+            canShowGoogleNextPage: function() {
+                return _.get(this.googleResults, 'next_page_token', false)
             }
         },
         watch: {
@@ -189,27 +194,31 @@
             handleSubmit(e) {},
             handleReset(e) {},
             handleSearch() {
-                this.googleResults = null
                 this.isSearching = true
                 this.errors = null
-                axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
-                    Object.assign({}, this.form, this.googleNearbySearch)
-                ).then(r => {
-                    if (this.selectedDatasource == 1) {
+    
+                if (this.selectedDatasource == 1) {
+                    this.googleResults = null
+                    axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
+                        Object.assign({}, this.form, this.googleNearbySearch)
+                    ).then(r => {
                         this.googleResults = r.data
-                    }
-                    this.isSearching = false
-                }).catch(e => {
-                    this.isSearching = false
-                    if (e.response.status == 422) {
-                        this.errors = e.response.data
-                    } else {
-                        const message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''))
-                        this.errors = {
-                            message: `${e.response.status} : ${message}`
+                        this.isSearching = false
+                        if (_.get(this.googleResults, 'next_page_token', false)) {
+                            this.googleNearbySearch['pagetoken'] = _.get(this.googleResults, 'next_page_token')
                         }
-                    }
-                })
+                    }).catch(e => {
+                        this.isSearching = false
+                        if (e.response.status == 422) {
+                            this.errors = e.response.data
+                        } else {
+                            const message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''))
+                            this.errors = {
+                                message: `${e.response.status} : ${message}`
+                            }
+                        }
+                    })
+                }
             },
             handleReset() {
                 this.form.radius = 500

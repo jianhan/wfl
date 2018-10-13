@@ -25,13 +25,12 @@ class NearbyRestaurants extends Controller
 
         // construct params
         $queryParams = [];
-        if ($request->get('pagetoken', false)) {
+        if ($request->get('pagetoken', false) && $request->get('pagetoken') !== '') {
             $queryParams = ['pagetoken' => $request->get('pagetoken')];
         } else {
             $queryParams = array_merge(
                 $request->only(['key', 'radius', 'pagetoken']),
-                ['location' => $request->get('latitude') . ',' . $request->get('longitude'), 'opennow' => true, 'type' => 'restaurant'],
-                ['key' => env('GOOGLE_MAP_API_KEY')]
+                ['location' => $request->get('latitude') . ',' . $request->get('longitude'), 'opennow' => true, 'type' => 'restaurant']
             );
 
             if ($request->get('minprice', false)) {
@@ -42,6 +41,8 @@ class NearbyRestaurants extends Controller
                 $queryParams['maxprice'] = $request->get('maxprice');
             }
         }
+        // add key back
+        $queryParams['key'] = env('GOOGLE_MAP_API_KEY');
 
         // load cache
         $cacheKey = json_encode($queryParams);
