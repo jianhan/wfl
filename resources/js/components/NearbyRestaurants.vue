@@ -39,10 +39,15 @@
                     </li>
                 </ul>
             </b-alert>
-            <b-button @click="handleSearch" variant="success" v-if="selectedDatasource !== null">
-                <i class="fas fa-spinner fa-spin" v-if="isSearching"></i>
-                <i class="fas fa-search" v-if="!isSearching"></i> Search
-            </b-button>
+            <b-button-group v-if="selectedDatasource !== null">
+                <b-button @click="handleSearch" variant="success">
+                    <i class="fas fa-spinner fa-spin" v-if="isSearching"></i>
+                    <i class="fas fa-search" v-if="!isSearching"></i> Search
+                </b-button>
+                <b-button @click="handleReset" variant="default">
+                    <i class="fas fa-refresh"></i> Reset
+                </b-button>
+            </b-button-group>
     
         </b-form>
     </div>
@@ -51,6 +56,7 @@
 <script>
     import bForm from 'bootstrap-vue/es/components/form/form'
     import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group'
+    import bButtonGroup from 'bootstrap-vue/es/components/button-group/button-group'
     import bButton from 'bootstrap-vue/es/components/button/button'
     import bFormInput from 'bootstrap-vue/es/components/form-input/form-input'
     import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select'
@@ -77,6 +83,7 @@
             'b-card': bCard,
             'b-card-group': bCardGroup,
             'b-alert': bAlert,
+            'b-button-group': bButtonGroup,
         },
         data() {
             return {
@@ -193,9 +200,19 @@
                         }
                     }
                 })
+            },
+            handleReset() {
+                this.form.radius = 500
+                this.selectedDatasource = 1
+                this.googleNearbySearch = {
+                    minprice: null,
+                    maxprice: null
+                }
             }
         },
-        mounted() {}
+        mounted() {
+            this.selectedDatasource = 1
+        }
     };
 </script>
 

@@ -50151,17 +50151,20 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_form_form__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_form_group_form_group__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_button__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_form_input_form_input__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_es_components_form_select_form_select__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_es_components_form_checkbox_form_checkbox__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_es_components_form_checkbox_form_checkbox_group__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_radio_form_radio__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio_group__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_card_card__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_alert_alert__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__env__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_group_button_group__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_button_button__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_es_components_form_input_form_input__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_es_components_form_select_form_select__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_es_components_form_checkbox_form_checkbox__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_checkbox_form_checkbox_group__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_form_radio_form_radio_group__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_card_card__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_es_components_alert_alert__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__env__ = __webpack_require__(39);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -50212,6 +50215,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -50231,16 +50240,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         'b-form': __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_form_form__["a" /* default */],
         'b-form-group': __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_form_group_form_group__["a" /* default */],
-        'b-button': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_button__["a" /* default */],
-        'b-form-input': __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_form_input_form_input__["a" /* default */],
-        'b-form-select': __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_es_components_form_select_form_select__["a" /* default */],
-        'b-form-checkbox': __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_es_components_form_checkbox_form_checkbox__["a" /* default */],
-        'b-form-checkbox-group': __WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_es_components_form_checkbox_form_checkbox_group__["a" /* default */],
-        'b-form-radio': __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_radio_form_radio__["a" /* default */],
-        'b-form-radio-group': __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio_group__["a" /* default */],
-        'b-card': __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_card_card__["a" /* default */],
-        'b-card-group': __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_es_components_card_card_group__["a" /* default */],
-        'b-alert': __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_alert_alert__["a" /* default */]
+        'b-button': __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_button_button__["a" /* default */],
+        'b-form-input': __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_es_components_form_input_form_input__["a" /* default */],
+        'b-form-select': __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_es_components_form_select_form_select__["a" /* default */],
+        'b-form-checkbox': __WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_es_components_form_checkbox_form_checkbox__["a" /* default */],
+        'b-form-checkbox-group': __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_checkbox_form_checkbox_group__["a" /* default */],
+        'b-form-radio': __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio__["a" /* default */],
+        'b-form-radio-group': __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_form_radio_form_radio_group__["a" /* default */],
+        'b-card': __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_card_card__["a" /* default */],
+        'b-card-group': __WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_es_components_card_card_group__["a" /* default */],
+        'b-alert': __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_es_components_alert_alert__["a" /* default */],
+        'b-button-group': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_group_button_group__["a" /* default */]
     },
     data: function data() {
         return {
@@ -50318,7 +50328,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         }
     },
-    methods: {
+    methods: _defineProperty({
         setPlace: function setPlace(place) {
             this.place = place;
         },
@@ -50332,7 +50342,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.isSearching = true;
             this.errors = null;
-            axios.post(__WEBPACK_IMPORTED_MODULE_12__env__["b" /* HOST_URL */] + 'nearby-restaurants/google', Object.assign({}, this.form, this.googleNearbySearch)).then(function (r) {
+            axios.post(__WEBPACK_IMPORTED_MODULE_13__env__["b" /* HOST_URL */] + 'nearby-restaurants/google', Object.assign({}, this.form, this.googleNearbySearch)).then(function (r) {
                 _this.isSearching = false;
             }).catch(function (e) {
                 _this.isSearching = false;
@@ -50346,8 +50356,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
         }
-    },
-    mounted: function mounted() {}
+    }, 'handleReset', function handleReset() {
+        this.form.radius = 500;
+        this.selectedDatasource = 1;
+        this.googleNearbySearch = {
+            minprice: null,
+            maxprice: null
+        };
+    }),
+    mounted: function mounted() {
+        this.selectedDatasource = 1;
+    }
 });
 
 /***/ }),
@@ -52762,21 +52781,39 @@ var render = function() {
           _vm._v(" "),
           _vm.selectedDatasource !== null
             ? _c(
-                "b-button",
-                {
-                  attrs: { variant: "success" },
-                  on: { click: _vm.handleSearch }
-                },
+                "b-button-group",
                 [
-                  _vm.isSearching
-                    ? _c("i", { staticClass: "fas fa-spinner fa-spin" })
-                    : _vm._e(),
+                  _c(
+                    "b-button",
+                    {
+                      attrs: { variant: "success" },
+                      on: { click: _vm.handleSearch }
+                    },
+                    [
+                      _vm.isSearching
+                        ? _c("i", { staticClass: "fas fa-spinner fa-spin" })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.isSearching
+                        ? _c("i", { staticClass: "fas fa-search" })
+                        : _vm._e(),
+                      _vm._v(" Search\n            ")
+                    ]
+                  ),
                   _vm._v(" "),
-                  !_vm.isSearching
-                    ? _c("i", { staticClass: "fas fa-search" })
-                    : _vm._e(),
-                  _vm._v(" Search\n        ")
-                ]
+                  _c(
+                    "b-button",
+                    {
+                      attrs: { variant: "default" },
+                      on: { click: _vm.handleReset }
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-refresh" }),
+                      _vm._v(" Reset\n            ")
+                    ]
+                  )
+                ],
+                1
               )
             : _vm._e()
         ],
@@ -54794,6 +54831,60 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 141 */,
+/* 142 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export props */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_array__ = __webpack_require__(2);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var props = {
+  vertical: {
+    type: Boolean,
+    default: false
+  },
+  size: {
+    type: String,
+    default: null,
+    validator: function validator(size) {
+      return Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["a" /* arrayIncludes */])(['sm', '', 'lg'], size);
+    }
+  },
+  tag: {
+    type: String,
+    default: 'div'
+  },
+  ariaRole: {
+    type: String,
+    default: 'group'
+  }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  functional: true,
+  props: props,
+  render: function render(h, _ref) {
+    var props = _ref.props,
+        data = _ref.data,
+        children = _ref.children;
+
+    return h(props.tag, Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
+      class: _defineProperty({
+        'btn-group': !props.vertical,
+        'btn-group-vertical': props.vertical
+      }, 'btn-group-' + props.size, Boolean(props.size)),
+      attrs: { 'role': props.ariaRole }
+    }), children);
+  }
+});
 
 /***/ })
 /******/ ]);
