@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <nearby-restaurants></nearby-restaurants>
+    <wizard></wizard>
 @endsection
