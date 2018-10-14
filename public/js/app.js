@@ -54567,6 +54567,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -54658,6 +54663,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                     }
                 }, 1000);
             });
+        },
+        validateDatasource: function validateDatasource() {
+            var _this2 = this;
+
+            return new Promise(function (resolve, reject) {
+                if (_.isString(_this2.selectedDatasource) && _.trim(_this2.selectedDatasource) !== '') {
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+            });
         }
     }
 });
@@ -54735,7 +54751,13 @@ var render = function() {
     [
       _c(
         "tab-content",
-        { attrs: { title: "Data Source", icon: "fa fa-user" } },
+        {
+          attrs: {
+            title: "Data Source",
+            icon: "fa fa-user",
+            "before-change": _vm.validateDatasource
+          }
+        },
         [
           _c(
             "b-form-radio-group",

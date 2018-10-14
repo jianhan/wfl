@@ -1,6 +1,7 @@
 <template>
     <form-wizard @on-complete="handleComplete" @on-loading="setLoading" @on-validate="handleValidation" @on-error="handleErrorMessage" shape="circle" color="#20a0ff" error-color="#e74c3c">
-        <tab-content title="Data Source" icon="fa fa-user">
+    
+        <tab-content title="Data Source" icon="fa fa-user" :before-change="validateDatasource">
             <b-form-radio-group v-model="selectedDatasource">
                 <b-card-group deck>
                     <b-card v-for="(ds,i) in dataSources" v-bind:key="i" :img-src="'images/'+ds+'.svg'" img-top class="text-center">
@@ -11,17 +12,21 @@
                 </b-card-group>
             </b-form-radio-group>
         </tab-content>
+    
         <tab-content title="Additional Info" :before-change="validateAsync" icon="ti-settings">
             Second tab
         </tab-content>
+    
         <tab-content title="Last step" icon="ti-check">
             Third tab
         </tab-content>
     
         <div class="loader" v-if="loadingWizard"></div>
+    
         <div v-if="errorMsg">
             <span class="error">{{errorMsg}}</span>
         </div>
+    
     </form-wizard>
 </template>
 
@@ -119,6 +124,15 @@
                         }
                     }, 1000);
                 });
+            },
+            validateDatasource: function() {
+                return new Promise((resolve, reject) => {
+                    if (_.isString(this.selectedDatasource) && _.trim(this.selectedDatasource) !== '') {
+                        resolve(true)
+                    } else {
+                        resolve(false)
+                    }
+                })
             }
         }
     };
