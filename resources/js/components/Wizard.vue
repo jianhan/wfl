@@ -1,39 +1,27 @@
 <template>
     <form-wizard @on-complete="handleComplete" @on-loading="setLoading" @on-validate="handleValidation" @on-error="handleErrorMessage" shape="circle" color="#20a0ff" error-color="#e74c3c">
-    
-        <b-card-group deck class="mb-3">
-            <b-card bg-variant="primary" text-variant="white" :header="`<strong>G</strong>oogle`" class="text-center">
-                <p class="card-text">Build with comprehensive points of interest data. Count on accurate, real-time location information.</p>
-                <em slot="footer"><b-button @click="handleSelectDataSource('google')" :pressed="isDataSourcePressed('google')" variant="outline-warning">Select</b-button></em>
-            </b-card>
-            <b-card style="background-color:#d20247" text-variant="white" :header="`<strong>Z</strong>omato`" class="text-center">
-                <p class="card-text">Provide freshest and most exhaustive information for over 1.5 million restaurants across 10,000 cities globally.</p>
-                <em slot="footer"><b-button @click="handleSelectDataSource('zomato')" :pressed="isDataSourcePressed('zomato')" variant="outline-warning">Select</b-button></em>
-            </b-card>
-        </b-card-group>
-
-        <b-card-group deck class="mb-3">
-            <b-card bg-variant="primary" text-variant="white" :header="`<strong>Y</strong>elp`" class="text-center">
-                <p class="card-text">User Reviews and Recommendations of Best Restaurants, Shopping, Nightlife, Food, Entertainment, Things to Do, Services and More.</p>
-                <em slot="footer"><b-button @click="handleSelectDataSource('yelp')" :pressed="isDataSourcePressed('yelp')" variant="outline-warning">Select</b-button></em>
-            </b-card>
-            <b-card style="background-color:#d20247" text-variant="white" :header="`<strong>H</strong>ere`" class="text-center">
-                <p class="card-text">Provide Mapping, Places, Geocoding, Routing, Traffic and much more!</p>
-                <em slot="footer"><b-button @click="handleSelectDataSource('here')" :pressed="isDataSourcePressed('here')" variant="outline-warning">Select</b-button></em>
-            </b-card>
-        </b-card-group>
-
-    
         <tab-content title="Data Source" icon="fa fa-user" :before-change="validateDatasource">
-            <b-form-radio-group v-model="selectedDatasource">
-                <b-card-group deck>
-                    <b-card v-for="(ds,i) in dataSources" v-bind:key="i" :img-src="'images/'+ds+'.svg'" img-top class="text-center">
-                        <div slot="footer">
-                            <b-form-radio :value="i"></b-form-radio>
-                        </div>
-                    </b-card>
-                </b-card-group>
-            </b-form-radio-group>
+            <b-card-group deck class="mb-3">
+                <b-card bg-variant="primary" text-variant="white" :header="`<strong>G</strong>oogle`" class="text-center">
+                    <p class="card-text">Build with comprehensive points of interest data. Count on accurate, real-time location information.</p>
+                    <em slot="footer"><b-button @click="handleSelectDataSource('google')" :pressed="isDataSourcePressed('google')" variant="outline-warning">Select</b-button></em>
+                </b-card>
+                <b-card style="background-color:#d20247" text-variant="white" :header="`<strong>Z</strong>omato`" class="text-center">
+                    <p class="card-text">Provide freshest and most exhaustive information for over 1.5 million restaurants across 10,000 cities globally.</p>
+                    <em slot="footer"><b-button @click="handleSelectDataSource('zomato')" :pressed="isDataSourcePressed('zomato')" variant="outline-warning">Select</b-button></em>
+                </b-card>
+            </b-card-group>
+    
+            <b-card-group deck class="mb-3">
+                <b-card style="background-color: #dc091c" text-variant="white" :header="`<strong>Y</strong>elp`" class="text-center">
+                    <p class="card-text">User Reviews and Recommendations of Best Restaurants, Shopping, Nightlife, Food, Entertainment, Things to Do, Services and More.</p>
+                    <em slot="footer"><b-button @click="handleSelectDataSource('yelp')" :pressed="isDataSourcePressed('yelp')" variant="outline-warning">Select</b-button></em>
+                </b-card>
+                <b-card style="background-color: #00b0a9" text-variant="white" :header="`<strong>H</strong>ere`" class="text-center">
+                    <p class="card-text">Provide Mapping, Places, Geocoding, Routing, Traffic and much more!</p>
+                    <em slot="footer"><b-button @click="handleSelectDataSource('here')" :pressed="isDataSourcePressed('here')" variant="outline-warning">Select</b-button></em>
+                </b-card>
+            </b-card-group>
         </tab-content>
     
         <tab-content title="Additional Info" :before-change="validateAsync" icon="ti-settings">
