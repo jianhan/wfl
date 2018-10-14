@@ -1,6 +1,6 @@
 <template>
-    <form-wizard @on-complete="handleComplete" @on-loading="setLoading" @on-validate="handleValidation" @on-error="handleErrorMessage" shape="circle" color="#20a0ff" error-color="#e74c3c">
-        <tab-content title="Data Source" icon="fa fa-user" :before-change="validateDatasource">
+    <form-wizard title="Search Near by Restaurants" subtitle="Step over the wizard to find restaurant for lunch" finishButtonText="Search" @on-complete="handleComplete" @on-loading="setLoading" @on-validate="handleValidation" @on-error="handleErrorMessage" shape="circle" color="#20a0ff" error-color="#e74c3c">
+        <tab-content title="Data Source" icon="fas fa-database" :before-change="validateDatasource">
             <b-card-group deck class="mb-3">
                 <b-card bg-variant="primary" text-variant="white" :header="`<strong>G</strong>oogle`" class="text-center">
                     <p class="card-text">Build with comprehensive points of interest data. Count on accurate, real-time location information.</p>
@@ -11,7 +11,7 @@
                     <em slot="footer"><b-button @click="handleSelectDataSource('zomato')" :pressed="isDataSourcePressed('zomato')" variant="outline-warning">Select</b-button></em>
                 </b-card>
             </b-card-group>
-    
+
             <b-card-group deck class="mb-3">
                 <b-card style="background-color: #dc091c" text-variant="white" :header="`<strong>Y</strong>elp`" class="text-center">
                     <p class="card-text">User Reviews and Recommendations of Best Restaurants, Shopping, Nightlife, Food, Entertainment, Things to Do, Services and More.</p>
@@ -23,9 +23,9 @@
                 </b-card>
             </b-card-group>
         </tab-content>
-    
-        <tab-content title="Additional Info" :before-change="validateAsync" icon="ti-settings">
-            Second tab
+
+        <tab-content title="Additional Info" :before-change="validateAsync" icon="fas fa-keyboard">
+            <google-nearby-search></google-nearby-search>
         </tab-content>
     
         <tab-content title="Last step" icon="ti-check">
@@ -42,18 +42,8 @@
 </template>
 
 <script>
-    import bForm from 'bootstrap-vue/es/components/form/form'
-    import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group'
-    import bButtonGroup from 'bootstrap-vue/es/components/button-group/button-group'
-    import bButton from 'bootstrap-vue/es/components/button/button'
-    import bFormInput from 'bootstrap-vue/es/components/form-input/form-input'
-    import bFormSelect from 'bootstrap-vue/es/components/form-select/form-select'
-    import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox'
-    import bFormCheckboxGroup from 'bootstrap-vue/es/components/form-checkbox/form-checkbox-group'
-    import bFormRadio from 'bootstrap-vue/es/components/form-radio/form-radio'
-    import bFormRadioGroup from 'bootstrap-vue/es/components/form-radio/form-radio-group'
     import bCard from 'bootstrap-vue/es/components/card/card'
-    import bAlert from 'bootstrap-vue/es/components/alert/alert'
+    import bButton from 'bootstrap-vue/es/components/button/button'
     import bCardGroup from 'bootstrap-vue/es/components/card/card-group'
     import * as envs from '../.env'
     import {
@@ -65,24 +55,16 @@
         mapState
     } from "vuex";
     import * as mutationTypes from '../store/mutation-types.js'
+    import GoogleNearbySearch from './GoogleNearbySearch'
     
     export default {
         components: {
             FormWizard,
             TabContent,
-            'b-form': bForm,
-            'b-form-group': bFormGroup,
             'b-button': bButton,
-            'b-form-input': bFormInput,
-            'b-form-select': bFormSelect,
-            'b-form-checkbox': bFormCheckbox,
-            'b-form-checkbox-group': bFormCheckboxGroup,
-            'b-form-radio': bFormRadio,
-            'b-form-radio-group': bFormRadioGroup,
             'b-card': bCard,
             'b-card-group': bCardGroup,
-            'b-alert': bAlert,
-            'b-button-group': bButtonGroup,
+            'google-nearby-search': GoogleNearbySearch,
         },
         data() {
             return {

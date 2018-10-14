@@ -54518,26 +54518,18 @@ exports.push([module.i, "\nspan.error {\n    color: #e74c3c;\n    font-size: 20p
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_form_form__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_form_group_form_group__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_group_button_group__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_button_button__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_es_components_form_input_form_input__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_es_components_form_select_form_select__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_es_components_form_checkbox_form_checkbox__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_checkbox_form_checkbox_group__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_form_radio_form_radio_group__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_card_card__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_es_components_alert_alert__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__env__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_vue_form_wizard__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_vue_form_wizard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_vue_form_wizard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_vue_form_wizard_dist_vue_form_wizard_min_css__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_vue_form_wizard_dist_vue_form_wizard_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_vue_form_wizard_dist_vue_form_wizard_min_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_vuex__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__store_mutation_types_js__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_card_card__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_button_button__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__env__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_form_wizard_dist_vue_form_wizard_min_css__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_form_wizard_dist_vue_form_wizard_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_form_wizard_dist_vue_form_wizard_min_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vuex__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -54594,32 +54586,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
-
-
-
-
-
-
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        FormWizard: __WEBPACK_IMPORTED_MODULE_14_vue_form_wizard__["FormWizard"],
-        TabContent: __WEBPACK_IMPORTED_MODULE_14_vue_form_wizard__["TabContent"],
-        'b-form': __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_form_form__["a" /* default */],
-        'b-form-group': __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_form_group_form_group__["a" /* default */],
-        'b-button': __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_button_button__["a" /* default */],
-        'b-form-input': __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_es_components_form_input_form_input__["a" /* default */],
-        'b-form-select': __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_es_components_form_select_form_select__["a" /* default */],
-        'b-form-checkbox': __WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_es_components_form_checkbox_form_checkbox__["a" /* default */],
-        'b-form-checkbox-group': __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_es_components_form_checkbox_form_checkbox_group__["a" /* default */],
-        'b-form-radio': __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_es_components_form_radio_form_radio__["a" /* default */],
-        'b-form-radio-group': __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_es_components_form_radio_form_radio_group__["a" /* default */],
-        'b-card': __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_es_components_card_card__["a" /* default */],
-        'b-card-group': __WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_es_components_card_card_group__["a" /* default */],
-        'b-alert': __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_es_components_alert_alert__["a" /* default */],
-        'b-button-group': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_group_button_group__["a" /* default */]
+        FormWizard: __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__["FormWizard"],
+        TabContent: __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__["TabContent"],
+        'b-button': __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_button_button__["a" /* default */],
+        'b-card': __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_card_card__["a" /* default */],
+        'b-card-group': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_card_card_group__["a" /* default */],
+        'google-nearby-search': __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch___default.a
     },
     data: function data() {
         return {
@@ -54629,7 +54603,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_16_vuex__["b" /* mapState */])({
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapState */])({
         dataSources: function dataSources(state) {
             return state.wizard.dataSources;
         }
@@ -54643,13 +54617,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.wizard.selectedDatasource;
             },
             set: function set(value) {
-                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_17__store_mutation_types_js__["a" /* UPDATE_SELECTED_DATASOURCE */], value);
+                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__["a" /* UPDATE_SELECTED_DATASOURCE */], value);
             }
         }
     }),
     methods: {
         handleSelectDataSource: function handleSelectDataSource(dataSource) {
-            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_17__store_mutation_types_js__["a" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__["a" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
         },
         isDataSourcePressed: function isDataSourcePressed(dataSource) {
             return this.selectedDatasource === dataSource;
@@ -54758,7 +54732,14 @@ var render = function() {
   return _c(
     "form-wizard",
     {
-      attrs: { shape: "circle", color: "#20a0ff", "error-color": "#e74c3c" },
+      attrs: {
+        title: "Search Near by Restaurants",
+        subtitle: "Step over the wizard to find restaurant for lunch",
+        finishButtonText: "Search",
+        shape: "circle",
+        color: "#20a0ff",
+        "error-color": "#e74c3c"
+      },
       on: {
         "on-complete": _vm.handleComplete,
         "on-loading": _vm.setLoading,
@@ -54772,7 +54753,7 @@ var render = function() {
         {
           attrs: {
             title: "Data Source",
-            icon: "fa fa-user",
+            icon: "fas fa-database",
             "before-change": _vm.validateDatasource
           }
         },
@@ -54968,10 +54949,11 @@ var render = function() {
           attrs: {
             title: "Additional Info",
             "before-change": _vm.validateAsync,
-            icon: "ti-settings"
+            icon: "fas fa-keyboard"
           }
         },
-        [_vm._v("\n        Second tab\n    ")]
+        [_c("google-nearby-search")],
+        1
       ),
       _vm._v(" "),
       _c("tab-content", { attrs: { title: "Last step", icon: "ti-check" } }, [
@@ -58467,6 +58449,231 @@ return Promise$1;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(185)
+/* template */
+var __vue_template__ = __webpack_require__(186)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/GoogleNearbySearch.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a70500ea", Component.options)
+  } else {
+    hotAPI.reload("data-v-a70500ea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_form_group_form_group__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_form_radio_form_radio_group__ = __webpack_require__(49);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'b-form-group': __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_form_group_form_group__["a" /* default */],
+        'b-form-radio-group': __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_form_radio_form_radio_group__["a" /* default */]
+    },
+    data: function data() {
+        return {
+            place: null,
+            formData: {
+                latitude: '',
+                longitude: '',
+                radius: 500,
+                minprice: null,
+                maxprice: null
+            },
+            googleNearbySearchPriceOptions: [{
+                text: 'select price',
+                value: null
+            }, {
+                text: 'most affortable',
+                value: 0
+            }, {
+                text: 'affortable',
+                value: 1
+            }, {
+                text: 'average',
+                value: 2
+            }, {
+                text: 'expensive',
+                value: 3
+            }, {
+                text: 'luxury',
+                value: 4
+            }],
+            radiusOptions: [{
+                text: '500m',
+                value: 500
+            }, {
+                text: '1000m',
+                value: 1000
+            }, {
+                text: '2000m',
+                value: 2000
+            }, {
+                text: '5000m',
+                value: 5000
+            }]
+        };
+    },
+
+    watch: {
+        place: function place(val) {
+            var latitude = _.get(val, 'geometry.location.lat', false);
+            var longitude = _.get(val, 'geometry.location.lng', false);
+            if (latitude && longitude) {
+                this.formData.latitude = latitude();
+                this.formData.longitude = longitude();
+            }
+        }
+    },
+    methods: {
+        setPlace: function setPlace(place) {
+            this.place = place;
+        }
+    }
+});
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-form-group",
+        {
+          attrs: {
+            description: "Enter your current address as starting location",
+            label: "Address"
+          }
+        },
+        [
+          _c("gmap-autocomplete", {
+            staticClass: "form-control",
+            on: { place_changed: _vm.setPlace }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        {
+          attrs: {
+            label: "Radius",
+            description:
+              "Searching radius defines the distance (in meters) within which will search be performed"
+          }
+        },
+        [
+          _c("b-form-radio-group", {
+            attrs: {
+              buttons: "",
+              "button-variant": "outline-primary",
+              size: "md",
+              options: _vm.radiusOptions
+            },
+            model: {
+              value: _vm.formData.radius,
+              callback: function($$v) {
+                _vm.$set(_vm.formData, "radius", $$v)
+              },
+              expression: "formData.radius"
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a70500ea", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
