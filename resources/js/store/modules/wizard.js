@@ -1,3 +1,5 @@
+import * as mutationTypes from '../mutation-types'
+
 // initial state
 const state = {
     // dataSources which is not mutable
@@ -56,14 +58,9 @@ const actions = {
 
 // mutations
 const mutations = {
-    // pushProductToCart(state, {
-    //     id
-    // }) {
-    //     state.items.push({
-    //         id,
-    //         quantity: 1
-    //     })
-    // },
+    [mutationTypes.UPDATE_SELECTED_DATASOURCE](state, payload) {
+        Vue.set(state, 'selectedDatasource', payload)
+    },
 }
 
 export default {
