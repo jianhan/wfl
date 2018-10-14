@@ -54572,6 +54572,29 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -54637,6 +54660,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
     }),
     methods: {
+        handleSelectDataSource: function handleSelectDataSource(dataSource) {
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_17__store_mutation_types_js__["a" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
+        },
+        isDataSourcePressed: function isDataSourcePressed(dataSource) {
+            return this.selectedDatasource === dataSource;
+        },
+
         handleComplete: function handleComplete() {
             alert("Yay. Done!");
         },
@@ -54749,6 +54779,188 @@ var render = function() {
       }
     },
     [
+      _c(
+        "b-card-group",
+        { staticClass: "mb-3", attrs: { deck: "" } },
+        [
+          _c(
+            "b-card",
+            {
+              staticClass: "text-center",
+              attrs: {
+                "bg-variant": "primary",
+                "text-variant": "white",
+                header: "<strong>G</strong>oogle"
+              }
+            },
+            [
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(
+                  "Build with comprehensive points of interest data. Count on accurate, real-time location information."
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "em",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      attrs: {
+                        pressed: _vm.isDataSourcePressed("google"),
+                        variant: "outline-warning"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.handleSelectDataSource("google")
+                        }
+                      }
+                    },
+                    [_vm._v("Select")]
+                  )
+                ],
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            {
+              staticClass: "text-center",
+              staticStyle: { "background-color": "#d20247" },
+              attrs: {
+                "text-variant": "white",
+                header: "<strong>Z</strong>omato"
+              }
+            },
+            [
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(
+                  "Provide freshest and most exhaustive information for over 1.5 million restaurants across 10,000 cities globally."
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "em",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      attrs: {
+                        pressed: _vm.isDataSourcePressed("zomato"),
+                        variant: "outline-warning"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.handleSelectDataSource("zomato")
+                        }
+                      }
+                    },
+                    [_vm._v("Select")]
+                  )
+                ],
+                1
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-card-group",
+        { staticClass: "mb-3", attrs: { deck: "" } },
+        [
+          _c(
+            "b-card",
+            {
+              staticClass: "text-center",
+              attrs: {
+                "bg-variant": "primary",
+                "text-variant": "white",
+                header: "<strong>Y</strong>elp"
+              }
+            },
+            [
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(
+                  "User Reviews and Recommendations of Best Restaurants, Shopping, Nightlife, Food, Entertainment, Things to Do, Services and More."
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "em",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      attrs: {
+                        pressed: _vm.isDataSourcePressed("yelp"),
+                        variant: "outline-warning"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.handleSelectDataSource("yelp")
+                        }
+                      }
+                    },
+                    [_vm._v("Select")]
+                  )
+                ],
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-card",
+            {
+              staticClass: "text-center",
+              staticStyle: { "background-color": "#d20247" },
+              attrs: {
+                "text-variant": "white",
+                header: "<strong>H</strong>ere"
+              }
+            },
+            [
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(
+                  "Provide Mapping, Places, Geocoding, Routing, Traffic and much more!"
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "em",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      attrs: {
+                        pressed: _vm.isDataSourcePressed("here"),
+                        variant: "outline-warning"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.handleSelectDataSource("here")
+                        }
+                      }
+                    },
+                    [_vm._v("Select")]
+                  )
+                ],
+                1
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "tab-content",
         {
