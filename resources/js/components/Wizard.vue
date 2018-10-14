@@ -1,12 +1,12 @@
 <template>
-    <form-wizard>
-        <tab-content title="Personal details">
+    <form-wizard title="Restaurant Search Wizard" subtitle="Please complete the steps below to search results">
+        <tab-content title="Select Datasource">
             My first tab content
         </tab-content>
-        <tab-content title="Additional Info">
+        <tab-content title="Extra Options">
             My second tab content
         </tab-content>
-        <tab-content title="Last step">
+        <tab-content title="Results">
             Yuhuuu! This seems pretty damn simple
         </tab-content>
     </form-wizard>
@@ -26,4 +26,3 @@
         }
     }
 </script>
-

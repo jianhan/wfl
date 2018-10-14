@@ -21,6 +21,7 @@ Vue.component('wizard', require('./components/Wizard.vue'));
 
 import {GOOGLE_MAP_API} from './.env'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import store from './store'
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -31,5 +32,6 @@ Vue.use(VueGoogleMaps, {
 })
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store,
 });
