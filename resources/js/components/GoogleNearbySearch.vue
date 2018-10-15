@@ -10,10 +10,10 @@
     
         <div class="row">
             <b-form-group label="Minimal Price" description="Set minimal price for searching" class="col-md-6">
-                <b-form-select v-model="formData.minprice" :options="googleNearbySearchPriceOptions" />
+                <b-form-select v-model="minprice" :options="googleNearbySearchPriceOptions" />
             </b-form-group>
             <b-form-group label="Max Price" description="Set max price for searching" class="col-md-6">
-                <b-form-select v-model="formData.maxprice" :options="googleNearbySearchPriceOptions" />
+                <b-form-select v-model="maxprice" :options="googleNearbySearchPriceOptions" />
             </b-form-group>
         </div>
     
@@ -35,13 +35,6 @@
         data() {
             return {
                 place: null,
-                formData: {
-                    latitude: "",
-                    longitude: "",
-                    radius: 500,
-                    minprice: null,
-                    maxprice: null
-                },
                 googleNearbySearchPriceOptions: [{
                         text: "select price",
                         value: null
@@ -94,6 +87,22 @@
                 set(value) {
                     this.$store.commit(`wizard/${mutationTypes.UPDATE_RADIUS}`, value);
                 }
+            },
+            minprice: {
+                get() {
+                    return this.$store.state.wizard.googleFormData.minprice;
+                },
+                set(value) {
+                    this.$store.commit(`wizard/${mutationTypes.UPDATE_MIN_PRICE}`, value);
+                }
+            },
+            maxprice: {
+                get() {
+                    return this.$store.state.wizard.googleFormData.maxprice;
+                },
+                set(value) {
+                    this.$store.commit(`wizard/${mutationTypes.UPDATE_MAX_PRICE}`, value);
+                }
             }
         },
         watch: {
@@ -101,8 +110,7 @@
                 const latitude = _.get(val, "geometry.location.lat", false);
                 const longitude = _.get(val, "geometry.location.lng", false);
                 if (latitude && longitude) {
-                    this.formData.latitude = latitude();
-                    this.formData.longitude = longitude();
+                    this.$store.commit(`wizard/${mutationTypes.UPDATE_LATITUDE_LONGITUDE}`, { latitude: latitude(), longitude: longitude() });
                 }
             }
         },

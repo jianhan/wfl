@@ -54826,13 +54826,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             place: null,
-            formData: {
-                latitude: "",
-                longitude: "",
-                radius: 500,
-                minprice: null,
-                maxprice: null
-            },
             googleNearbySearchPriceOptions: [{
                 text: "select price",
                 value: null
@@ -54876,6 +54869,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             set: function set(value) {
                 this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["e" /* UPDATE_RADIUS */], value);
             }
+        },
+        minprice: {
+            get: function get() {
+                return this.$store.state.wizard.googleFormData.minprice;
+            },
+            set: function set(value) {
+                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["d" /* UPDATE_MIN_PRICE */], value);
+            }
+        },
+        maxprice: {
+            get: function get() {
+                return this.$store.state.wizard.googleFormData.maxprice;
+            },
+            set: function set(value) {
+                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["c" /* UPDATE_MAX_PRICE */], value);
+            }
         }
     },
     watch: {
@@ -54883,8 +54892,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var latitude = _.get(val, "geometry.location.lat", false);
             var longitude = _.get(val, "geometry.location.lng", false);
             if (latitude && longitude) {
-                this.formData.latitude = latitude();
-                this.formData.longitude = longitude();
+                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["b" /* UPDATE_LATITUDE_LONGITUDE */], { latitude: latitude(), longitude: longitude() });
             }
         }
     },
@@ -54969,11 +54977,11 @@ var render = function() {
               _c("b-form-select", {
                 attrs: { options: _vm.googleNearbySearchPriceOptions },
                 model: {
-                  value: _vm.formData.minprice,
+                  value: _vm.minprice,
                   callback: function($$v) {
-                    _vm.$set(_vm.formData, "minprice", $$v)
+                    _vm.minprice = $$v
                   },
-                  expression: "formData.minprice"
+                  expression: "minprice"
                 }
               })
             ],
@@ -54993,11 +55001,11 @@ var render = function() {
               _c("b-form-select", {
                 attrs: { options: _vm.googleNearbySearchPriceOptions },
                 model: {
-                  value: _vm.formData.maxprice,
+                  value: _vm.maxprice,
                   callback: function($$v) {
-                    _vm.$set(_vm.formData, "maxprice", $$v)
+                    _vm.maxprice = $$v
                   },
-                  expression: "formData.maxprice"
+                  expression: "maxprice"
                 }
               })
             ],
@@ -57379,7 +57387,10 @@ var googleFormData = {
 // mutations
 ;var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_SELECTED_DATASOURCE */], function (state, payload) {
     Vue.set(state, 'selectedDatasource', payload);
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* UPDATE_LATITUDE_LONGITUDE */], function (state, latitude, longitude) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* UPDATE_LATITUDE_LONGITUDE */], function (state, _ref) {
+    var latitude = _ref.latitude,
+        longitude = _ref.longitude;
+
     Vue.set(state, 'googleFormData.latitude', latitude);
     Vue.set(state, 'googleFormData.longitude', longitude);
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* UPDATE_RADIUS */], function (state, radius) {

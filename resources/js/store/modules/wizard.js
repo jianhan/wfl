@@ -70,7 +70,7 @@ const mutations = {
     [mutationTypes.UPDATE_SELECTED_DATASOURCE](state, payload) {
         Vue.set(state, 'selectedDatasource', payload)
     },
-    [mutationTypes.UPDATE_LATITUDE_LONGITUDE](state, latitude, longitude) {
+    [mutationTypes.UPDATE_LATITUDE_LONGITUDE](state, { latitude, longitude }) {
         Vue.set(state, 'googleFormData.latitude', latitude)
         Vue.set(state, 'googleFormData.longitude', longitude)
     },
