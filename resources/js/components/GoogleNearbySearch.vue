@@ -1,91 +1,115 @@
 <template>
     <div>
         <b-form-group description="Enter your current address as starting location" label="Address">
-            <gmap-autocomplete @place_changed="setPlace" class="form-control"></gmap-autocomplete>
+            <gmap-autocomplete @place_changed="handlePlaceChanged" class="form-control"></gmap-autocomplete>
         </b-form-group>
     
         <b-form-group label="Radius" description="Searching radius defines the distance (in meters) within which will search be performed">
-            <b-form-radio-group buttons button-variant="outline-primary" size="md" v-model="formData.radius" :options="radiusOptions" />
+            <b-form-radio-group buttons button-variant="outline-primary" size="md" v-model="radius" :options="radiusOptions" />
         </b-form-group>
+    
+        <div class="row">
+            <b-form-group label="Minimal Price" description="Set minimal price for searching" class="col-md-6">
+                <b-form-select v-model="formData.minprice" :options="googleNearbySearchPriceOptions" />
+            </b-form-group>
+            <b-form-group label="Max Price" description="Set max price for searching" class="col-md-6">
+                <b-form-select v-model="formData.maxprice" :options="googleNearbySearchPriceOptions" />
+            </b-form-group>
+        </div>
+    
     </div>
 </template>
 
 <script>
-    import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group'
-    import bFormRadioGroup from 'bootstrap-vue/es/components/form-radio/form-radio-group'
-
+    import bFormGroup from "bootstrap-vue/es/components/form-group/form-group";
+    import bFormRadioGroup from "bootstrap-vue/es/components/form-radio/form-radio-group";
+    import bFormSelect from "bootstrap-vue/es/components/form-select/form-select";
+    import * as mutationTypes from '../store/mutation-types.js'
+    
     export default {
         components: {
-            'b-form-group': bFormGroup,
-            'b-form-radio-group': bFormRadioGroup,
+            "b-form-group": bFormGroup,
+            "b-form-radio-group": bFormRadioGroup,
+            "b-form-select": bFormSelect
         },
         data() {
             return {
                 place: null,
                 formData: {
-                    latitude: '',
-                    longitude: '',
+                    latitude: "",
+                    longitude: "",
                     radius: 500,
                     minprice: null,
                     maxprice: null
                 },
                 googleNearbySearchPriceOptions: [{
-                        text: 'select price',
+                        text: "select price",
                         value: null
-                    }, {
-                        text: 'most affortable',
+                    },
+                    {
+                        text: "most affortable",
                         value: 0
                     },
                     {
-                        text: 'affortable',
+                        text: "affortable",
                         value: 1
                     },
                     {
-                        text: 'average',
+                        text: "average",
                         value: 2
                     },
                     {
-                        text: 'expensive',
+                        text: "expensive",
                         value: 3
                     },
                     {
-                        text: 'luxury',
+                        text: "luxury",
                         value: 4
                     }
                 ],
                 radiusOptions: [{
-                        text: '500m',
+                        text: "500m",
                         value: 500
                     },
                     {
-                        text: '1000m',
+                        text: "1000m",
                         value: 1000
                     },
                     {
-                        text: '2000m',
+                        text: "2000m",
                         value: 2000
                     },
                     {
-                        text: '5000m',
+                        text: "5000m",
                         value: 5000
-                    },
-                ],
+                    }
+                ]
+            };
+        },
+        computed: {
+            radius: {
+                get() {
+                    return this.$store.state.wizard.googleFormData.radius;
+                },
+                set(value) {
+                    this.$store.commit(`wizard/${mutationTypes.UPDATE_RADIUS}`, value);
+                }
             }
         },
         watch: {
             place: function(val) {
-                const latitude = _.get(val, 'geometry.location.lat', false)
-                const longitude = _.get(val, 'geometry.location.lng', false)
+                const latitude = _.get(val, "geometry.location.lat", false);
+                const longitude = _.get(val, "geometry.location.lng", false);
                 if (latitude && longitude) {
-                    this.formData.latitude = latitude()
-                    this.formData.longitude = longitude()
+                    this.formData.latitude = latitude();
+                    this.formData.longitude = longitude();
                 }
             }
         },
         methods: {
-            setPlace(place) {
-                this.place = place
+            handlePlaceChanged(place) {
+                this.place = place;
             }
         }
-    }
+    };
 </script>

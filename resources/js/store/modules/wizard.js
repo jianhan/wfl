@@ -1,5 +1,13 @@
 import * as mutationTypes from '../mutation-types'
 
+const googleFormData = {
+    latitude: '',
+    longitude: '',
+    radius: 500,
+    minprice: null,
+    maxprice: null
+}
+
 // initial state
 const state = {
     // dataSources which is not mutable
@@ -10,6 +18,7 @@ const state = {
         here: 'here',
     },
     selectedDatasource: 'google',
+    googleFormData
 }
 
 // getters
@@ -60,6 +69,22 @@ const actions = {
 const mutations = {
     [mutationTypes.UPDATE_SELECTED_DATASOURCE](state, payload) {
         Vue.set(state, 'selectedDatasource', payload)
+    },
+    [mutationTypes.UPDATE_LATITUDE_LONGITUDE](state, latitude, longitude) {
+        Vue.set(state, 'googleFormData.latitude', latitude)
+        Vue.set(state, 'googleFormData.longitude', longitude)
+    },
+    [mutationTypes.UPDATE_RADIUS](state, radius) {
+        Vue.set(state, 'googleFormData.radius', radius)
+    },
+    [mutationTypes.UPDATE_MAX_PRICE](state, maxPrice) {
+        Vue.set(state, 'googleFormData.maxPrice', maxPrice)
+    },
+    [mutationTypes.UPDATE_MIN_PRICE](state, minPrice) {
+        Vue.set(state, 'googleFormData.minPrice', minPrice)
+    },
+    [mutationTypes.RESET_GOOGLE_FORM](state) {
+        Vue.set(state, 'googleFormData', googleFormData)
     },
 }
 
