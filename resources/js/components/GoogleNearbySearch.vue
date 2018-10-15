@@ -16,7 +16,7 @@
                 <b-form-select v-model="maxprice" :options="googleNearbySearchPriceOptions" />
             </b-form-group>
         </div>
-    
+        {{ test }}    
     </div>
 </template>
 
@@ -80,6 +80,9 @@
             };
         },
         computed: {
+            test() {
+                return this.$store.state.wizard.googleFormData;
+            },
             radius: {
                 get() {
                     return this.$store.state.wizard.googleFormData.radius;

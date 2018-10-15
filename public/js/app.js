@@ -54862,6 +54862,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
+        test: function test() {
+            return this.$store.state.wizard.googleFormData;
+        },
+
         radius: {
             get: function get() {
                 return this.$store.state.wizard.googleFormData.radius;
@@ -55013,7 +55017,8 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v("\n    " + _vm._s(_vm.test) + "    \n")
     ],
     1
   )
@@ -57391,14 +57396,14 @@ var googleFormData = {
     var latitude = _ref.latitude,
         longitude = _ref.longitude;
 
-    Vue.set(state, 'googleFormData.latitude', latitude);
-    Vue.set(state, 'googleFormData.longitude', longitude);
+    Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { latitude: latitude }));
+    Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { longitude: longitude }));
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* UPDATE_RADIUS */], function (state, radius) {
-    Vue.set(state, 'googleFormData.radius', radius);
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* UPDATE_MAX_PRICE */], function (state, maxPrice) {
-    Vue.set(state, 'googleFormData.maxPrice', maxPrice);
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_MIN_PRICE */], function (state, minPrice) {
-    Vue.set(state, 'googleFormData.minPrice', minPrice);
+    Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { radius: radius }));
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* UPDATE_MAX_PRICE */], function (state, maxprice) {
+    Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { maxprice: maxprice }));
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_MIN_PRICE */], function (state, minprice) {
+    Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { minprice: minprice }));
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* RESET_GOOGLE_FORM */], function (state) {
     Vue.set(state, 'googleFormData', googleFormData);
 }), _mutations);
