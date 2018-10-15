@@ -23,6 +23,16 @@ const state = {
 
 // getters
 const getters = {
+    canProcessSearch: (state) => {
+        if (state.selectedDatasource === state.dataSources.google) {
+            if (_.get(state, 'googleFormData.latitude') == '' || _.get(state, 'googleFormData.longitude') == '' || _.get(state, 'googleFormData.radius') == 0) {
+                return false
+            }
+
+            return true
+        }
+        return false
+    }
     // cartProducts: (state, getters, rootState) => {
     //     return state.items.map(({
     //         id,

@@ -28448,9 +28448,9 @@ var props = {
 "use strict";
 /* unused harmony export Store */
 /* unused harmony export install */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return mapState; });
 /* unused harmony export mapMutations */
-/* unused harmony export mapGetters */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapGetters; });
 /* unused harmony export mapActions */
 /* unused harmony export createNamespacedHelpers */
 /**
@@ -54586,6 +54586,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+
 
 
 
@@ -54614,7 +54616,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapState */])({
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["c" /* mapState */])({
         dataSources: function dataSources(state) {
             return state.wizard.dataSources;
         }
@@ -54622,6 +54624,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         // countPlusLocalState(state) {
         //     return state.count + this.localCount;
         // }
+    }), Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapGetters */])({
+        canProcessSearch: 'wizard/canProcessSearch'
     }), {
         selectedDatasource: {
             get: function get() {
@@ -54810,7 +54814,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -54862,10 +54865,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
-        test: function test() {
-            return this.$store.state.wizard.googleFormData;
-        },
-
         radius: {
             get: function get() {
                 return this.$store.state.wizard.googleFormData.radius;
@@ -55017,8 +55016,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v("\n    " + _vm._s(_vm.test) + "    \n")
+      )
     ],
     1
   )
@@ -55278,7 +55276,8 @@ var render = function() {
         ? _c("div", [
             _c("span", { staticClass: "error" }, [_vm._v(_vm._s(_vm.errorMsg))])
           ])
-        : _vm._e()
+        : _vm._e(),
+      _vm._v("\n    " + _vm._s(_vm.canProcessSearch) + "    \n")
     ],
     1
   )
@@ -57348,24 +57347,34 @@ var googleFormData = {
     googleFormData: googleFormData
 
     // getters
-};var getters = {}
-// cartProducts: (state, getters, rootState) => {
-//     return state.items.map(({
-//         id,
-//         quantity
-//     }) => {
-//         const product = rootState.products.all.find(product => product.id === id)
-//         return {
-//             title: product.title,
-//             price: product.price,
-//             quantity
-//         }
-//     })
-// }
+};var getters = {
+    canProcessSearch: function canProcessSearch(state) {
+        if (state.selectedDatasource === state.dataSources.google) {
+            if (_.get(state, 'googleFormData.latitude') == '' || _.get(state, 'googleFormData.longitude') == '' || _.get(state, 'googleFormData.radius') == 0) {
+                return false;
+            }
+
+            return true;
+        }
+        return false;
+    }
+    // cartProducts: (state, getters, rootState) => {
+    //     return state.items.map(({
+    //         id,
+    //         quantity
+    //     }) => {
+    //         const product = rootState.products.all.find(product => product.id === id)
+    //         return {
+    //             title: product.title,
+    //             price: product.price,
+    //             quantity
+    //         }
+    //     })
+    // }
 
 
-// actions
-;var actions = {}
+    // actions
+};var actions = {}
 // checkout({
 //     commit,
 //     state
