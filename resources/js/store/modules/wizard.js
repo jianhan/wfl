@@ -17,6 +17,7 @@ const state = {
         yelp: 'yelp',
         here: 'here',
     },
+    selectedAddress: '',
     selectedDatasource: 'google',
     googleFormData
 }
@@ -84,20 +85,33 @@ const mutations = {
         latitude,
         longitude
     }) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { latitude }))
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { longitude }))
+        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
+            latitude
+        }))
+        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
+            longitude
+        }))
     },
     [mutationTypes.UPDATE_RADIUS](state, radius) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { radius }))
+        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
+            radius
+        }))
     },
     [mutationTypes.UPDATE_MAX_PRICE](state, maxprice) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { maxprice }))
+        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
+            maxprice
+        }))
     },
     [mutationTypes.UPDATE_MIN_PRICE](state, minprice) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, { minprice }))
+        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
+            minprice
+        }))
     },
     [mutationTypes.RESET_GOOGLE_FORM](state) {
         Vue.set(state, 'googleFormData', googleFormData)
+    },
+    [mutationTypes.UPDATE_SELECTED_ADDRESS](state, payload) {
+        Vue.set(state, 'selectedAddress', payload)
     },
 }
 

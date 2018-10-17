@@ -54814,6 +54814,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -54828,6 +54829,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
+            fullAddress: '',
             place: null,
             googleNearbySearchPriceOptions: [{
                 text: "select price",
@@ -55277,7 +55279,7 @@ var render = function() {
             _c("span", { staticClass: "error" }, [_vm._v(_vm._s(_vm.errorMsg))])
           ])
         : _vm._e(),
-      _vm._v("\n    " + _vm._s(_vm.canProcessSearch) + "    \n")
+      _vm._v("\n    " + _vm._s(_vm.canProcessSearch) + "\n")
     ],
     1
   )

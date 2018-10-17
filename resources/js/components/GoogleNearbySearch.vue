@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <b-form-group description="Enter your current address as starting location" label="Address">
             <gmap-autocomplete @place_changed="handlePlaceChanged" class="form-control"></gmap-autocomplete>
         </b-form-group>
@@ -33,6 +34,7 @@
         },
         data() {
             return {
+                fullAddress: '',
                 place: null,
                 googleNearbySearchPriceOptions: [{
                         text: "select price",

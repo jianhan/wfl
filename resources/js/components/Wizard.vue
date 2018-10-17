@@ -1,7 +1,9 @@
 <template>
     <form-wizard title="Search Near by Restaurants" subtitle="Step over the wizard to find restaurant for lunch" finishButtonText="Search" @on-complete="handleComplete" @on-loading="setLoading" @on-validate="handleValidation" @on-error="handleErrorMessage"
         shape="circle" color="#20a0ff" error-color="#e74c3c">
+
         <tab-content title="Data Source" icon="fas fa-database" :before-change="validateDatasource">
+
             <b-card-group deck class="mb-3">
                 <b-card bg-variant="primary" text-variant="white" :header="`<strong>G</strong>oogle`" class="text-center">
                     <p class="card-text">Build with comprehensive points of interest data. Count on accurate, real-time location information.</p>
@@ -23,6 +25,7 @@
                     <em slot="footer"><b-button @click="handleSelectDataSource('here')" :pressed="isDataSourcePressed('here')" variant="outline-warning">Select</b-button></em>
                 </b-card>
             </b-card-group>
+
         </tab-content>
     
         <tab-content title="Additional Info" :before-change="validateAsync" icon="fas fa-keyboard">
@@ -38,7 +41,7 @@
         <div v-if="errorMsg">
             <span class="error">{{errorMsg}}</span>
         </div>
-        {{ canProcessSearch }}    
+        {{ canProcessSearch }}
     </form-wizard>
 </template>
 
@@ -88,59 +91,59 @@
             ...mapGetters({
                 canProcessSearch: `wizard/canProcessSearch`,
             }),
-        selectedDatasource: {
-            get() {
-                return this.$store.state.wizard.selectedDatasource
-            },
-            set(value) {
-                this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`, value)
-            }
-        },
-    },
-    methods: {
-        handleSelectDataSource(dataSource) {
-            this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`, dataSource)
-        },
-        isDataSourcePressed(dataSource) {
-            return this.selectedDatasource === dataSource
-        },
-        handleComplete: function() {
-            alert("Yay. Done!");
-        },
-        setLoading: function(value) {
-            this.loadingWizard = value;
-        },
-        handleValidation: function(isValid, tabIndex) {
-            console.log("Tab: " + tabIndex + " valid: " + isValid);
-        },
-        handleErrorMessage: function(errorMsg) {
-            this.errorMsg = errorMsg;
-        },
-        validateAsync: function() {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    if (this.count < 1) {
-                        this.count++;
-                        reject(
-                            "This is a custom validation error message. Click next again to get rid of the validation"
-                        );
-                    } else {
-                        this.count = 0;
-                        resolve(true);
-                    }
-                }, 1000);
-            });
-        },
-        validateDatasource: function() {
-            return new Promise((resolve, reject) => {
-                if (_.isString(this.selectedDatasource) && _.trim(this.selectedDatasource) !== '') {
-                    resolve(true)
-                } else {
-                    resolve(false)
+            selectedDatasource: {
+                get() {
+                    return this.$store.state.wizard.selectedDatasource
+                },
+                set(value) {
+                    this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`, value)
                 }
-            })
+            },
+        },
+        methods: {
+            handleSelectDataSource(dataSource) {
+                this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`, dataSource)
+            },
+            isDataSourcePressed(dataSource) {
+                return this.selectedDatasource === dataSource
+            },
+            handleComplete: function() {
+                alert("Yay. Done!");
+            },
+            setLoading: function(value) {
+                this.loadingWizard = value;
+            },
+            handleValidation: function(isValid, tabIndex) {
+                console.log("Tab: " + tabIndex + " valid: " + isValid);
+            },
+            handleErrorMessage: function(errorMsg) {
+                this.errorMsg = errorMsg;
+            },
+            validateAsync: function() {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        if (this.count < 1) {
+                            this.count++;
+                            reject(
+                                "This is a custom validation error message. Click next again to get rid of the validation"
+                            );
+                        } else {
+                            this.count = 0;
+                            resolve(true);
+                        }
+                    }, 1000);
+                });
+            },
+            validateDatasource: function() {
+                return new Promise((resolve, reject) => {
+                    if (_.isString(this.selectedDatasource) && _.trim(this.selectedDatasource) !== '') {
+                        resolve(true)
+                    } else {
+                        resolve(false)
+                    }
+                })
+            }
         }
-    }
     };
 </script>
 
