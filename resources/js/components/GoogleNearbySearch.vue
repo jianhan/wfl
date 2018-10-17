@@ -1,6 +1,6 @@
 <template>
     <div>
-
+    
         <b-form-group description="Enter your current address as starting location" label="Address">
             <gmap-autocomplete @place_changed="handlePlaceChanged" class="form-control"></gmap-autocomplete>
         </b-form-group>
@@ -35,7 +35,6 @@
         data() {
             return {
                 fullAddress: '',
-                place: null,
                 googleNearbySearchPriceOptions: [{
                         text: "select price",
                         value: null
@@ -106,18 +105,17 @@
                 }
             }
         },
-        watch: {
-            place: function(val) {
-                const latitude = _.get(val, "geometry.location.lat", false);
-                const longitude = _.get(val, "geometry.location.lng", false);
-                if (latitude && longitude) {
-                    this.$store.commit(`wizard/${mutationTypes.UPDATE_LATITUDE_LONGITUDE}`, { latitude: latitude(), longitude: longitude() });
-                }
-            }
-        },
         methods: {
             handlePlaceChanged(place) {
-                this.place = place;
+                this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_ADDRESS}`, place.formatted_address)
+                const latitude = _.get(place, "geometry.location.lat", false);
+                const longitude = _.get(place, "geometry.location.lng", false);
+                if (latitude && longitude) {
+                    this.$store.commit(`wizard/${mutationTypes.UPDATE_LATITUDE_LONGITUDE}`, {
+                        latitude: latitude(),
+                        longitude: longitude()
+                    });
+                }
             }
         }
     };
