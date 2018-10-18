@@ -54534,19 +54534,20 @@ exports.push([module.i, "\nspan.error {\n    color: #e74c3c;\n    font-size: 20p
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_card_card__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_button_button__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__env__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_form_wizard_dist_vue_form_wizard_min_css__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_form_wizard_dist_vue_form_wizard_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_form_wizard_dist_vue_form_wizard_min_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vuex__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__GoogleAutoComplete_vue__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__GoogleAutoComplete_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__GoogleAutoComplete_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_form_group_form_group__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_button__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_card_card_group__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__env__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_form_wizard__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_form_wizard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_form_wizard__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_form_wizard_dist_vue_form_wizard_min_css__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_form_wizard_dist_vue_form_wizard_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue_form_wizard_dist_vue_form_wizard_min_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vuex__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__GoogleNearbySearch__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__GoogleNearbySearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__GoogleNearbySearch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__GoogleAutoComplete_vue__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__GoogleAutoComplete_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__GoogleAutoComplete_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -54597,6 +54598,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -54612,13 +54617,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        FormWizard: __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__["FormWizard"],
-        TabContent: __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__["TabContent"],
-        GoogleAutoComplete: __WEBPACK_IMPORTED_MODULE_9__GoogleAutoComplete_vue___default.a,
-        GoogleNearbySearch: __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch___default.a,
-        'b-button': __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_button_button__["a" /* default */],
+        FormWizard: __WEBPACK_IMPORTED_MODULE_5_vue_form_wizard__["FormWizard"],
+        TabContent: __WEBPACK_IMPORTED_MODULE_5_vue_form_wizard__["TabContent"],
+        GoogleAutoComplete: __WEBPACK_IMPORTED_MODULE_10__GoogleAutoComplete_vue___default.a,
+        GoogleNearbySearch: __WEBPACK_IMPORTED_MODULE_9__GoogleNearbySearch___default.a,
+        'b-button': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_button__["a" /* default */],
         'b-card': __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_card_card__["a" /* default */],
-        'b-card-group': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_card_card_group__["a" /* default */]
+        'b-card-group': __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_card_card_group__["a" /* default */],
+        'b-form-group': __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_form_group_form_group__["a" /* default */]
     },
     data: function data() {
         return {
@@ -54628,7 +54634,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["c" /* mapState */])({
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_7_vuex__["c" /* mapState */])({
         // wizard
         dataSources: function dataSources(state) {
             return state.wizard.dataSources;
@@ -54658,7 +54664,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         maxprice: function maxprice(state) {
             return state.google.maxprice;
         }
-    }), Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapGetters */])({
+    }), Object(__WEBPACK_IMPORTED_MODULE_7_vuex__["b" /* mapGetters */])({
         isSelectedAddressSet: 'wizard/isSelectedAddressSet'
     }), {
         selectedDatasource: {
@@ -54666,13 +54672,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.wizard.selectedDatasource;
             },
             set: function set(value) {
-                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__["h" /* UPDATE_SELECTED_DATASOURCE */], value);
+                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["h" /* UPDATE_SELECTED_DATASOURCE */], value);
             }
         }
     }),
     methods: {
         handleSelectDataSource: function handleSelectDataSource(dataSource) {
-            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__["h" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["h" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
         },
         isDataSourcePressed: function isDataSourcePressed(dataSource) {
             return this.selectedDatasource === dataSource;
@@ -55265,7 +55271,38 @@ var render = function() {
             icon: "fas fa-keyboard"
           }
         },
-        [_c("google-auto-complete"), _vm._v(" "), _c("google-nearby-search")],
+        [
+          _vm.isSelectedAddressSet
+            ? _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    label: "Selected Address",
+                    description:
+                      "Address will be used for finding nearby places"
+                  }
+                },
+                [
+                  _c("strong", {
+                    domProps: { innerHTML: _vm._s(_vm.selectedAddress) }
+                  }),
+                  _c(
+                    "b-button",
+                    {
+                      staticClass: "float-right",
+                      attrs: { size: "sm", variant: "success" }
+                    },
+                    [_vm._v("Change")]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.isSelectedAddressSet ? _c("google-auto-complete") : _vm._e(),
+          _vm._v(" "),
+          _c("google-nearby-search")
+        ],
         1
       ),
       _vm._v(" "),

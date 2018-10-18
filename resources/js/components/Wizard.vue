@@ -1,9 +1,9 @@
 <template>
     <form-wizard title="Search Near by Restaurants" subtitle="Step over the wizard to find restaurant for lunch" finishButtonText="Search" @on-complete="handleComplete" @on-loading="setLoading" @on-validate="handleValidation" @on-error="handleErrorMessage"
         shape="circle" color="#20a0ff" error-color="#e74c3c">
-
+    
         <tab-content title="Data Source" icon="fas fa-database" :before-change="validateDatasource">
-
+    
             <b-card-group deck class="mb-3">
                 <b-card bg-variant="primary" text-variant="white" :header="`<strong>G</strong>oogle`" class="text-center">
                     <p class="card-text">Build with comprehensive points of interest data. Count on accurate, real-time location information.</p>
@@ -25,11 +25,14 @@
                     <em slot="footer"><b-button @click="handleSelectDataSource('here')" :pressed="isDataSourcePressed('here')" variant="outline-warning">Select</b-button></em>
                 </b-card>
             </b-card-group>
-
+    
         </tab-content>
     
         <tab-content title="Additional Info" :before-change="validateAsync" icon="fas fa-keyboard">
-            <google-auto-complete></google-auto-complete>
+            <b-form-group v-if="isSelectedAddressSet" label="Selected Address" description="Address will be used for finding nearby places">
+                <strong v-html="selectedAddress"></strong><b-button class="float-right" size="sm" variant="success">Change</b-button>
+            </b-form-group>
+            <google-auto-complete v-if="!isSelectedAddressSet"></google-auto-complete>
             <google-nearby-search></google-nearby-search>
         </tab-content>
     
@@ -42,12 +45,13 @@
         <div v-if="errorMsg">
             <span class="error">{{errorMsg}}</span>
         </div>
-
+    
     </form-wizard>
 </template>
 
 <script>
     import bCard from 'bootstrap-vue/es/components/card/card'
+    import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group'
     import bButton from 'bootstrap-vue/es/components/button/button'
     import bCardGroup from 'bootstrap-vue/es/components/card/card-group'
     import * as envs from '../.env'
@@ -75,6 +79,7 @@
             'b-button': bButton,
             'b-card': bCard,
             'b-card-group': bCardGroup,
+            'b-form-group': bFormGroup,
         },
         data() {
             return {
