@@ -30,7 +30,7 @@
     
         <tab-content title="Additional Info" :before-change="validateAsync" icon="fas fa-keyboard">
             <b-form-group v-if="isSelectedAddressSet" label="Selected Address" description="Address will be used for finding nearby places">
-                <strong v-html="selectedAddress"></strong><b-button class="float-right" size="sm" variant="success">Change</b-button>
+                <strong v-html="selectedAddress"></strong><b-button class="float-right" @click="handleChangeAddress" size="sm" variant="success">Change</b-button>
             </b-form-group>
             <google-auto-complete v-if="!isSelectedAddressSet"></google-auto-complete>
             <google-nearby-search></google-nearby-search>
@@ -156,6 +156,9 @@
                         resolve(false)
                     }
                 })
+            },
+            handleChangeAddress: function() {
+                this.$store.commit(`wizard/${mutationTypes.RESET_SELECTED_ADDRESS}`)
             }
         }
     };

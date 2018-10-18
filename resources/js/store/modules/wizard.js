@@ -49,6 +49,11 @@ const mutations = {
     [mutationTypes.RESET_WIZARD](state) {
         state = initialState
     },
+    [mutationTypes.RESET_SELECTED_ADDRESS](state) {
+        state.selectedAddress = ''
+        state.latitude = 0
+        state.longitude = 0
+    }
 }
 
 

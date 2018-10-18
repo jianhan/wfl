@@ -3316,20 +3316,22 @@ var index_esm = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return UPDATE_WIZARD_IS_LOADING; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return UPDATE_SELECTED_DATASOURCE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return UPDATE_SELECTED_ADDRESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RESET_WIZARD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return UPDATE_LATITUDE_LONGITUDE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UPDATE_RADIUS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return UPDATE_MAX_PRICE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return UPDATE_MIN_PRICE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return UPDATE_WIZARD_IS_LOADING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return UPDATE_SELECTED_DATASOURCE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return UPDATE_SELECTED_ADDRESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return RESET_WIZARD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RESET_SELECTED_ADDRESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return UPDATE_LATITUDE_LONGITUDE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return UPDATE_RADIUS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return UPDATE_MAX_PRICE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UPDATE_MIN_PRICE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RESET_GOOGLE_FORM; });
 // Wizard
 var UPDATE_WIZARD_IS_LOADING = 'updateWizardIsLoading';
 var UPDATE_SELECTED_DATASOURCE = 'updateSelectedDatasource';
 var UPDATE_SELECTED_ADDRESS = 'updateSelectedAddress';
 var RESET_WIZARD = 'resetWizard';
+var RESET_SELECTED_ADDRESS = 'resetSelectedAddress';
 
 // Google Form
 var UPDATE_LATITUDE_LONGITUDE = 'updateLatitudeLongitude';
@@ -54672,13 +54674,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.wizard.selectedDatasource;
             },
             set: function set(value) {
-                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["h" /* UPDATE_SELECTED_DATASOURCE */], value);
+                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["i" /* UPDATE_SELECTED_DATASOURCE */], value);
             }
         }
     }),
     methods: {
         handleSelectDataSource: function handleSelectDataSource(dataSource) {
-            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["h" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["i" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
         },
         isDataSourcePressed: function isDataSourcePressed(dataSource) {
             return this.selectedDatasource === dataSource;
@@ -54721,6 +54723,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                     resolve(false);
                 }
             });
+        },
+        handleChangeAddress: function handleChangeAddress() {
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["b" /* RESET_SELECTED_ADDRESS */]);
         }
     }
 });
@@ -54909,7 +54914,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.$store.state.google.radius;
             },
             set: function set(value) {
-                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["f" /* UPDATE_RADIUS */], value);
+                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["g" /* UPDATE_RADIUS */], value);
             }
         },
         minprice: {
@@ -54917,7 +54922,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.$store.state.google.minprice;
             },
             set: function set(value) {
-                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["e" /* UPDATE_MIN_PRICE */], value);
+                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["f" /* UPDATE_MIN_PRICE */], value);
             }
         },
         maxprice: {
@@ -54925,7 +54930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.$store.state.google.maxprice;
             },
             set: function set(value) {
-                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["d" /* UPDATE_MAX_PRICE */], value);
+                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["e" /* UPDATE_MAX_PRICE */], value);
             }
         }
     },
@@ -55290,7 +55295,8 @@ var render = function() {
                     "b-button",
                     {
                       staticClass: "float-right",
-                      attrs: { size: "sm", variant: "success" }
+                      attrs: { size: "sm", variant: "success" },
+                      on: { click: _vm.handleChangeAddress }
                     },
                     [_vm._v("Change")]
                   )
@@ -57395,20 +57401,24 @@ var initialState = {
 };var actions = {};
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_WIZARD_IS_LOADING */], function (state, payload) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_WIZARD_IS_LOADING */], function (state, payload) {
     state.isLoading = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_SELECTED_DATASOURCE */], function (state, payload) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_SELECTED_DATASOURCE */], function (state, payload) {
     state.selectedDatasource = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* UPDATE_LATITUDE_LONGITUDE */], function (state, _ref) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_LATITUDE_LONGITUDE */], function (state, _ref) {
     var latitude = _ref.latitude,
         longitude = _ref.longitude;
 
     state.latitude = latitude;
     state.longitude = longitude;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_SELECTED_ADDRESS */], function (state, payload) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_SELECTED_ADDRESS */], function (state, payload) {
     state.selectedAddress = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* RESET_WIZARD */], function (state) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* RESET_WIZARD */], function (state) {
     state = initialState;
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* RESET_SELECTED_ADDRESS */], function (state) {
+    state.selectedAddress = '';
+    state.latitude = 0;
+    state.longitude = 0;
 }), _mutations);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -58825,11 +58835,11 @@ var initialState = {
     maxprice: null
 };
 
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_RADIUS */], function (state, radius) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_RADIUS */], function (state, radius) {
     state.radius = radius;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_MAX_PRICE */], function (state, maxprice) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* UPDATE_MAX_PRICE */], function (state, maxprice) {
     state.maxprice = maxprice;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* UPDATE_MIN_PRICE */], function (state, minprice) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_MIN_PRICE */], function (state, minprice) {
     state.minprice = minprice;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* RESET_GOOGLE_FORM */], function () {
     state = initialState;
@@ -58913,11 +58923,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         handlePlaceChanged: function handlePlaceChanged(place) {
-            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_1__store_mutation_types_js__["g" /* UPDATE_SELECTED_ADDRESS */], place.formatted_address);
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_1__store_mutation_types_js__["h" /* UPDATE_SELECTED_ADDRESS */], place.formatted_address);
             var latitude = _.get(place, "geometry.location.lat", false);
             var longitude = _.get(place, "geometry.location.lng", false);
             if (latitude && longitude) {
-                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_1__store_mutation_types_js__["c" /* UPDATE_LATITUDE_LONGITUDE */], {
+                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_1__store_mutation_types_js__["d" /* UPDATE_LATITUDE_LONGITUDE */], {
                     latitude: latitude(),
                     longitude: longitude()
                 });
