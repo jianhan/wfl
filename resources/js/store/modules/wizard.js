@@ -1,15 +1,7 @@
 import * as mutationTypes from '../mutation-types'
 
-const googleFormData = {
-    latitude: '',
-    longitude: '',
-    radius: 500,
-    minprice: null,
-    maxprice: null
-}
-
 // initial state
-const state = {
+const initialState = {
     // dataSources which is not mutable
     dataSources: {
         google: 'google',
@@ -17,9 +9,11 @@ const state = {
         yelp: 'yelp',
         here: 'here',
     },
+    isLoading: false,
     selectedAddress: '',
     selectedDatasource: 'google',
-    googleFormData
+    latitude: 0,
+    longitude: 0,
 }
 
 // getters
@@ -41,55 +35,36 @@ const getters = {
 
 // actions
 const actions = {
-    // checkout({
-    //     commit,
-    //     state
-    // }, products) {
-    //     const savedCartItems = [...state.items]
-    //     commit('setCheckoutStatus', null)
-    //     // empty cart
-    //     commit('setCartItems', {
-    //         items: []
-    //     })
-    //     shop.buyProducts(
-    //         products,
-    //         () => commit('setCheckoutStatus', 'successful'),
-    //         () => {
-    //             commit('setCheckoutStatus', 'failed')
-    //             // rollback to the cart saved before sending the request
-    //             commit('setCartItems', {
-    //                 items: savedCartItems
-    //             })
-    //         }
-    //     )
-    // },
 
 }
 
 // mutations
 const mutations = {
+    [mutationTypes.UPDATE_WIZARD_IS_LOADING](state, payload) {
+        this.isLoading = payload
+    },
     [mutationTypes.UPDATE_SELECTED_DATASOURCE](state, payload) {
-        Vue.set(state, 'selectedDatasource', payload)
+        this.selectedDatasource = payload
     },
     [mutationTypes.UPDATE_LATITUDE_LONGITUDE](state, {
         latitude,
         longitude
     }) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
-            latitude
-        }))
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
-            longitude
-        }))
+        this.latitude = latitude
+        this.longitude = longitude
     },
     [mutationTypes.UPDATE_SELECTED_ADDRESS](state, payload) {
-        Vue.set(state, 'selectedAddress', payload)
+        state.selectedAddress = payload
+    },
+    [mutationTypes.RESET_WIZARD](state) {
+        state = initialState
     },
 }
 
+
 export default {
     namespaced: true,
-    state,
+    state: initialState,
     getters,
     actions,
     mutations

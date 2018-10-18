@@ -1,7 +1,8 @@
 // Wizard
-export const UPDATE_WIZARD_LOADING = 'setWizardLoading'
+export const UPDATE_WIZARD_IS_LOADING = 'updateWizardIsLoading'
 export const UPDATE_SELECTED_DATASOURCE = 'updateSelectedDatasource'
 export const UPDATE_SELECTED_ADDRESS = 'updateSelectedAddress'
+export const RESET_WIZARD = 'resetWizard'
 
 // Google Form
 export const UPDATE_LATITUDE_LONGITUDE = 'updateLatitudeLongitude'
