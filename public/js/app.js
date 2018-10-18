@@ -3316,15 +3316,15 @@ var index_esm = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return UPDATE_WIZARD_IS_LOADING; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return UPDATE_SELECTED_DATASOURCE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UPDATE_SELECTED_ADDRESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RESET_WIZARD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UPDATE_LATITUDE_LONGITUDE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return UPDATE_RADIUS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return UPDATE_MAX_PRICE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return UPDATE_MIN_PRICE; });
-/* unused harmony export RESET_GOOGLE_FORM */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return UPDATE_WIZARD_IS_LOADING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return UPDATE_SELECTED_DATASOURCE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return UPDATE_SELECTED_ADDRESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RESET_WIZARD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return UPDATE_LATITUDE_LONGITUDE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UPDATE_RADIUS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return UPDATE_MAX_PRICE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return UPDATE_MIN_PRICE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RESET_GOOGLE_FORM; });
 // Wizard
 var UPDATE_WIZARD_IS_LOADING = 'updateWizardIsLoading';
 var UPDATE_SELECTED_DATASOURCE = 'updateSelectedDatasource';
@@ -54639,13 +54639,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.wizard.selectedDatasource;
             },
             set: function set(value) {
-                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__["g" /* UPDATE_SELECTED_DATASOURCE */], value);
+                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__["h" /* UPDATE_SELECTED_DATASOURCE */], value);
             }
         }
     }),
     methods: {
         handleSelectDataSource: function handleSelectDataSource(dataSource) {
-            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__["g" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__["h" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
         },
         isDataSourcePressed: function isDataSourcePressed(dataSource) {
             return this.selectedDatasource === dataSource;
@@ -54878,7 +54878,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.$store.state.wizard.googleFormData.radius;
             },
             set: function set(value) {
-                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["e" /* UPDATE_RADIUS */], value);
+                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["f" /* UPDATE_RADIUS */], value);
             }
         },
         minprice: {
@@ -54886,7 +54886,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.$store.state.wizard.googleFormData.minprice;
             },
             set: function set(value) {
-                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["d" /* UPDATE_MIN_PRICE */], value);
+                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["e" /* UPDATE_MIN_PRICE */], value);
             }
         },
         maxprice: {
@@ -54894,17 +54894,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.$store.state.wizard.googleFormData.maxprice;
             },
             set: function set(value) {
-                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["c" /* UPDATE_MAX_PRICE */], value);
+                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["d" /* UPDATE_MAX_PRICE */], value);
             }
         }
     },
     methods: {
         handlePlaceChanged: function handlePlaceChanged(place) {
-            this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["f" /* UPDATE_SELECTED_ADDRESS */], place.formatted_address);
+            this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["g" /* UPDATE_SELECTED_ADDRESS */], place.formatted_address);
             var latitude = _.get(place, "geometry.location.lat", false);
             var longitude = _.get(place, "geometry.location.lng", false);
             if (latitude && longitude) {
-                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["b" /* UPDATE_LATITUDE_LONGITUDE */], {
+                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["c" /* UPDATE_LATITUDE_LONGITUDE */], {
                     latitude: latitude(),
                     longitude: longitude()
                 });
@@ -57301,9 +57301,11 @@ if (false) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_wizard__ = __webpack_require__(164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_logger__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_es6_promise_auto__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_es6_promise_auto___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_es6_promise_auto__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_google__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__plugins_logger__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_es6_promise_auto__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_es6_promise_auto___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_es6_promise_auto__);
+
 
 
 
@@ -57316,10 +57318,11 @@ var debug = "development" !== 'production';
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     modules: {
-        wizard: __WEBPACK_IMPORTED_MODULE_2__modules_wizard__["a" /* default */]
+        wizard: __WEBPACK_IMPORTED_MODULE_2__modules_wizard__["a" /* default */],
+        google: __WEBPACK_IMPORTED_MODULE_3__modules_google__["a" /* default */]
     },
     strict: debug,
-    plugins: debug ? [Object(__WEBPACK_IMPORTED_MODULE_3__plugins_logger__["a" /* default */])()] : []
+    plugins: debug ? [Object(__WEBPACK_IMPORTED_MODULE_4__plugins_logger__["a" /* default */])()] : []
 }));
 
 /***/ }),
@@ -57328,7 +57331,8 @@ var debug = "development" !== 'production';
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__(25);
-var _mutations;
+var _this = this,
+    _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -57351,35 +57355,27 @@ var initialState = {
 
     // getters
 };var getters = {
-    canProcessSearch: function canProcessSearch(state) {
-        if (state.selectedDatasource === state.dataSources.google) {
-            if (_.get(state, 'googleFormData.latitude') == '' || _.get(state, 'googleFormData.longitude') == '' || _.get(state, 'googleFormData.radius') == 0) {
-                return false;
-            }
-
-            return true;
-        }
-        return false;
-    },
-    isAddressSet: function isAddressSet(state) {}
+    isSelectedAddressSet: function isSelectedAddressSet(state) {
+        return state.selectedAddress != '' && _this.latitude !== 0 && _this.longitude !== 0;
+    }
 
     // actions
 };var actions = {};
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_WIZARD_IS_LOADING */], function (state, payload) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_WIZARD_IS_LOADING */], function (state, payload) {
     this.isLoading = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_SELECTED_DATASOURCE */], function (state, payload) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_SELECTED_DATASOURCE */], function (state, payload) {
     this.selectedDatasource = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* UPDATE_LATITUDE_LONGITUDE */], function (state, _ref) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* UPDATE_LATITUDE_LONGITUDE */], function (state, _ref) {
     var latitude = _ref.latitude,
         longitude = _ref.longitude;
 
     this.latitude = latitude;
     this.longitude = longitude;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_SELECTED_ADDRESS */], function (state, payload) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_SELECTED_ADDRESS */], function (state, payload) {
     state.selectedAddress = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* RESET_WIZARD */], function (state) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* RESET_WIZARD */], function (state) {
     state = initialState;
 }), _mutations);
 
@@ -58760,6 +58756,58 @@ return Promise$1;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__(25);
+var _mutations;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+// initial state
+var initialState = {
+    radius: 500,
+    minprice: null,
+    maxprice: null
+};
+
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_RADIUS */], function (state, radius) {
+    state.radius = radius;
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_MAX_PRICE */], function (state, maxprice) {
+    state.maxprice = maxprice;
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* UPDATE_MIN_PRICE */], function (state, minprice) {
+    state.minprice = minprice;
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* RESET_GOOGLE_FORM */], function () {
+    state = initialState;
+}), _mutations);
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    state: initialState,
+    mutations: mutations
+});
 
 /***/ })
 /******/ ]);
