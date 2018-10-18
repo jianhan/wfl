@@ -54624,6 +54624,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["c" /* mapState */])({
+        // wizard
         dataSources: function dataSources(state) {
             return state.wizard.dataSources;
         },
@@ -54642,6 +54643,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         longitude: function longitude(state) {
             return state.wizard.longitude;
         },
+        // google
         radius: function radius(state) {
             return state.google.longitude;
         },
@@ -54652,7 +54654,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return state.google.maxprice;
         }
     }), Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapGetters */])({
-        canProcessSearch: 'wizard/canProcessSearch'
+        isSelectedAddressSet: 'wizard/isSelectedAddressSet'
     }), {
         selectedDatasource: {
             get: function get() {
@@ -54895,26 +54897,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         radius: {
             get: function get() {
-                return this.$store.state.wizard.googleFormData.radius;
+                return this.$store.state.google.radius;
             },
             set: function set(value) {
-                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["f" /* UPDATE_RADIUS */], value);
+                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["f" /* UPDATE_RADIUS */], value);
             }
         },
         minprice: {
             get: function get() {
-                return this.$store.state.wizard.googleFormData.minprice;
+                return this.$store.state.google.minprice;
             },
             set: function set(value) {
-                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["e" /* UPDATE_MIN_PRICE */], value);
+                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["e" /* UPDATE_MIN_PRICE */], value);
             }
         },
         maxprice: {
             get: function get() {
-                return this.$store.state.wizard.googleFormData.maxprice;
+                return this.$store.state.google.maxprice;
             },
             set: function set(value) {
-                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["d" /* UPDATE_MAX_PRICE */], value);
+                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["d" /* UPDATE_MAX_PRICE */], value);
             }
         }
     },
@@ -55303,8 +55305,7 @@ var render = function() {
         ? _c("div", [
             _c("span", { staticClass: "error" }, [_vm._v(_vm._s(_vm.errorMsg))])
           ])
-        : _vm._e(),
-      _vm._v("\n    " + _vm._s(_vm.canProcessSearch) + "\n")
+        : _vm._e()
     ],
     1
   )

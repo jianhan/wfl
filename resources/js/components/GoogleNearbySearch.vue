@@ -82,26 +82,26 @@
         computed: {
             radius: {
                 get() {
-                    return this.$store.state.wizard.googleFormData.radius;
+                    return this.$store.state.google.radius;
                 },
                 set(value) {
-                    this.$store.commit(`wizard/${mutationTypes.UPDATE_RADIUS}`, value);
+                    this.$store.commit(`google/${mutationTypes.UPDATE_RADIUS}`, value);
                 }
             },
             minprice: {
                 get() {
-                    return this.$store.state.wizard.googleFormData.minprice;
+                    return this.$store.state.google.minprice;
                 },
                 set(value) {
-                    this.$store.commit(`wizard/${mutationTypes.UPDATE_MIN_PRICE}`, value);
+                    this.$store.commit(`google/${mutationTypes.UPDATE_MIN_PRICE}`, value);
                 }
             },
             maxprice: {
                 get() {
-                    return this.$store.state.wizard.googleFormData.maxprice;
+                    return this.$store.state.google.maxprice;
                 },
                 set(value) {
-                    this.$store.commit(`wizard/${mutationTypes.UPDATE_MAX_PRICE}`, value);
+                    this.$store.commit(`google/${mutationTypes.UPDATE_MAX_PRICE}`, value);
                 }
             }
         },

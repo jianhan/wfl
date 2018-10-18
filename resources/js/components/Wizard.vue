@@ -41,7 +41,7 @@
         <div v-if="errorMsg">
             <span class="error">{{errorMsg}}</span>
         </div>
-        {{ canProcessSearch }}
+
     </form-wizard>
 </template>
 
@@ -82,18 +82,20 @@
         },
         computed: {
             ...mapState({
+                // wizard
                 dataSources: state => state.wizard.dataSources,
                 isLoading: state => state.wizard.isLoading,
                 selectedAddress: state => state.wizard.selectedAddress,
                 selectedDatasource: state => state.wizard.selectedDatasource,
                 latitude: state => state.wizard.latitude,
                 longitude: state => state.wizard.longitude,
+                // google
                 radius: state => state.google.longitude,
                 minprice: state => state.google.minprice,
                 maxprice: state => state.google.maxprice,
             }),
             ...mapGetters({
-                canProcessSearch: `wizard/canProcessSearch`,
+                isSelectedAddressSet: `wizard/isSelectedAddressSet`,
             }),
             selectedDatasource: {
                 get() {
