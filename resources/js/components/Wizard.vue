@@ -83,10 +83,14 @@
         computed: {
             ...mapState({
                 dataSources: state => state.wizard.dataSources,
-    
-                // countPlusLocalState(state) {
-                //     return state.count + this.localCount;
-                // }
+                isLoading: state => state.wizard.isLoading,
+                selectedAddress: state => state.wizard.selectedAddress,
+                selectedDatasource: state => state.wizard.selectedDatasource,
+                latitude: state => state.wizard.latitude,
+                longitude: state => state.wizard.longitude,
+                radius: state => state.google.longitude,
+                minprice: state => state.google.minprice,
+                maxprice: state => state.google.maxprice,
             }),
             ...mapGetters({
                 canProcessSearch: `wizard/canProcessSearch`,

@@ -54626,11 +54626,31 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["c" /* mapState */])({
         dataSources: function dataSources(state) {
             return state.wizard.dataSources;
+        },
+        isLoading: function isLoading(state) {
+            return state.wizard.isLoading;
+        },
+        selectedAddress: function selectedAddress(state) {
+            return state.wizard.selectedAddress;
+        },
+        selectedDatasource: function selectedDatasource(state) {
+            return state.wizard.selectedDatasource;
+        },
+        latitude: function latitude(state) {
+            return state.wizard.latitude;
+        },
+        longitude: function longitude(state) {
+            return state.wizard.longitude;
+        },
+        radius: function radius(state) {
+            return state.google.longitude;
+        },
+        minprice: function minprice(state) {
+            return state.google.minprice;
+        },
+        maxprice: function maxprice(state) {
+            return state.google.maxprice;
         }
-
-        // countPlusLocalState(state) {
-        //     return state.count + this.localCount;
-        // }
     }), Object(__WEBPACK_IMPORTED_MODULE_6_vuex__["b" /* mapGetters */])({
         canProcessSearch: 'wizard/canProcessSearch'
     }), {
