@@ -1,10 +1,6 @@
 <template>
     <div>
-    
-        <b-form-group description="Enter your current address as starting location" label="Address">
-            <gmap-autocomplete @place_changed="handlePlaceChanged" class="form-control"></gmap-autocomplete>
-        </b-form-group>
-    
+
         <b-form-group label="Radius" description="Searching radius defines the distance (in meters) within which will search be performed">
             <b-form-radio-group buttons button-variant="outline-primary" size="md" v-model="radius" :options="radiusOptions" />
         </b-form-group>
@@ -17,6 +13,7 @@
                 <b-form-select v-model="maxprice" :options="googleNearbySearchPriceOptions" />
             </b-form-group>
         </div>
+
     </div>
 </template>
 
@@ -27,6 +24,7 @@
     import * as mutationTypes from '../store/mutation-types.js'
     
     export default {
+        name: 'google-nearby-search',
         components: {
             "b-form-group": bFormGroup,
             "b-form-radio-group": bFormRadioGroup,
@@ -106,17 +104,7 @@
             }
         },
         methods: {
-            handlePlaceChanged(place) {
-                this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_ADDRESS}`, place.formatted_address)
-                const latitude = _.get(place, "geometry.location.lat", false);
-                const longitude = _.get(place, "geometry.location.lng", false);
-                if (latitude && longitude) {
-                    this.$store.commit(`wizard/${mutationTypes.UPDATE_LATITUDE_LONGITUDE}`, {
-                        latitude: latitude(),
-                        longitude: longitude()
-                    });
-                }
-            }
+            
         }
     };
 </script>

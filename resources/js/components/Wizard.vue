@@ -29,6 +29,7 @@
         </tab-content>
     
         <tab-content title="Additional Info" :before-change="validateAsync" icon="fas fa-keyboard">
+            <google-auto-complete></google-auto-complete>
             <google-nearby-search></google-nearby-search>
         </tab-content>
     
@@ -60,6 +61,7 @@
     } from "vuex";
     import * as mutationTypes from '../store/mutation-types.js'
     import GoogleNearbySearch from './GoogleNearbySearch'
+    import GoogleAutoComplete from './GoogleAutoComplete.vue'
     import {
         mapGetters
     } from 'vuex'
@@ -68,10 +70,11 @@
         components: {
             FormWizard,
             TabContent,
+            GoogleAutoComplete,
+            GoogleNearbySearch,
             'b-button': bButton,
             'b-card': bCard,
             'b-card-group': bCardGroup,
-            'google-nearby-search': GoogleNearbySearch,
         },
         data() {
             return {

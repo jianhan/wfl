@@ -54545,6 +54545,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__store_mutation_types_js__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__GoogleAutoComplete_vue__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__GoogleAutoComplete_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__GoogleAutoComplete_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -54594,6 +54596,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+
 
 
 
@@ -54610,10 +54614,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     components: {
         FormWizard: __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__["FormWizard"],
         TabContent: __WEBPACK_IMPORTED_MODULE_4_vue_form_wizard__["TabContent"],
+        GoogleAutoComplete: __WEBPACK_IMPORTED_MODULE_9__GoogleAutoComplete_vue___default.a,
+        GoogleNearbySearch: __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch___default.a,
         'b-button': __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_button_button__["a" /* default */],
         'b-card': __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_card_card__["a" /* default */],
-        'b-card-group': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_card_card_group__["a" /* default */],
-        'google-nearby-search': __WEBPACK_IMPORTED_MODULE_8__GoogleNearbySearch___default.a
+        'b-card-group': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_card_card_group__["a" /* default */]
     },
     data: function data() {
         return {
@@ -54841,9 +54846,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -54851,6 +54853,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'google-nearby-search',
     components: {
         "b-form-group": __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_form_group_form_group__["a" /* default */],
         "b-form-radio-group": __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_form_radio_form_radio_group__["a" /* default */],
@@ -54920,19 +54923,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         }
     },
-    methods: {
-        handlePlaceChanged: function handlePlaceChanged(place) {
-            this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["g" /* UPDATE_SELECTED_ADDRESS */], place.formatted_address);
-            var latitude = _.get(place, "geometry.location.lat", false);
-            var longitude = _.get(place, "geometry.location.lng", false);
-            if (latitude && longitude) {
-                this.$store.commit("wizard/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["c" /* UPDATE_LATITUDE_LONGITUDE */], {
-                    latitude: latitude(),
-                    longitude: longitude()
-                });
-            }
-        }
-    }
+    methods: {}
 });
 
 /***/ }),
@@ -54946,23 +54937,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "b-form-group",
-        {
-          attrs: {
-            description: "Enter your current address as starting location",
-            label: "Address"
-          }
-        },
-        [
-          _c("gmap-autocomplete", {
-            staticClass: "form-control",
-            on: { place_changed: _vm.handlePlaceChanged }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
       _c(
         "b-form-group",
         {
@@ -55291,7 +55265,7 @@ var render = function() {
             icon: "fas fa-keyboard"
           }
         },
-        [_c("google-nearby-search")],
+        [_c("google-auto-complete"), _vm._v(" "), _c("google-nearby-search")],
         1
       ),
       _vm._v(" "),
@@ -57385,15 +57359,15 @@ var initialState = {
 
 // mutations
 var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_WIZARD_IS_LOADING */], function (state, payload) {
-    this.isLoading = payload;
+    state.isLoading = payload;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_SELECTED_DATASOURCE */], function (state, payload) {
-    this.selectedDatasource = payload;
+    state.selectedDatasource = payload;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* UPDATE_LATITUDE_LONGITUDE */], function (state, _ref) {
     var latitude = _ref.latitude,
         longitude = _ref.longitude;
 
-    this.latitude = latitude;
-    this.longitude = longitude;
+    state.latitude = latitude;
+    state.longitude = longitude;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_SELECTED_ADDRESS */], function (state, payload) {
     state.selectedAddress = payload;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* RESET_WIZARD */], function (state) {
@@ -58829,6 +58803,126 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
     state: initialState,
     mutations: mutations
 });
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(189)
+/* template */
+var __vue_template__ = __webpack_require__(190)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/GoogleAutoComplete.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-20810a0c", Component.options)
+  } else {
+    hotAPI.reload("data-v-20810a0c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 189 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_form_group_form_group__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_mutation_types_js__ = __webpack_require__(25);
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'google-auto-complete',
+    components: {
+        "b-form-group": __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_form_group_form_group__["a" /* default */]
+    },
+    methods: {
+        handlePlaceChanged: function handlePlaceChanged(place) {
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_1__store_mutation_types_js__["g" /* UPDATE_SELECTED_ADDRESS */], place.formatted_address);
+            var latitude = _.get(place, "geometry.location.lat", false);
+            var longitude = _.get(place, "geometry.location.lng", false);
+            if (latitude && longitude) {
+                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_1__store_mutation_types_js__["c" /* UPDATE_LATITUDE_LONGITUDE */], {
+                    latitude: latitude(),
+                    longitude: longitude()
+                });
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-form-group",
+    {
+      attrs: {
+        description: "Enter your current address as starting location",
+        label: "Address"
+      }
+    },
+    [
+      _c("gmap-autocomplete", {
+        staticClass: "form-control",
+        on: { place_changed: _vm.handlePlaceChanged }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-20810a0c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

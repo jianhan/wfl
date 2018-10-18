@@ -31,17 +31,17 @@ const actions = {
 // mutations
 const mutations = {
     [mutationTypes.UPDATE_WIZARD_IS_LOADING](state, payload) {
-        this.isLoading = payload
+        state.isLoading = payload
     },
     [mutationTypes.UPDATE_SELECTED_DATASOURCE](state, payload) {
-        this.selectedDatasource = payload
+        state.selectedDatasource = payload
     },
     [mutationTypes.UPDATE_LATITUDE_LONGITUDE](state, {
         latitude,
         longitude
     }) {
-        this.latitude = latitude
-        this.longitude = longitude
+        state.latitude = latitude
+        state.longitude = longitude
     },
     [mutationTypes.UPDATE_SELECTED_ADDRESS](state, payload) {
         state.selectedAddress = payload
