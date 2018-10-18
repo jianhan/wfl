@@ -33,20 +33,10 @@ const getters = {
             return true
         }
         return false
+    },
+    isAddressSet: (state) => {
+        
     }
-    // cartProducts: (state, getters, rootState) => {
-    //     return state.items.map(({
-    //         id,
-    //         quantity
-    //     }) => {
-    //         const product = rootState.products.all.find(product => product.id === id)
-    //         return {
-    //             title: product.title,
-    //             price: product.price,
-    //             quantity
-    //         }
-    //     })
-    // }
 }
 
 // actions
@@ -91,24 +81,6 @@ const mutations = {
         Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
             longitude
         }))
-    },
-    [mutationTypes.UPDATE_RADIUS](state, radius) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
-            radius
-        }))
-    },
-    [mutationTypes.UPDATE_MAX_PRICE](state, maxprice) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
-            maxprice
-        }))
-    },
-    [mutationTypes.UPDATE_MIN_PRICE](state, minprice) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
-            minprice
-        }))
-    },
-    [mutationTypes.RESET_GOOGLE_FORM](state) {
-        Vue.set(state, 'googleFormData', googleFormData)
     },
     [mutationTypes.UPDATE_SELECTED_ADDRESS](state, payload) {
         Vue.set(state, 'selectedAddress', payload)
