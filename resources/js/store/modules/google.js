@@ -9,19 +9,13 @@ const initialState = {
 
 const mutations = {
     [mutationTypes.UPDATE_RADIUS](state, radius) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
-            radius
-        }))
+        state.radius = radius
     },
     [mutationTypes.UPDATE_MAX_PRICE](state, maxprice) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
-            maxprice
-        }))
+        state.maxprice = maxprice
     },
     [mutationTypes.UPDATE_MIN_PRICE](state, minprice) {
-        Vue.set(state, 'googleFormData', Object.assign({}, state.googleFormData, {
-            minprice
-        }))
+        state.minprice = minprice 
     },
     [mutationTypes.RESET_GOOGLE_FORM]() {
         state = initialState
@@ -30,7 +24,9 @@ const mutations = {
 
 const actions = {}
 
-const getters = {}
+const getters = {
+    
+}
 
 export default {
     namespaced: true,
