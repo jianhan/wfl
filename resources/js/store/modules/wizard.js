@@ -14,18 +14,28 @@ const initialState = {
     selectedDatasource: 'google',
     latitude: 0,
     longitude: 0,
+    errors: [],
+    restaurants: []
 }
 
 // getters
 const getters = {
     isSelectedAddressSet: (state) => {
         return state.selectedAddress != '' && this.latitude !== 0 && this.longitude !== 0
+    },
+    hasErrors: (state) => {
+        return _.size(state.errors) > 0
     }
 }
 
 // actions
 const actions = {
+    processSearch({
+        commit,
+        state
+    }) {
 
+    },
 }
 
 // mutations
@@ -53,6 +63,9 @@ const mutations = {
         state.selectedAddress = ''
         state.latitude = 0
         state.longitude = 0
+    },
+    [mutationTypes.UPDATE_ERRORS](state, payload) {
+        state.errors = payload
     }
 }
 

@@ -2,6 +2,8 @@
 export const UPDATE_WIZARD_IS_LOADING = 'updateWizardIsLoading'
 export const UPDATE_SELECTED_DATASOURCE = 'updateSelectedDatasource'
 export const UPDATE_SELECTED_ADDRESS = 'updateSelectedAddress'
+export const UPDATE_ERRORS = 'updateErros'
+export const UPDATE_RESTAURANTS = 'updateRestaurants'
 export const RESET_WIZARD = 'resetWizard'
 export const RESET_SELECTED_ADDRESS = 'resetSelectedAddress'
 
