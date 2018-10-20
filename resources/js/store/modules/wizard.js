@@ -40,10 +40,15 @@ const actions = {
         state,
         rootState
     }) {
+        commit(`google/${mutationTypes.RESET_RESTAURANTS}`, [], {
+            root: true
+        })
         if (state.selectedDatasource == initialState.dataSources.google) {
+            commit(mutationTypes.UPDATE_IS_LOADING, true)
             axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
                 Object.assign({}, state, rootState.google)
             ).then(r => {
+                commit(mutationTypes.UPDATE_IS_LOADING, false)
                 commit(`google/${mutationTypes.UPDATE_RESTAURANTS}`, r.data.results, {
                     root: true
                 })
@@ -53,6 +58,7 @@ const actions = {
                     })
                 }
             }).catch(e => {
+                commit(mutationTypes.UPDATE_IS_LOADING, false)
                 if (e.response.status == 422) {
                     commit(mutationTypes.UPDATE_ERRORS_OBJECT, e.response.data)
                 } else {
@@ -68,7 +74,7 @@ const actions = {
 
 // mutations
 const mutations = {
-    [mutationTypes.UPDATE_WIZARD_IS_LOADING](state, payload) {
+    [mutationTypes.UPDATE_IS_LOADING](state, payload) {
         state.isLoading = payload
     },
     [mutationTypes.UPDATE_SELECTED_DATASOURCE](state, payload) {

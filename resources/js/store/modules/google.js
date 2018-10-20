@@ -27,6 +27,9 @@ const mutations = {
     },
     [mutationTypes.UPDATE_PAGETOKEN](state, payload) {
         state.pagetoken = payload
+    },
+    [mutationTypes.RESET_RESTAURANTS](state) {
+        state.restaurants = []
     }
 }
 
