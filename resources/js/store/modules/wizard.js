@@ -18,8 +18,7 @@ const initialState = {
     errorsObject: {
         message: '',
         errors: []
-    },
-    restaurants: []
+    }
 }
 
 // getters

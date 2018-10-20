@@ -4,7 +4,9 @@ import * as mutationTypes from '../mutation-types'
 const initialState = {
     radius: 500,
     minprice: null,
-    maxprice: null
+    maxprice: null,
+    pagetoken: '',
+    restaurants: []
 }
 
 const mutations = {
@@ -17,8 +19,14 @@ const mutations = {
     [mutationTypes.UPDATE_MIN_PRICE](state, minprice) {
         state.minprice = minprice 
     },
-    [mutationTypes.RESET_GOOGLE_FORM]() {
+    [mutationTypes.RESET_GOOGLE_FORM](state) {
         state = initialState
+    },
+    [mutationTypes.UPDATE_RESTAURANTS](state, payload) {
+        state.restaurants = payload
+    },
+    [mutationTypes.UPDATE_PAGETOKEN](state, payload) {
+        state.pagetoken = payload
     }
 }
 

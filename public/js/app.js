@@ -1167,32 +1167,34 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return UPDATE_WIZARD_IS_LOADING; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return UPDATE_SELECTED_DATASOURCE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return UPDATE_SELECTED_ADDRESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return UPDATE_WIZARD_IS_LOADING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return UPDATE_SELECTED_DATASOURCE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return UPDATE_SELECTED_ADDRESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return UPDATE_ERRORS_OBJECT; });
-/* unused harmony export UPDATE_RESTAURANTS */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return RESET_WIZARD; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RESET_SELECTED_ADDRESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return UPDATE_RESTAURANTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return UPDATE_LATITUDE_LONGITUDE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return UPDATE_RADIUS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return UPDATE_RADIUS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UPDATE_MAX_PRICE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return UPDATE_MIN_PRICE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return UPDATE_PAGETOKEN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RESET_GOOGLE_FORM; });
 // Wizard
 var UPDATE_WIZARD_IS_LOADING = 'updateWizardIsLoading';
 var UPDATE_SELECTED_DATASOURCE = 'updateSelectedDatasource';
 var UPDATE_SELECTED_ADDRESS = 'updateSelectedAddress';
 var UPDATE_ERRORS_OBJECT = 'updateErrosObject';
-var UPDATE_RESTAURANTS = 'updateRestaurants';
 var RESET_WIZARD = 'resetWizard';
 var RESET_SELECTED_ADDRESS = 'resetSelectedAddress';
+var UPDATE_RESTAURANTS = 'updateRestaurants';
 
-// Google Form
+// Google
 var UPDATE_LATITUDE_LONGITUDE = 'updateLatitudeLongitude';
 var UPDATE_RADIUS = 'updateRadius';
 var UPDATE_MAX_PRICE = 'updateMaxPrice';
 var UPDATE_MIN_PRICE = 'updateMinPrice';
+var UPDATE_PAGETOKEN = 'updatePagetoken';
 var RESET_GOOGLE_FORM = 'resetGoogleForm';
 
 /***/ }),
@@ -54679,7 +54681,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.wizard.selectedDatasource;
             },
             set: function set(value) {
-                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["j" /* UPDATE_SELECTED_DATASOURCE */], value);
+                this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["l" /* UPDATE_SELECTED_DATASOURCE */], value);
             }
         }
     }),
@@ -54693,7 +54695,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             });
         },
         handleSelectDataSource: function handleSelectDataSource(dataSource) {
-            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["j" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_8__store_mutation_types_js__["l" /* UPDATE_SELECTED_DATASOURCE */], dataSource);
         },
         isDataSourcePressed: function isDataSourcePressed(dataSource) {
             return this.selectedDatasource === dataSource;
@@ -54927,7 +54929,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.$store.state.google.radius;
             },
             set: function set(value) {
-                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["h" /* UPDATE_RADIUS */], value);
+                this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["i" /* UPDATE_RADIUS */], value);
             }
         },
         minprice: {
@@ -55130,7 +55132,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         handlePlaceChanged: function handlePlaceChanged(place) {
-            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_1__store_mutation_types_js__["i" /* UPDATE_SELECTED_ADDRESS */], place.formatted_address);
+            this.$store.commit('wizard/' + __WEBPACK_IMPORTED_MODULE_1__store_mutation_types_js__["k" /* UPDATE_SELECTED_ADDRESS */], place.formatted_address);
             var latitude = _.get(place, "geometry.location.lat", false);
             var longitude = _.get(place, "geometry.location.lng", false);
             if (latitude && longitude) {
@@ -57530,8 +57532,7 @@ var initialState = {
     errorsObject: {
         message: '',
         errors: []
-    },
-    restaurants: []
+    }
 
     // getters
 };var getters = {
@@ -57572,9 +57573,9 @@ var initialState = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["k" /* UPDATE_WIZARD_IS_LOADING */], function (state, payload) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["m" /* UPDATE_WIZARD_IS_LOADING */], function (state, payload) {
     state.isLoading = payload;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_SELECTED_DATASOURCE */], function (state, payload) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["l" /* UPDATE_SELECTED_DATASOURCE */], function (state, payload) {
     state.selectedDatasource = payload;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* UPDATE_LATITUDE_LONGITUDE */], function (state, _ref2) {
     var latitude = _ref2.latitude,
@@ -57582,7 +57583,7 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
 
     state.latitude = latitude;
     state.longitude = longitude;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_SELECTED_ADDRESS */], function (state, payload) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["k" /* UPDATE_SELECTED_ADDRESS */], function (state, payload) {
     state.selectedAddress = payload;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* RESET_WIZARD */], function (state) {
     state = initialState;
@@ -57618,17 +57619,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var initialState = {
     radius: 500,
     minprice: null,
-    maxprice: null
+    maxprice: null,
+    pagetoken: '',
+    restaurants: []
 };
 
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_RADIUS */], function (state, radius) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_RADIUS */], function (state, radius) {
     state.radius = radius;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_MAX_PRICE */], function (state, maxprice) {
     state.maxprice = maxprice;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_MIN_PRICE */], function (state, minprice) {
     state.minprice = minprice;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* RESET_GOOGLE_FORM */], function () {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* RESET_GOOGLE_FORM */], function (state) {
     state = initialState;
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_RESTAURANTS */], function (state, payload) {
+    state.restaurants = payload;
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_PAGETOKEN */], function (state, payload) {
+    state.pagetoken = payload;
 }), _mutations);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
