@@ -53738,6 +53738,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -53772,6 +53773,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         // google
         restaurants: function restaurants(state) {
             return state.google.restaurants;
+        },
+        pagetoken: function pagetoken(state) {
+            return state.google.pagetoken;
         }
     }), Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapGetters */])({
         hasRestaurants: 'google/hasRestaurants'
@@ -54130,58 +54134,61 @@ var render = function() {
         ? _c(
             "ul",
             { staticClass: "list-unstyled" },
-            _vm._l(_vm.restaurants, function(item, index) {
-              return _c(
-                "b-media",
-                { key: index, attrs: { tag: "li" } },
-                [
-                  item.icon
-                    ? _c("b-img", {
-                        attrs: {
-                          slot: "aside",
-                          src: item.icon,
-                          "blank-color": "#abc",
-                          width: "64",
-                          alt: "placeholder"
-                        },
-                        slot: "aside"
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mt-0 mb-1" }, [
-                    _vm._v(_vm._s(item.name))
-                  ]),
-                  _vm._v(" "),
-                  _c("star-rating", {
-                    attrs: {
-                      "read-only": true,
-                      increment: 0.1,
-                      "max-rating": 5,
-                      "star-size": 15
-                    },
-                    model: {
-                      value: item.rating,
-                      callback: function($$v) {
-                        _vm.$set(item, "rating", $$v)
+            [
+              _vm._v("\n        " + _vm._s(_vm.pagetoken) + "\n        "),
+              _vm._l(_vm.restaurants, function(item, index) {
+                return _c(
+                  "b-media",
+                  { key: index, attrs: { tag: "li" } },
+                  [
+                    item.icon
+                      ? _c("b-img", {
+                          attrs: {
+                            slot: "aside",
+                            src: item.icon,
+                            width: "30",
+                            height: "30"
+                          },
+                          slot: "aside"
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("h5", { staticClass: "mt-0 mb-1" }, [
+                      _vm._v(_vm._s(item.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("star-rating", {
+                      attrs: {
+                        "read-only": true,
+                        increment: 0.1,
+                        "max-rating": 5,
+                        "star-size": 15
                       },
-                      expression: "item.rating"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(item.vicinity))]),
-                  _vm._v(" "),
-                  _vm._l(item.types, function(tValue, tIndex) {
-                    return _c("b-badge", {
-                      key: tIndex,
-                      staticClass: "mr-1",
-                      attrs: { pill: "", variant: "secondary" },
-                      domProps: { innerHTML: _vm._s(tValue) }
+                      model: {
+                        value: item.rating,
+                        callback: function($$v) {
+                          _vm.$set(item, "rating", $$v)
+                        },
+                        expression: "item.rating"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(item.vicinity))]),
+                    _vm._v(" "),
+                    _vm._l(item.types, function(tValue, tIndex) {
+                      return _c("b-badge", {
+                        key: tIndex,
+                        staticClass: "mr-1",
+                        attrs: { pill: "", variant: "secondary" },
+                        domProps: { innerHTML: _vm._s(tValue) }
+                      })
                     })
-                  })
-                ],
-                2
-              )
-            })
+                  ],
+                  2
+                )
+              })
+            ],
+            2
           )
         : _vm._e(),
       _vm._v(" "),
@@ -61616,8 +61623,6 @@ var errorsObject = {
     // actions
 };var actions = {
     processSearch: function processSearch(_ref) {
-        var _this2 = this;
-
         var commit = _ref.commit,
             state = _ref.state,
             rootState = _ref.rootState;
@@ -61632,8 +61637,8 @@ var errorsObject = {
                 commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["l" /* UPDATE_RESTAURANTS */], r.data.results, {
                     root: true
                 });
-                if (_.get(_this2.googleResults, 'next_page_token', false)) {
-                    commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_PAGETOKEN */], _this2.googleResults.next_page_token, {
+                if (_.get(r, 'data.next_page_token', false)) {
+                    commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_PAGETOKEN */], r.data.next_page_token, {
                         root: true
                     });
                 }

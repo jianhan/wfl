@@ -52,8 +52,8 @@ const actions = {
                 commit(`google/${mutationTypes.UPDATE_RESTAURANTS}`, r.data.results, {
                     root: true
                 })
-                if (_.get(this.googleResults, 'next_page_token', false)) {
-                    commit(`google/${mutationTypes.UPDATE_PAGETOKEN}`, this.googleResults.next_page_token, {
+                if (_.get(r, 'data.next_page_token', false)) {
+                    commit(`google/${mutationTypes.UPDATE_PAGETOKEN}`, r.data.next_page_token, {
                         root: true
                     })
                 }
