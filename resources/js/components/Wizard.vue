@@ -28,17 +28,18 @@
     
         </tab-content>
     
-        <tab-content title="Additional Info" :before-change="handleProcessSearch" icon="fas fa-keyboard">
+        <tab-content title="Fill Address" :before-change="handleProcessSearch" icon="fas fa-map-marked">
             <b-form-group v-if="isSelectedAddressSet" label="Selected Address" description="Address will be used for finding nearby places">
                 <strong v-html="selectedAddress"></strong>
                 <b-button class="float-right" @click="handleChangeAddress" size="sm" variant="success">Change</b-button>
             </b-form-group>
             <google-auto-complete v-if="!isSelectedAddressSet"></google-auto-complete>
             <google-nearby-search></google-nearby-search>
+            
         </tab-content>
     
-        <tab-content title="Last step" icon="ti-check">
-            Third tab
+        <tab-content title="Resturants" icon="fas fa-utensils">
+            <orbit-spinner :animation-duration="1200" :size="55" :color="'#009bff'" v-if="isLoading"/>
         </tab-content>
     
         <div class="loader" v-if="loadingWizard">Loading</div>
@@ -47,11 +48,11 @@
 </template>
 
 <script>
-    import bCard from 'bootstrap-vue/es/components/card/card'
-    import bFormGroup from 'bootstrap-vue/es/components/form-group/form-group'
-    import bButton from 'bootstrap-vue/es/components/button/button'
-    import bCardGroup from 'bootstrap-vue/es/components/card/card-group'
-    import * as envs from '../.env'
+    import bCard from "bootstrap-vue/es/components/card/card";
+    import bFormGroup from "bootstrap-vue/es/components/form-group/form-group";
+    import bButton from "bootstrap-vue/es/components/button/button";
+    import bCardGroup from "bootstrap-vue/es/components/card/card-group";
+    import * as envs from "../.env";
     import {
         FormWizard,
         TabContent
@@ -60,12 +61,15 @@
     import {
         mapState
     } from "vuex";
-    import * as mutationTypes from '../store/mutation-types.js'
-    import GoogleNearbySearch from './GoogleNearbySearch'
-    import GoogleAutoComplete from './GoogleAutoComplete.vue'
+    import * as mutationTypes from "../store/mutation-types.js";
+    import GoogleNearbySearch from "./GoogleNearbySearch";
+    import GoogleAutoComplete from "./GoogleAutoComplete.vue";
     import {
         mapGetters
-    } from 'vuex'
+    } from "vuex";
+    import {
+        OrbitSpinner
+    } from "epic-spinners";
     
     export default {
         components: {
@@ -73,10 +77,11 @@
             TabContent,
             GoogleAutoComplete,
             GoogleNearbySearch,
-            'b-button': bButton,
-            'b-card': bCard,
-            'b-card-group': bCardGroup,
-            'b-form-group': bFormGroup,
+            OrbitSpinner,
+            "b-button": bButton,
+            "b-card": bCard,
+            "b-card-group": bCardGroup,
+            "b-form-group": bFormGroup
         },
         data() {
             return {
@@ -97,44 +102,53 @@
                 // google
                 radius: state => state.google.longitude,
                 minprice: state => state.google.minprice,
-                maxprice: state => state.google.maxprice,
+                maxprice: state => state.google.maxprice
             }),
             ...mapGetters({
                 isSelectedAddressSet: `wizard/isSelectedAddressSet`,
-                hasErrors: `wizard/hasErrors`,
+                hasErrors: `wizard/hasErrors`
             }),
             selectedDatasource: {
                 get() {
-                    return this.$store.state.wizard.selectedDatasource
+                    return this.$store.state.wizard.selectedDatasource;
                 },
                 set(value) {
-                    this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`, value)
+                    this.$store.commit(
+                        `wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`,
+                        value
+                    );
                 }
-            },
+            }
         },
         methods: {
             handleProcessSearch() {
                 return new Promise((resolve, reject) => {
-                    if (this.selectedDatasource == this.dataSources.google && this.isSelectedAddressSet) {
-                        this.$store.dispatch(`wizard/processSearch`)
+                    if (
+                        this.selectedDatasource == this.dataSources.google &&
+                        this.isSelectedAddressSet
+                    ) {
+                        this.$store.dispatch(`wizard/processSearch`);
                     } else {
-                        reject('missing address')
+                        reject("missing address");
                         this.$notify({
-                            group: 'selectedAddressEmpty',
-                            title: 'Missing address',
-                            type: 'error',
-                            text: 'Please enter your address'
+                            group: "selectedAddressEmpty",
+                            title: "Missing address",
+                            type: "error",
+                            text: "Please enter your address"
                         });
                     }
     
-                    resolve(true)
-                })
+                    resolve(true);
+                });
             },
             handleSelectDataSource(dataSource) {
-                this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`, dataSource)
+                this.$store.commit(
+                    `wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`,
+                    dataSource
+                );
             },
             isDataSourcePressed(dataSource) {
-                return this.selectedDatasource === dataSource
+                return this.selectedDatasource === dataSource;
             },
             handleComplete: function() {
                 alert("Yay. Done!");
@@ -149,7 +163,7 @@
                 this.errorMsg = errorMsg;
             },
             handleChangeAddress: function() {
-                this.$store.commit(`wizard/${mutationTypes.RESET_SELECTED_ADDRESS}`)
+                this.$store.commit(`wizard/${mutationTypes.RESET_SELECTED_ADDRESS}`);
             }
         }
     };
