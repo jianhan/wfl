@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul class="list-unstyled" v-if="canShow">
-            <b-media tag="li" v-bind:key="index" v-for="(item,index) in googleResults.results ">
+            <b-media tag="li" v-bind:key="index" v-for="(item,index) in restaurants ">
                 <b-img slot="aside" :src="item.icon" blank-color="#abc" width="64" alt="placeholder" v-if="item.icon" />
                 <h4 class="mt-0 mb-1">{{ item.name }}</h4>
                 <star-rating v-bind:read-only="true" v-model="item.rating" v-bind:increment="0.1" v-bind:max-rating="5" v-bind:star-size="15"></star-rating>

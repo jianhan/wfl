@@ -54130,7 +54130,7 @@ var render = function() {
         ? _c(
             "ul",
             { staticClass: "list-unstyled" },
-            _vm._l(_vm.googleResults.results, function(item, index) {
+            _vm._l(_vm.restaurants, function(item, index) {
               return _c(
                 "b-media",
                 { key: index, attrs: { tag: "li" } },
