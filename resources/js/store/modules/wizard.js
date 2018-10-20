@@ -42,9 +42,9 @@ const actions = {
             axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
                 Object.assign({}, state, rootState.google)
             ).then(r => {
-                commit(`google/UPDATE_RESTAURANTS`, r.data.results, { root: true }) 
+                commit(`google/${mutationTypes.UPDATE_RESTAURANTS}`, r.data.results, { root: true }) 
                 if (_.get(this.googleResults, 'next_page_token', false)) {
-                    commit(`google/UPDATE_PAGETOKEN`, this.googleResults.next_page_token, { root: true }) 
+                    commit(`google/${mutationTypes.UPDATE_PAGETOKEN}`, this.googleResults.next_page_token, { root: true }) 
                 }
             }).catch(e => {
                 if (e.response.status == 422) {

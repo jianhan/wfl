@@ -57554,9 +57554,9 @@ var initialState = {
 
         if (state.selectedDatasource == initialState.dataSources.google) {
             axios.post(__WEBPACK_IMPORTED_MODULE_1__env__["b" /* HOST_URL */] + 'nearby-restaurants/google', Object.assign({}, state, rootState.google)).then(function (r) {
-                commit('google/UPDATE_RESTAURANTS', r.data.results, { root: true });
+                commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_RESTAURANTS */], r.data.results, { root: true });
                 if (_.get(_this2.googleResults, 'next_page_token', false)) {
-                    commit('google/UPDATE_PAGETOKEN', _this2.googleResults.next_page_token, { root: true });
+                    commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_PAGETOKEN */], _this2.googleResults.next_page_token, { root: true });
                 }
             }).catch(function (e) {
                 if (e.response.status == 422) {

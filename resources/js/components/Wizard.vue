@@ -121,7 +121,6 @@
                     this.$store.dispatch(`wizard/processSearch`)
                     resolve(true)
                 })
-                
             },
             handleSelectDataSource(dataSource) {
                 this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`, dataSource)
