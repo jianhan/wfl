@@ -39,7 +39,7 @@
         </tab-content>
     
         <tab-content title="Resturants" icon="fas fa-utensils">
-            <orbit-spinner :animation-duration="1200" :size="55" :color="'#009bff'" v-if="isLoading"/>
+            <div v-if="isLoading" class="d-flex justify-content-center"><orbit-spinner :animation-duration="1200" :size="120" :color="'#626365'"/></div>
         </tab-content>
     
         <div class="loader" v-if="loadingWizard">Loading</div>

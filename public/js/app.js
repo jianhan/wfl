@@ -59487,16 +59487,22 @@ var render = function() {
         { attrs: { title: "Resturants", icon: "fas fa-utensils" } },
         [
           _vm.isLoading
-            ? _c("orbit-spinner", {
-                attrs: {
-                  "animation-duration": 1200,
-                  size: 55,
-                  color: "#009bff"
-                }
-              })
+            ? _c(
+                "div",
+                { staticClass: "d-flex justify-content-center" },
+                [
+                  _c("orbit-spinner", {
+                    attrs: {
+                      "animation-duration": 1200,
+                      size: 120,
+                      color: "#626365"
+                    }
+                  })
+                ],
+                1
+              )
             : _vm._e()
-        ],
-        1
+        ]
       ),
       _vm._v(" "),
       _vm.loadingWizard
