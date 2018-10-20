@@ -15,7 +15,7 @@ const initialState = {
     selectedDatasource: 'google',
     latitude: 0,
     longitude: 0,
-    errors: {
+    errorsObject: {
         message: '',
         errors: []
     },
@@ -28,7 +28,7 @@ const getters = {
         return state.selectedAddress != '' && this.latitude !== 0 && this.longitude !== 0
     },
     hasErrors: (state) => {
-        return _.size(state.errors) > 0
+        return _.size(_.get(state, 'state.errorsObject.errors', [])) > 0
     }
 }
 
@@ -52,25 +52,15 @@ const actions = {
             }).catch(e => {
                 console.log(e)
                 if (e.response.status == 422) {
-                    commit(mutationTypes.UPDATE_ERRORS, e.response.data)
+                    commit(mutationTypes.UPDATE_ERRORS_OBJECT, e.response.data)
                 } else {
                     const message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''))
-                    commit(mutationTypes.UPDATE_ERRORS, e.response.data, {
+                    commit(mutationTypes.UPDATE_ERRORS_OBJECT, e.response.data, {
                         message: `${e.response.status} : ${message}`
                     })
                 }
-                // this.isSearching = false
-                // if (e.response.status == 422) {
-                //     this.errors = e.response.data
-                // } else {
-                //     const message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''))
-                //     this.errors = {
-                //         message: `${e.response.status} : ${message}`
-                //     }
-                // }
             })
         }
-
     },
 }
 
@@ -100,7 +90,7 @@ const mutations = {
         state.latitude = 0
         state.longitude = 0
     },
-    [mutationTypes.UPDATE_ERRORS](state, payload) {
+    [mutationTypes.UPDATE_ERRORS_OBJECT](state, payload) {
         state.errors = payload
     }
 }

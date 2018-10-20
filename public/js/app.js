@@ -1170,7 +1170,7 @@ module.exports = g;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return UPDATE_WIZARD_IS_LOADING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return UPDATE_SELECTED_DATASOURCE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return UPDATE_SELECTED_ADDRESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return UPDATE_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return UPDATE_ERRORS_OBJECT; });
 /* unused harmony export UPDATE_RESTAURANTS */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return RESET_WIZARD; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RESET_SELECTED_ADDRESS; });
@@ -1183,7 +1183,7 @@ module.exports = g;
 var UPDATE_WIZARD_IS_LOADING = 'updateWizardIsLoading';
 var UPDATE_SELECTED_DATASOURCE = 'updateSelectedDatasource';
 var UPDATE_SELECTED_ADDRESS = 'updateSelectedAddress';
-var UPDATE_ERRORS = 'updateErros';
+var UPDATE_ERRORS_OBJECT = 'updateErrosObject';
 var UPDATE_RESTAURANTS = 'updateRestaurants';
 var RESET_WIZARD = 'resetWizard';
 var RESET_SELECTED_ADDRESS = 'resetSelectedAddress';
@@ -57526,7 +57526,7 @@ var initialState = {
     selectedDatasource: 'google',
     latitude: 0,
     longitude: 0,
-    errors: {
+    errorsObject: {
         message: '',
         errors: []
     },
@@ -57538,7 +57538,7 @@ var initialState = {
         return state.selectedAddress != '' && _this.latitude !== 0 && _this.longitude !== 0;
     },
     hasErrors: function hasErrors(state) {
-        return _.size(state.errors) > 0;
+        return _.size(_.get(state, 'state.errorsObject.errors', [])) > 0;
     }
 
     // actions
@@ -57559,22 +57559,13 @@ var initialState = {
             }).catch(function (e) {
                 console.log(e);
                 if (e.response.status == 422) {
-                    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS */], e.response.data);
+                    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS_OBJECT */], e.response.data);
                 } else {
                     var message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''));
-                    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS */], e.response.data, {
+                    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS_OBJECT */], e.response.data, {
                         message: e.response.status + ' : ' + message
                     });
                 }
-                // this.isSearching = false
-                // if (e.response.status == 422) {
-                //     this.errors = e.response.data
-                // } else {
-                //     const message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''))
-                //     this.errors = {
-                //         message: `${e.response.status} : ${message}`
-                //     }
-                // }
             });
         }
     }
@@ -57599,7 +57590,7 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
     state.selectedAddress = '';
     state.latitude = 0;
     state.longitude = 0;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS */], function (state, payload) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS_OBJECT */], function (state, payload) {
     state.errors = payload;
 }), _mutations);
 
