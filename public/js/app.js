@@ -57526,7 +57526,10 @@ var initialState = {
     selectedDatasource: 'google',
     latitude: 0,
     longitude: 0,
-    errors: [],
+    errors: {
+        message: '',
+        errors: []
+    },
     restaurants: []
 
     // getters
@@ -57555,6 +57558,14 @@ var initialState = {
                 // }
             }).catch(function (e) {
                 console.log(e);
+                if (e.response.status == 422) {
+                    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS */], e.response.data);
+                } else {
+                    var message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''));
+                    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS */], e.response.data, {
+                        message: e.response.status + ' : ' + message
+                    });
+                }
                 // this.isSearching = false
                 // if (e.response.status == 422) {
                 //     this.errors = e.response.data

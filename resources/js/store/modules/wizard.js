@@ -15,7 +15,10 @@ const initialState = {
     selectedDatasource: 'google',
     latitude: 0,
     longitude: 0,
-    errors: [],
+    errors: {
+        message: '',
+        errors: []
+    },
     restaurants: []
 }
 
@@ -48,6 +51,14 @@ const actions = {
                 // }
             }).catch(e => {
                 console.log(e)
+                if (e.response.status == 422) {
+                    commit(mutationTypes.UPDATE_ERRORS, e.response.data)
+                } else {
+                    const message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''))
+                    commit(mutationTypes.UPDATE_ERRORS, e.response.data, {
+                        message: `${e.response.status} : ${message}`
+                    })
+                }
                 // this.isSearching = false
                 // if (e.response.status == 422) {
                 //     this.errors = e.response.data
