@@ -1,8 +1,8 @@
 <template>
     <form-wizard title="Search Near by Restaurants" subtitle="Step over the wizard to find restaurant for lunch" finishButtonText="Search" @on-complete="handleComplete" @on-loading="setLoading" @on-validate="handleValidation" @on-error="handleErrorMessage"
         shape="circle" color="#20a0ff" error-color="#e74c3c">
-
-        <tab-content title="Data Source" icon="fas fa-database" :before-change="validateDatasource">
+    
+        <tab-content title="Data Source" icon="fas fa-database">
     
             <b-card-group deck class="mb-3">
                 <b-card bg-variant="primary" text-variant="white" :header="`<strong>G</strong>oogle`" class="text-center">
@@ -30,7 +30,8 @@
     
         <tab-content title="Additional Info" :before-change="handleProcessSearch" icon="fas fa-keyboard">
             <b-form-group v-if="isSelectedAddressSet" label="Selected Address" description="Address will be used for finding nearby places">
-                <strong v-html="selectedAddress"></strong><b-button class="float-right" @click="handleChangeAddress" size="sm" variant="success">Change</b-button>
+                <strong v-html="selectedAddress"></strong>
+                <b-button class="float-right" @click="handleChangeAddress" size="sm" variant="success">Change</b-button>
             </b-form-group>
             <google-auto-complete v-if="!isSelectedAddressSet"></google-auto-complete>
             <google-nearby-search></google-nearby-search>
@@ -41,11 +42,7 @@
         </tab-content>
     
         <div class="loader" v-if="loadingWizard">Loading</div>
-    
-        <div v-if="errorMsg">
-            <span class="error">{{errorMsg}}</span>
-        </div>
-    
+        <notifications group="selectedAddressEmpty" animation-type="velocity" :max='1' />
     </form-wizard>
 </template>
 
@@ -118,7 +115,18 @@
         methods: {
             handleProcessSearch() {
                 return new Promise((resolve, reject) => {
-                    this.$store.dispatch(`wizard/processSearch`)
+                    if (this.selectedDatasource == this.dataSources.google && this.isSelectedAddressSet) {
+                        this.$store.dispatch(`wizard/processSearch`)
+                    } else {
+                        reject('missing address')
+                        this.$notify({
+                            group: 'selectedAddressEmpty',
+                            title: 'Missing address',
+                            type: 'error',
+                            text: 'Please enter your address'
+                        });
+                    }
+    
                     resolve(true)
                 })
             },
@@ -139,30 +147,6 @@
             },
             handleErrorMessage: function(errorMsg) {
                 this.errorMsg = errorMsg;
-            },
-            validateAsync: function() {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        if (this.count < 1) {
-                            this.count++;
-                            reject(
-                                "This is a custom validation error message. Click next again to get rid of the validation"
-                            );
-                        } else {
-                            this.count = 0;
-                            resolve(true);
-                        }
-                    }, 1000);
-                });
-            },
-            validateDatasource: function() {
-                return new Promise((resolve, reject) => {
-                    if (_.isString(this.selectedDatasource) && _.trim(this.selectedDatasource) !== '') {
-                        resolve(true)
-                    } else {
-                        resolve(false)
-                    }
-                })
             },
             handleChangeAddress: function() {
                 this.$store.commit(`wizard/${mutationTypes.RESET_SELECTED_ADDRESS}`)

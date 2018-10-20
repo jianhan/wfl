@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -19,16 +18,25 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('nearby-restaurants', require('./components/NearbyRestaurants.vue'));
 Vue.component('wizard', require('./components/Wizard.vue'));
 
-import {GOOGLE_MAP_API} from './.env'
+import {
+    GOOGLE_MAP_API
+} from './.env'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import store from './store'
+import Vue from 'vue'
+import Notifications from 'vue-notification'
+import velocity from 'velocity-animate'
+
+Vue.use(Notifications, {
+    velocity
+})
 
 Vue.use(VueGoogleMaps, {
-  load: {
-    key: GOOGLE_MAP_API,
-    libraries: 'places', 
-  },
-  installComponents: true,
+    load: {
+        key: GOOGLE_MAP_API,
+        libraries: 'places',
+    },
+    installComponents: true,
 })
 
 const app = new Vue({

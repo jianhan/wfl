@@ -1,6 +1,11 @@
 import * as mutationTypes from '../mutation-types'
 import * as envs from '../../.env'
 
+const errorsObject = {
+    message: '',
+    errors: []
+}
+
 // initial state
 const initialState = {
     // dataSources which is not mutable
@@ -15,10 +20,7 @@ const initialState = {
     selectedDatasource: 'google',
     latitude: 0,
     longitude: 0,
-    errorsObject: {
-        message: '',
-        errors: []
-    }
+    errorsObject
 }
 
 // getters
@@ -42,9 +44,13 @@ const actions = {
             axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
                 Object.assign({}, state, rootState.google)
             ).then(r => {
-                commit(`google/${mutationTypes.UPDATE_RESTAURANTS}`, r.data.results, { root: true }) 
+                commit(`google/${mutationTypes.UPDATE_RESTAURANTS}`, r.data.results, {
+                    root: true
+                })
                 if (_.get(this.googleResults, 'next_page_token', false)) {
-                    commit(`google/${mutationTypes.UPDATE_PAGETOKEN}`, this.googleResults.next_page_token, { root: true }) 
+                    commit(`google/${mutationTypes.UPDATE_PAGETOKEN}`, this.googleResults.next_page_token, {
+                        root: true
+                    })
                 }
             }).catch(e => {
                 if (e.response.status == 422) {
