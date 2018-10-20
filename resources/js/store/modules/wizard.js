@@ -42,12 +42,10 @@ const actions = {
             axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
                 Object.assign({}, state, rootState.google)
             ).then(r => {
-                console.log(r)
-                // this.googleResults = r.data
-                // this.isSearching = false
-                // if (_.get(this.googleResults, 'next_page_token', false)) {
-                //     this.googleNearbySearch['pagetoken'] = _.get(this.googleResults, 'next_page_token')
-                // }
+                commit(`google/UPDATE_RESTAURANTS`, r.data.results, { root: true }) 
+                if (_.get(this.googleResults, 'next_page_token', false)) {
+                    commit(`google/UPDATE_PAGETOKEN`, this.googleResults.next_page_token, { root: true }) 
+                }
             }).catch(e => {
                 if (e.response.status == 422) {
                     commit(mutationTypes.UPDATE_ERRORS_OBJECT, e.response.data)

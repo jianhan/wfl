@@ -57546,18 +57546,18 @@ var initialState = {
     // actions
 };var actions = {
     processSearch: function processSearch(_ref) {
+        var _this2 = this;
+
         var commit = _ref.commit,
             state = _ref.state,
             rootState = _ref.rootState;
 
         if (state.selectedDatasource == initialState.dataSources.google) {
             axios.post(__WEBPACK_IMPORTED_MODULE_1__env__["b" /* HOST_URL */] + 'nearby-restaurants/google', Object.assign({}, state, rootState.google)).then(function (r) {
-                console.log(r);
-                // this.googleResults = r.data
-                // this.isSearching = false
-                // if (_.get(this.googleResults, 'next_page_token', false)) {
-                //     this.googleNearbySearch['pagetoken'] = _.get(this.googleResults, 'next_page_token')
-                // }
+                commit('google/UPDATE_RESTAURANTS', r.data.results, { root: true });
+                if (_.get(_this2.googleResults, 'next_page_token', false)) {
+                    commit('google/UPDATE_PAGETOKEN', _this2.googleResults.next_page_token, { root: true });
+                }
             }).catch(function (e) {
                 if (e.response.status == 422) {
                     commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS_OBJECT */], e.response.data);
