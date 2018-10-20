@@ -1,4 +1,5 @@
 import * as mutationTypes from '../mutation-types'
+import * as envs from '../../.env'
 
 // initial state
 const initialState = {
@@ -32,8 +33,32 @@ const getters = {
 const actions = {
     processSearch({
         commit,
-        state
+        state,
+        rootState
     }) {
+        if (state.selectedDatasource == initialState.dataSources.google) {
+            axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
+                Object.assign({}, state, rootState.google)
+            ).then(r => {
+                console.log(r)
+                // this.googleResults = r.data
+                // this.isSearching = false
+                // if (_.get(this.googleResults, 'next_page_token', false)) {
+                //     this.googleNearbySearch['pagetoken'] = _.get(this.googleResults, 'next_page_token')
+                // }
+            }).catch(e => {
+                console.log(e)
+                // this.isSearching = false
+                // if (e.response.status == 422) {
+                //     this.errors = e.response.data
+                // } else {
+                //     const message = _.get(e, 'response.data.message', _.get(e, 'response.statusText', ''))
+                //     this.errors = {
+                //         message: `${e.response.status} : ${message}`
+                //     }
+                // }
+            })
+        }
 
     },
 }

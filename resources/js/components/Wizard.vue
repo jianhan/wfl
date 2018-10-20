@@ -28,7 +28,7 @@
     
         </tab-content>
     
-        <tab-content title="Additional Info" :before-change="validateAsync" icon="fas fa-keyboard">
+        <tab-content title="Additional Info" :before-change="handleProcessSearch" icon="fas fa-keyboard">
             <b-form-group v-if="isSelectedAddressSet" label="Selected Address" description="Address will be used for finding nearby places">
                 <strong v-html="selectedAddress"></strong><b-button class="float-right" @click="handleChangeAddress" size="sm" variant="success">Change</b-button>
             </b-form-group>
@@ -40,7 +40,7 @@
             Third tab
         </tab-content>
     
-        <div class="loader" v-if="loadingWizard"></div>
+        <div class="loader" v-if="loadingWizard">Loading</div>
     
         <div v-if="errorMsg">
             <span class="error">{{errorMsg}}</span>
@@ -115,6 +115,13 @@
             },
         },
         methods: {
+            handleProcessSearch() {
+                return new Promise((resolve, reject) => {
+                    this.$store.dispatch(`wizard/processSearch`)
+                    resolve(true)
+                })
+                
+            },
             handleSelectDataSource(dataSource) {
                 this.$store.commit(`wizard/${mutationTypes.UPDATE_SELECTED_DATASOURCE}`, dataSource)
             },
