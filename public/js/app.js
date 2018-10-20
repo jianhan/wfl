@@ -52282,7 +52282,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -52315,7 +52314,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'b-card-group': __WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_es_components_card_card_group__["a" /* default */],
         'b-alert': __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_es_components_alert_alert__["a" /* default */],
         'b-button-group': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_group_button_group__["a" /* default */],
-        'google-results': __WEBPACK_IMPORTED_MODULE_14__GoogleResults___default.a
+        GoogleResults: __WEBPACK_IMPORTED_MODULE_14__GoogleResults___default.a
     },
     data: function data() {
         return {
@@ -53721,6 +53720,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_badge_badge__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_star_rating__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_star_rating__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(27);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -53736,7 +53738,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
+
 
 
 
@@ -53744,36 +53746,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'google-results',
     components: {
         'b-media': __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_media_media__["a" /* default */],
         'b-img': __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_image_img__["a" /* default */],
         'b-badge': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_badge_badge__["a" /* default */],
         'star-rating': __WEBPACK_IMPORTED_MODULE_3_vue_star_rating___default.a
     },
-    props: {
-        googleResults: {
-            type: Object,
-            default: function _default() {
-                return {
-                    html_attributions: [],
-                    results: []
-                };
-            }
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapState */])({
+
+        // wizard
+        isLoading: function isLoading(state) {
+            return state.wizard.isLoading;
+        },
+        selectedAddress: function selectedAddress(state) {
+            return state.wizard.selectedAddress;
+        },
+        selectedDatasource: function selectedDatasource(state) {
+            return state.wizard.selectedDatasource;
+        },
+        dataSources: function dataSources(state) {
+            return state.wizard.dataSources;
+        },
+
+        // google
+        restaurants: function restaurants(state) {
+            return state.google.restaurants;
         }
-    },
-    computed: {
+    }), Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapGetters */])({
+        hasRestaurants: 'google/hasRestaurants'
+    }), {
         canShow: function canShow() {
-            if (_.isNull(this.googleResults)) {
-                return false;
-            }
-
-            if (_.get(this.googleResults, 'results', []).length === 0) {
-                return false;
-            }
-
-            return true;
+            return this.selectedDatasource == this.dataSources.google && this.hasRestaurants;
         }
-    }
+    })
 });
 
 /***/ }),
@@ -54120,8 +54126,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._t("pagination"),
-      _vm._v(" "),
       _vm.canShow
         ? _c(
             "ul",
@@ -54439,7 +54443,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("google-results", { attrs: { googleResults: _vm.googleResults } }),
+      _c("google-results"),
       _vm._v(" "),
       _c(
         "button",
@@ -54584,7 +54588,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__GoogleNearbySearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__GoogleNearbySearch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__GoogleAutoComplete_vue__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__GoogleAutoComplete_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__GoogleAutoComplete_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_epic_spinners__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__GoogleResults__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__GoogleResults___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__GoogleResults__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_epic_spinners__ = __webpack_require__(135);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -54636,6 +54642,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+
 
 
 
@@ -54657,7 +54666,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         TabContent: __WEBPACK_IMPORTED_MODULE_5_vue_form_wizard__["TabContent"],
         GoogleAutoComplete: __WEBPACK_IMPORTED_MODULE_10__GoogleAutoComplete_vue___default.a,
         GoogleNearbySearch: __WEBPACK_IMPORTED_MODULE_9__GoogleNearbySearch___default.a,
-        OrbitSpinner: __WEBPACK_IMPORTED_MODULE_11_epic_spinners__["a" /* OrbitSpinner */],
+        OrbitSpinner: __WEBPACK_IMPORTED_MODULE_12_epic_spinners__["a" /* OrbitSpinner */],
+        GoogleResults: __WEBPACK_IMPORTED_MODULE_11__GoogleResults___default.a,
         "b-button": __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_button__["a" /* default */],
         "b-card": __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_card_card__["a" /* default */],
         "b-card-group": __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_card_card_group__["a" /* default */],
@@ -59501,8 +59511,11 @@ var render = function() {
                 ],
                 1
               )
-            : _vm._e()
-        ]
+            : _vm._e(),
+          _vm._v(" "),
+          _c("google-results")
+        ],
+        1
       ),
       _vm._v(" "),
       _vm.loadingWizard
@@ -61689,6 +61702,12 @@ var initialState = {
     maxprice: null,
     pagetoken: '',
     restaurants: []
+
+    // getters
+};var getters = {
+    hasRestaurants: function hasRestaurants(state) {
+        return _.size(state.restaurants) > 0;
+    }
 };
 
 var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["k" /* UPDATE_RADIUS */], function (state, radius) {
@@ -61710,7 +61729,8 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
 /* harmony default export */ __webpack_exports__["a"] = ({
     namespaced: true,
     state: initialState,
-    mutations: mutations
+    mutations: mutations,
+    getters: getters
 });
 
 /***/ }),

@@ -50,8 +50,7 @@
             </b-button-group>
     
         </b-form>
-        <google-results :googleResults="googleResults">
-        </google-results>
+        <google-results></google-results>
     
         <button slot="pagination" v-show="canShowGoogleNextPage" @click="handleSearch">Next</button>
     
@@ -90,7 +89,7 @@
             'b-card-group': bCardGroup,
             'b-alert': bAlert,
             'b-button-group': bButtonGroup,
-            'google-results': GoogleResults,
+            GoogleResults,
         },
         data() {
             return {

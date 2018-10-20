@@ -1,6 +1,5 @@
 <template>
     <div>
-        <slot name="pagination"></slot>
         <ul class="list-unstyled" v-if="canShow">
             <b-media tag="li" v-bind:key="index" v-for="(item,index) in googleResults.results ">
                 <b-img slot="aside" :src="item.icon" blank-color="#abc" width="64" alt="placeholder" v-if="item.icon" />
@@ -19,36 +18,36 @@
     import bImg from 'bootstrap-vue/es/components/image/img'
     import bBadge from 'bootstrap-vue/es/components/badge/badge'
     import StarRating from 'vue-star-rating'
+    import {
+        mapGetters,
+        mapState
+    } from "vuex";
     
     export default {
+        name: 'google-results',
         components: {
             'b-media': bMedia,
             'b-img': bImg,
             'b-badge': bBadge,
             'star-rating': StarRating,
         },
-        props: {
-            googleResults: {
-                type: Object,
-                default: function() {
-                    return {
-                        html_attributions: [],
-                        results: []
-                    }
-                }
-            }
-        },
         computed: {
-            canShow: function() {
-                if (_.isNull(this.googleResults)) {
-                    return false
-                }
+            ...mapState({
     
-                if (_.get(this.googleResults, 'results', []).length === 0) {
-                    return false
-                }
+                // wizard
+                isLoading: state => state.wizard.isLoading,
+                selectedAddress: state => state.wizard.selectedAddress,
+                selectedDatasource: state => state.wizard.selectedDatasource,
+                dataSources: state => state.wizard.dataSources,
     
-                return true
+                // google
+                restaurants: state => state.google.restaurants,
+            }),
+            ...mapGetters({
+                hasRestaurants: `google/hasRestaurants`,
+            }),
+            canShow() {
+                return this.selectedDatasource == this.dataSources.google && this.hasRestaurants
             }
         }
     }

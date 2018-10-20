@@ -9,6 +9,13 @@ const initialState = {
     restaurants: []
 }
 
+// getters
+const getters = {
+    hasRestaurants: (state) => {
+        return _.size(state.restaurants) > 0
+    }
+}
+
 const mutations = {
     [mutationTypes.UPDATE_RADIUS](state, radius) {
         state.radius = radius
@@ -36,5 +43,6 @@ const mutations = {
 export default {
     namespaced: true,
     state: initialState,
-    mutations
+    mutations,
+    getters,
 }

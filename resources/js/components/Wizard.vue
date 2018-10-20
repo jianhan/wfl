@@ -35,11 +35,13 @@
             </b-form-group>
             <google-auto-complete v-if="!isSelectedAddressSet"></google-auto-complete>
             <google-nearby-search></google-nearby-search>
-            
         </tab-content>
     
         <tab-content title="Resturants" icon="fas fa-utensils">
-            <div v-if="isLoading" class="d-flex justify-content-center"><orbit-spinner :animation-duration="1200" :size="120" :color="'#626365'"/></div>
+            <div v-if="isLoading" class="d-flex justify-content-center">
+                <orbit-spinner :animation-duration="1200" :size="120" :color="'#626365'" />
+            </div>
+            <google-results></google-results>
         </tab-content>
     
         <div class="loader" v-if="loadingWizard">Loading</div>
@@ -59,14 +61,14 @@
     } from "vue-form-wizard";
     import "vue-form-wizard/dist/vue-form-wizard.min.css";
     import {
-        mapState
+        mapState,
+        mapGetters
     } from "vuex";
     import * as mutationTypes from "../store/mutation-types.js";
     import GoogleNearbySearch from "./GoogleNearbySearch";
     import GoogleAutoComplete from "./GoogleAutoComplete.vue";
-    import {
-        mapGetters
-    } from "vuex";
+    import GoogleResults from "./GoogleResults";
+    import {} from "vuex";
     import {
         OrbitSpinner
     } from "epic-spinners";
@@ -78,6 +80,7 @@
             GoogleAutoComplete,
             GoogleNearbySearch,
             OrbitSpinner,
+            GoogleResults,
             "b-button": bButton,
             "b-card": bCard,
             "b-card-group": bCardGroup,
