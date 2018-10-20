@@ -54671,7 +54671,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return state.google.maxprice;
         }
     }), Object(__WEBPACK_IMPORTED_MODULE_7_vuex__["b" /* mapGetters */])({
-        isSelectedAddressSet: 'wizard/isSelectedAddressSet'
+        isSelectedAddressSet: 'wizard/isSelectedAddressSet',
+        hasErrors: 'wizard/hasErrors'
     }), {
         selectedDatasource: {
             get: function get() {
@@ -57538,7 +57539,7 @@ var initialState = {
         return state.selectedAddress != '' && _this.latitude !== 0 && _this.longitude !== 0;
     },
     hasErrors: function hasErrors(state) {
-        return _.size(_.get(state, 'state.errorsObject.errors', [])) > 0;
+        return _.size(_.get(state, 'errorsObject.errors', [])) > 0;
     }
 
     // actions
@@ -57557,7 +57558,6 @@ var initialState = {
                 //     this.googleNearbySearch['pagetoken'] = _.get(this.googleResults, 'next_page_token')
                 // }
             }).catch(function (e) {
-                console.log(e);
                 if (e.response.status == 422) {
                     commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS_OBJECT */], e.response.data);
                 } else {
@@ -57591,7 +57591,7 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
     state.latitude = 0;
     state.longitude = 0;
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* UPDATE_ERRORS_OBJECT */], function (state, payload) {
-    state.errors = payload;
+    state.errorsObject = payload;
 }), _mutations);
 
 /* harmony default export */ __webpack_exports__["a"] = ({

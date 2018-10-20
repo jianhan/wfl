@@ -1,7 +1,7 @@
 <template>
     <form-wizard title="Search Near by Restaurants" subtitle="Step over the wizard to find restaurant for lunch" finishButtonText="Search" @on-complete="handleComplete" @on-loading="setLoading" @on-validate="handleValidation" @on-error="handleErrorMessage"
         shape="circle" color="#20a0ff" error-color="#e74c3c">
-    
+
         <tab-content title="Data Source" icon="fas fa-database" :before-change="validateDatasource">
     
             <b-card-group deck class="mb-3">
@@ -104,6 +104,7 @@
             }),
             ...mapGetters({
                 isSelectedAddressSet: `wizard/isSelectedAddressSet`,
+                hasErrors: `wizard/hasErrors`,
             }),
             selectedDatasource: {
                 get() {

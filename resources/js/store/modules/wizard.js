@@ -28,7 +28,7 @@ const getters = {
         return state.selectedAddress != '' && this.latitude !== 0 && this.longitude !== 0
     },
     hasErrors: (state) => {
-        return _.size(_.get(state, 'state.errorsObject.errors', [])) > 0
+        return _.size(_.get(state, 'errorsObject.errors', [])) > 0
     }
 }
 
@@ -50,7 +50,6 @@ const actions = {
                 //     this.googleNearbySearch['pagetoken'] = _.get(this.googleResults, 'next_page_token')
                 // }
             }).catch(e => {
-                console.log(e)
                 if (e.response.status == 422) {
                     commit(mutationTypes.UPDATE_ERRORS_OBJECT, e.response.data)
                 } else {
@@ -91,7 +90,7 @@ const mutations = {
         state.longitude = 0
     },
     [mutationTypes.UPDATE_ERRORS_OBJECT](state, payload) {
-        state.errors = payload
+        state.errorsObject = payload
     }
 }
 
