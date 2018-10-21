@@ -44,7 +44,16 @@
             <google-results></google-results>
         </tab-content>
     
-        <div class="loader" v-if="loadingWizard">Loading</div>
+        <template slot="footer" slot-scope="props">
+            <div class="wizard-footer-left">
+               <wizard-button v-if="props.activeTabIndex != 0" @click.native="props.prevTab()" :style="props.fillButtonStyle">Previous</wizard-button>
+            </div>
+            <div class="wizard-footer-right">
+              <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Next</wizard-button>
+              <wizard-button v-else @click.native="alert('Done')" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">  {{props.isLastStep ? 'Done' : 'Next'}}</wizard-button>
+            </div>
+        </template>
+
         <notifications group="selectedAddressEmpty" animation-type="velocity" :max='1' />
     </form-wizard>
 </template>
