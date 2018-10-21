@@ -52,11 +52,9 @@ const actions = {
                 commit(`google/${mutationTypes.UPDATE_RESTAURANTS}`, r.data.results, {
                     root: true
                 })
-                if (_.get(r, 'data.next_page_token', false)) {
-                    commit(`google/${mutationTypes.UPDATE_PAGETOKEN}`, r.data.next_page_token, {
-                        root: true
-                    })
-                }
+                commit(`google/${mutationTypes.UPDATE_PAGETOKEN}`, _.get(r, 'data.next_page_token', ''), {
+                    root: true
+                })
             }).catch(e => {
                 commit(mutationTypes.UPDATE_IS_LOADING, false)
                 if (e.response.status == 422) {

@@ -1,5 +1,6 @@
 <template>
     <div>
+    
         <ul class="list-unstyled" v-if="canShow">
             <b-media tag="li" v-bind:key="index" v-for="(item,index) in restaurants ">
                 <b-img slot="aside" :src="item.icon" width="30" height="30" v-if="item.icon" />
@@ -9,7 +10,11 @@
                 <b-badge class="mr-1" pill variant="secondary" v-bind:key="tIndex" v-for="(tValue,tIndex) in item.types" v-html="tValue"></b-badge>
             </b-media>
         </ul>
-        <b-button v-if="hasNextPageToken" variant="outline-primary">Next</b-button>
+    
+        <div class="d-flex justify-content-center">
+            <b-button @click="handleNextPageClicked" v-if="hasNextPageToken" variant="outline-primary">Next</b-button>
+        </div>
+    
     </div>
 </template>
 
@@ -47,11 +52,33 @@
                 pagetoken: state => state.google.pagetoken,
             }),
             ...mapGetters({
+                // wizard
+                isSelectedAddressSet: `wizard/isSelectedAddressSet`,
+
+                //  google
                 hasRestaurants: `google/hasRestaurants`,
                 hasNextPageToken: `google/hasNextPageToken`,
             }),
             canShow() {
                 return this.selectedDatasource == this.dataSources.google && this.hasRestaurants
+            }
+        },
+        methods: {
+            handleNextPageClicked() {
+                if (
+                    this.selectedDatasource == this.dataSources.google &&
+                    this.isSelectedAddressSet
+                ) {
+                    this.$store.dispatch(`wizard/processSearch`);
+                } else {
+                    reject("missing address");
+                    this.$notify({
+                        group: "selectedAddressEmpty",
+                        title: "Missing address",
+                        type: "error",
+                        text: "Please enter your address"
+                    });
+                }
             }
         }
     }
