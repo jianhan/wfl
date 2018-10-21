@@ -9,12 +9,14 @@
                 <b-badge class="mr-1" pill variant="secondary" v-bind:key="tIndex" v-for="(tValue,tIndex) in item.types" v-html="tValue"></b-badge>
             </b-media>
         </ul>
+        <b-button v-if="hasNextPageToken" variant="outline-primary">Next</b-button>
     </div>
 </template>
 
 <script>
     import bMedia from 'bootstrap-vue/es/components/media/media'
     import bImg from 'bootstrap-vue/es/components/image/img'
+    import bButton from "bootstrap-vue/es/components/button/button";
     import bBadge from 'bootstrap-vue/es/components/badge/badge'
     import StarRating from 'vue-star-rating'
     import {
@@ -29,6 +31,7 @@
             'b-img': bImg,
             'b-badge': bBadge,
             'star-rating': StarRating,
+            'b-button': bButton,
         },
         computed: {
             ...mapState({
@@ -45,6 +48,7 @@
             }),
             ...mapGetters({
                 hasRestaurants: `google/hasRestaurants`,
+                hasNextPageToken: `google/hasNextPageToken`,
             }),
             canShow() {
                 return this.selectedDatasource == this.dataSources.google && this.hasRestaurants

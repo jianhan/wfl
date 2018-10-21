@@ -53717,10 +53717,11 @@ exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transitio
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_media_media__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_image_img__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_badge_badge__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_star_rating__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_star_rating__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_button__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_badge_badge__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_star_rating__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_star_rating___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_star_rating__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__(22);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -53737,6 +53738,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+
 
 
 
@@ -53749,10 +53752,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     components: {
         'b-media': __WEBPACK_IMPORTED_MODULE_0_bootstrap_vue_es_components_media_media__["a" /* default */],
         'b-img': __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue_es_components_image_img__["a" /* default */],
-        'b-badge': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_badge_badge__["a" /* default */],
-        'star-rating': __WEBPACK_IMPORTED_MODULE_3_vue_star_rating___default.a
+        'b-badge': __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_es_components_badge_badge__["a" /* default */],
+        'star-rating': __WEBPACK_IMPORTED_MODULE_4_vue_star_rating___default.a,
+        'b-button': __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_es_components_button_button__["a" /* default */]
     },
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapState */])({
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["c" /* mapState */])({
 
         // wizard
         isLoading: function isLoading(state) {
@@ -53775,8 +53779,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         pagetoken: function pagetoken(state) {
             return state.google.pagetoken;
         }
-    }), Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapGetters */])({
-        hasRestaurants: 'google/hasRestaurants'
+    }), Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["b" /* mapGetters */])({
+        hasRestaurants: 'google/hasRestaurants',
+        hasNextPageToken: 'google/hasNextPageToken'
     }), {
         canShow: function canShow() {
             return this.selectedDatasource == this.dataSources.google && this.hasRestaurants;
@@ -54125,67 +54130,77 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.canShow
-      ? _c(
-          "ul",
-          { staticClass: "list-unstyled" },
-          _vm._l(_vm.restaurants, function(item, index) {
-            return _c(
-              "b-media",
-              { key: index, attrs: { tag: "li" } },
-              [
-                item.icon
-                  ? _c("b-img", {
-                      attrs: {
-                        slot: "aside",
-                        src: item.icon,
-                        width: "30",
-                        height: "30"
-                      },
-                      slot: "aside"
-                    })
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("h5", { staticClass: "mt-0 mb-1" }, [
-                  _vm._v(_vm._s(item.name))
-                ]),
-                _vm._v(" "),
-                item.rating > 0
-                  ? _c("star-rating", {
-                      attrs: {
-                        "read-only": true,
-                        increment: 0.1,
-                        "max-rating": 5,
-                        "star-size": 15
-                      },
-                      model: {
-                        value: item.rating,
-                        callback: function($$v) {
-                          _vm.$set(item, "rating", $$v)
+  return _c(
+    "div",
+    [
+      _vm.canShow
+        ? _c(
+            "ul",
+            { staticClass: "list-unstyled" },
+            _vm._l(_vm.restaurants, function(item, index) {
+              return _c(
+                "b-media",
+                { key: index, attrs: { tag: "li" } },
+                [
+                  item.icon
+                    ? _c("b-img", {
+                        attrs: {
+                          slot: "aside",
+                          src: item.icon,
+                          width: "30",
+                          height: "30"
                         },
-                        expression: "item.rating"
-                      }
+                        slot: "aside"
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "mt-0 mb-1" }, [
+                    _vm._v(_vm._s(item.name))
+                  ]),
+                  _vm._v(" "),
+                  item.rating > 0
+                    ? _c("star-rating", {
+                        attrs: {
+                          "read-only": true,
+                          increment: 0.1,
+                          "max-rating": 5,
+                          "star-size": 15
+                        },
+                        model: {
+                          value: item.rating,
+                          callback: function($$v) {
+                            _vm.$set(item, "rating", $$v)
+                          },
+                          expression: "item.rating"
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(item.vicinity))]),
+                  _vm._v(" "),
+                  _vm._l(item.types, function(tValue, tIndex) {
+                    return _c("b-badge", {
+                      key: tIndex,
+                      staticClass: "mr-1",
+                      attrs: { pill: "", variant: "secondary" },
+                      domProps: { innerHTML: _vm._s(tValue) }
                     })
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(item.vicinity))]),
-                _vm._v(" "),
-                _vm._l(item.types, function(tValue, tIndex) {
-                  return _c("b-badge", {
-                    key: tIndex,
-                    staticClass: "mr-1",
-                    attrs: { pill: "", variant: "secondary" },
-                    domProps: { innerHTML: _vm._s(tValue) }
                   })
-                })
-              ],
-              2
-            )
-          })
-        )
-      : _vm._e()
-  ])
+                ],
+                2
+              )
+            })
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.hasNextPageToken
+        ? _c("b-button", { attrs: { variant: "outline-primary" } }, [
+            _vm._v("Next")
+          ])
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59317,11 +59332,7 @@ var render = function() {
                             }
                           }
                         },
-                        [
-                          _vm._v(
-                            "  " + _vm._s(props.isLastStep ? "Done" : "Next")
-                          )
-                        ]
+                        [_vm._v("Reset")]
                       )
                 ],
                 1
@@ -61776,6 +61787,9 @@ var initialState = {
 };var getters = {
     hasRestaurants: function hasRestaurants(state) {
         return _.size(state.restaurants) > 0;
+    },
+    hasNextPageToken: function hasNextPageToken(state) {
+        return state.pagetoken !== '';
     }
 };
 

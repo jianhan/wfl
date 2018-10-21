@@ -13,6 +13,9 @@ const initialState = {
 const getters = {
     hasRestaurants: (state) => {
         return _.size(state.restaurants) > 0
+    },
+    hasNextPageToken: (state) => {
+        return state.pagetoken !== ''
     }
 }
 
