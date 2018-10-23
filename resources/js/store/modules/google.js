@@ -6,7 +6,11 @@ const initialState = {
     minprice: null,
     maxprice: null,
     pagetoken: '',
-    restaurants: []
+    restaurants: [],
+    paginationStatus: {
+        currentPage: 0,    
+        tokens: []
+    }
 }
 
 // getters
