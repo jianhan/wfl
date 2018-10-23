@@ -7,10 +7,8 @@ const initialState = {
     maxprice: null,
     pagetoken: '',
     restaurants: [],
-    paginationStatus: {
-        currentPage: 0,    
-        tokens: []
-    }
+    tokens: [],
+    currentPageToken: ''
 }
 
 // getters
@@ -44,6 +42,12 @@ const mutations = {
     },
     [mutationTypes.RESET_RESTAURANTS](state) {
         state.restaurants = []
+    },
+    [mutationTypes.ADD_PAGETOKEN](state, payload) {
+        state.tokens.push(payload)
+    },
+    [mutationTypes.UPDATE_CURRENT_PAGETOKEN](state, payload) {
+        state.currentPageToken = payload
     }
 }
 
