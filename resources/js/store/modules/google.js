@@ -18,6 +18,17 @@ const getters = {
     },
     hasNextPageToken: (state) => {
         return state.pagetoken !== ''
+    },
+    isPageTokenExists: state => pageToken => {
+        let exists = false
+        for (var value of state.tokens) {
+            if (value == pagetoken) {
+                exists = true
+                break;
+            }
+        }
+
+        return exists
     }
 }
 
@@ -29,7 +40,7 @@ const mutations = {
         state.maxprice = maxprice
     },
     [mutationTypes.UPDATE_MIN_PRICE](state, minprice) {
-        state.minprice = minprice 
+        state.minprice = minprice
     },
     [mutationTypes.RESET_GOOGLE_FORM](state) {
         state = initialState
