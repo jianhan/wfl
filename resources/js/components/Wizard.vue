@@ -50,7 +50,7 @@
             </div>
             <div class="wizard-footer-right">
               <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Next</wizard-button>
-              <wizard-button v-else @click.native="alert('Done')" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">Reset</wizard-button>
+              <wizard-button v-else @click.native="handleComplete" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">Reset</wizard-button>
             </div>
         </template>
 

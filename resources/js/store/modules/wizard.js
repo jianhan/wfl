@@ -38,13 +38,17 @@ const actions = {
     processSearch({
         commit,
         state,
-        rootState
+        rootState,
+        rootGetters
     }) {
         commit(`google/${mutationTypes.RESET_RESTAURANTS}`, [], {
             root: true
         })
         if (state.selectedDatasource == initialState.dataSources.google) {
+
             commit(mutationTypes.UPDATE_IS_LOADING, true)
+            console.log(rootState.google.currentPageToken)
+
             axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
                 Object.assign({}, state, rootState.google)
             ).then(r => {
@@ -52,9 +56,21 @@ const actions = {
                 commit(`google/${mutationTypes.UPDATE_RESTAURANTS}`, r.data.results, {
                     root: true
                 })
-                commit(`google/${mutationTypes.UPDATE_PAGETOKEN}`, _.get(r, 'data.next_page_token', ''), {
+
+                const nextPageToken = _.get(r, 'data.next_page_token', '')
+                commit(`google/${mutationTypes.UPDATE_PAGETOKEN}`, nextPageToken, {
                     root: true
                 })
+
+                if (nextPageToken !== '') {
+                    commit(`google/${mutationTypes.ADD_PAGETOKEN}`, nextPageToken, {
+                        root: true
+                    })
+
+                    commit(`google/${mutationTypes.UPDATE_CURRENT_PAGETOKEN}`, nextPageToken, {
+                        root: true
+                    })
+                }
             }).catch(e => {
                 commit(mutationTypes.UPDATE_IS_LOADING, false)
                 if (e.response.status == 422) {

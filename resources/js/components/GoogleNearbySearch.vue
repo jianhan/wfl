@@ -102,9 +102,6 @@
                     this.$store.commit(`google/${mutationTypes.UPDATE_MAX_PRICE}`, value);
                 }
             }
-        },
-        methods: {
-            
         }
     };
 </script>

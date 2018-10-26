@@ -29,6 +29,29 @@ const getters = {
         }
 
         return exists
+    },
+    siblingPageToken: state => (pageToken, offset) => {
+        let i = 0
+        for (const index of state.tokens.keys()) {
+            if (state.tokens[index] == pageToken) {
+                i = index
+                break;
+            }
+        }
+
+        if (pageToken == "" && offset < 0) {
+            return false
+        }
+
+        if (pageToken == "") {
+            offset--
+        }
+
+        if(typeof state.tokens[i+offset] === 'undefined') {
+            return false
+        }
+
+        return state.tokens[i+offset]
     }
 }
 

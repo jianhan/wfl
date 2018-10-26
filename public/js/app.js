@@ -55029,8 +55029,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.$store.commit("google/" + __WEBPACK_IMPORTED_MODULE_3__store_mutation_types_js__["j" /* UPDATE_MAX_PRICE */], value);
             }
         }
-    },
-    methods: {}
+    }
 });
 
 /***/ }),
@@ -59364,7 +59363,7 @@ var render = function() {
                           style: props.fillButtonStyle,
                           nativeOn: {
                             click: function($event) {
-                              _vm.alert("Done")
+                              return _vm.handleComplete($event)
                             }
                           }
                         },
@@ -61736,21 +61735,37 @@ var errorsObject = {
     processSearch: function processSearch(_ref) {
         var commit = _ref.commit,
             state = _ref.state,
-            rootState = _ref.rootState;
+            rootState = _ref.rootState,
+            rootGetters = _ref.rootGetters;
 
         commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* RESET_RESTAURANTS */], [], {
             root: true
         });
         if (state.selectedDatasource == initialState.dataSources.google) {
+
             commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_IS_LOADING */], true);
+            console.log(rootState.google.currentPageToken);
+
             axios.post(__WEBPACK_IMPORTED_MODULE_1__env__["b" /* HOST_URL */] + 'nearby-restaurants/google', Object.assign({}, state, rootState.google)).then(function (r) {
                 commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_IS_LOADING */], false);
                 commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["n" /* UPDATE_RESTAURANTS */], r.data.results, {
                     root: true
                 });
-                commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["l" /* UPDATE_PAGETOKEN */], _.get(r, 'data.next_page_token', ''), {
+
+                var nextPageToken = _.get(r, 'data.next_page_token', '');
+                commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["l" /* UPDATE_PAGETOKEN */], nextPageToken, {
                     root: true
                 });
+
+                if (nextPageToken !== '') {
+                    commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* ADD_PAGETOKEN */], nextPageToken, {
+                        root: true
+                    });
+
+                    commit('google/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_CURRENT_PAGETOKEN */], nextPageToken, {
+                        root: true
+                    });
+                }
             }).catch(function (e) {
                 commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_IS_LOADING */], false);
                 if (e.response.status == 422) {
@@ -61859,6 +61874,52 @@ var initialState = {
             }
 
             return exists;
+        };
+    },
+    siblingPageToken: function siblingPageToken(state) {
+        return function (pageToken, offset) {
+            var i = 0;
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = state.tokens.keys()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var index = _step2.value;
+
+                    if (state.tokens[index] == pageToken) {
+                        i = index;
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            if (pageToken == "" && offset < 0) {
+                return false;
+            }
+
+            if (pageToken == "") {
+                offset--;
+            }
+
+            if (typeof state.tokens[i + offset] === 'undefined') {
+                return false;
+            }
+
+            return state.tokens[i + offset];
         };
     }
 };
