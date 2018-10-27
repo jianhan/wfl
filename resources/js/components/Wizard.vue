@@ -139,7 +139,7 @@
                         this.selectedDatasource == this.dataSources.google &&
                         this.isSelectedAddressSet
                     ) {
-                        this.$store.dispatch(`google/processSearch`, { direction: 1 });
+                        this.$store.dispatch(`google/processSearch`, { direction: 0 });
                     } else {
                         reject("missing address");
                         this.$notify({

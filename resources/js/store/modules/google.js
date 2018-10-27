@@ -86,15 +86,15 @@ const actions = {
             commit(mutationTypes.UPDATE_RESTAURANTS, r.data.results)
 
             const nextPageToken = _.get(r, 'data.next_page_token', '')
-            if (nextPageToken !== '') {
+            commit(mutationTypes.RESET_NEXT_PAGETOKEN)
+            console.log(direction)
+            if (direction == 0) {
                 commit(mutationTypes.ADD_NEXT_PAGETOKEN, {
-                    isCurrent: false,
-                    nextPageToken   
+                    isCurrent: true,
+                    nextPageToken
                 })
-                
-                commit(mutationTypes.RESET_NEXT_PAGETOKEN)
-                commit(mutationTypes.SET_NEXT_PAGETOKEN, nextPageToken)
             }
+
         }).catch(e => {
             commit(`wizard/${mutationTypes.UPDATE_IS_LOADING}`, false, {
                 root: true

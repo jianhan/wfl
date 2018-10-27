@@ -53801,9 +53801,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
     }),
     methods: {
-        handleNextPageClicked: function handleNextPageClicked() {
+        handleNextPageClicked: function handleNextPageClicked(direction) {
             if (this.selectedDatasource == this.dataSources.google && this.isSelectedAddressSet) {
-                this.$store.dispatch('google/processSearch', { direction: 1 });
+                this.$store.dispatch('google/processSearch', { direction: direction });
             } else {
                 reject("missing address");
                 this.$notify({
@@ -54228,18 +54228,26 @@ var render = function() {
               "b-button",
               {
                 attrs: { variant: "outline-primary" },
-                on: { click: _vm.handleNextPageClicked }
+                on: {
+                  click: function($event) {
+                    _vm.handleNextPageClicked(-1)
+                  }
+                }
               },
               [_vm._v("Previous")]
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm.siblingPageToken(1)
+        _vm.siblingPageToken(0)
           ? _c(
               "b-button",
               {
                 attrs: { variant: "outline-primary" },
-                on: { click: _vm.handleNextPageClicked }
+                on: {
+                  click: function($event) {
+                    _vm.handleNextPageClicked(0)
+                  }
+                }
               },
               [_vm._v("Next")]
             )
@@ -54798,7 +54806,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
             return new Promise(function (resolve, reject) {
                 if (_this.selectedDatasource == _this.dataSources.google && _this.isSelectedAddressSet) {
-                    _this.$store.dispatch("google/processSearch", { direction: 1 });
+                    _this.$store.dispatch("google/processSearch", { direction: 0 });
                 } else {
                     reject("missing address");
                     _this.$notify({
@@ -61890,14 +61898,13 @@ var actions = {
             commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["n" /* UPDATE_RESTAURANTS */], r.data.results);
 
             var nextPageToken = _.get(r, 'data.next_page_token', '');
-            if (nextPageToken !== '') {
+            commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* RESET_NEXT_PAGETOKEN */]);
+            console.log(direction);
+            if (direction == 0) {
                 commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* ADD_NEXT_PAGETOKEN */], {
-                    isCurrent: false,
+                    isCurrent: true,
                     nextPageToken: nextPageToken
                 });
-
-                commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* RESET_NEXT_PAGETOKEN */]);
-                commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* SET_NEXT_PAGETOKEN */], nextPageToken);
             }
         }).catch(function (e) {
             commit('wizard/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_IS_LOADING */], false, {
