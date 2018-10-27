@@ -61704,12 +61704,10 @@ var debug = "development" !== 'production';
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__(20);
 var _this = this,
     _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -61782,9 +61780,11 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__(20);
 var _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -61881,10 +61881,12 @@ var actions = {
 
         payload = nextPageToken ? {
             nextPageToken: nextPageToken
-        } : state;
+        } : Object.assign({}, state, {
+            latitude: rootState.wizard.latitude,
+            longitude: rootState.wizard.longitude
+        });
 
-        axios.post(envs.HOST_URL + 'nearby-restaurants/google', payload).then(function (r) {
-
+        axios.post(__WEBPACK_IMPORTED_MODULE_1__env__["b" /* HOST_URL */] + 'nearby-restaurants/google', payload).then(function (r) {
             commit('wizard/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_IS_LOADING */], false, {
                 root: true
             });

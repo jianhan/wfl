@@ -1,4 +1,5 @@
 import * as mutationTypes from '../mutation-types'
+import * as envs from '../../.env'
 
 // initial state
 const initialState = {
@@ -74,12 +75,14 @@ const actions = {
 
         payload = nextPageToken ? {
             nextPageToken: nextPageToken
-        } : state
+        } : Object.assign({}, state, {
+            latitude: rootState.wizard.latitude,
+            longitude: rootState.wizard.longitude
+        })
 
         axios.post(`${envs.HOST_URL}nearby-restaurants/google`,
             payload
         ).then(r => {
-
             commit(`wizard/${mutationTypes.UPDATE_IS_LOADING}`, false, {
                 root: true
             })

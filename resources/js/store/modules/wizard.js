@@ -1,5 +1,4 @@
 import * as mutationTypes from '../mutation-types'
-import * as envs from '../../.env'
 
 const errorsObject = {
     message: '',
