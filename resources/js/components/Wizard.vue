@@ -139,7 +139,7 @@
                         this.selectedDatasource == this.dataSources.google &&
                         this.isSelectedAddressSet
                     ) {
-                        this.$store.dispatch(`wizard/processSearch`);
+                        this.$store.dispatch(`google/processSearch`, { direction: 1 });
                     } else {
                         reject("missing address");
                         this.$notify({
@@ -149,7 +149,7 @@
                             text: "Please enter your address"
                         });
                     }
-    
+
                     resolve(true);
                 });
             },

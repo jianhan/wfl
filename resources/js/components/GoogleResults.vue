@@ -12,7 +12,8 @@
         </ul>
     
         <div class="d-flex justify-content-center">
-            <b-button @click="handleNextPageClicked" v-if="hasNextPageToken" variant="outline-primary">Next</b-button>
+            <b-button @click="handleNextPageClicked" v-if="siblingPageToken(-1)" variant="outline-primary">Previous</b-button>
+            <b-button @click="handleNextPageClicked" v-if="siblingPageToken(1)" variant="outline-primary">Next</b-button>
         </div>
     
     </div>
@@ -57,7 +58,7 @@
 
                 //  google
                 hasRestaurants: `google/hasRestaurants`,
-                hasNextPageToken: `google/hasNextPageToken`,
+                siblingPageToken: `google/siblingPageToken`,
             }),
             canShow() {
                 return this.selectedDatasource == this.dataSources.google && this.hasRestaurants
@@ -69,7 +70,7 @@
                     this.selectedDatasource == this.dataSources.google &&
                     this.isSelectedAddressSet
                 ) {
-                    this.$store.dispatch(`wizard/processSearch`);
+                    this.$store.dispatch(`wizard/processSearch`, { direction: 1 });
                 } else {
                     reject("missing address");
                     this.$notify({
