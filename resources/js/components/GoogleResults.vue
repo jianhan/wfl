@@ -15,7 +15,6 @@
             <b-button @click="handleNextPageClicked" v-if="siblingPageToken(-1)" variant="outline-primary">Previous</b-button>
             <b-button @click="handleNextPageClicked" v-if="siblingPageToken(1)" variant="outline-primary">Next</b-button>
         </div>
-    
     </div>
 </template>
 
@@ -70,7 +69,7 @@
                     this.selectedDatasource == this.dataSources.google &&
                     this.isSelectedAddressSet
                 ) {
-                    this.$store.dispatch(`wizard/processSearch`, { direction: 1 });
+                    this.$store.dispatch(`google/processSearch`, { direction: 1 });
                 } else {
                     reject("missing address");
                     this.$notify({

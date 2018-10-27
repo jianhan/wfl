@@ -53748,7 +53748,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 
@@ -53804,7 +53803,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     methods: {
         handleNextPageClicked: function handleNextPageClicked() {
             if (this.selectedDatasource == this.dataSources.google && this.isSelectedAddressSet) {
-                this.$store.dispatch('wizard/processSearch', { direction: 1 });
+                this.$store.dispatch('google/processSearch', { direction: 1 });
             } else {
                 reject("missing address");
                 this.$notify({
@@ -61781,9 +61780,12 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue__);
 var _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -61796,7 +61798,7 @@ var initialState = {
     restaurants: [],
     nextPageTokens: [{
         isCurrent: true,
-        pageToken: ''
+        nextPageToken: ''
     }]
 
     // getters
@@ -61843,7 +61845,7 @@ var initialState = {
                 return false;
             }
 
-            return state.nextPageTokens[i + direction].pageToken;
+            return state.nextPageTokens[i + direction].nextPageToken;
         };
     }
 };
@@ -61857,11 +61859,6 @@ var actions = {
             rootGetters = _ref.rootGetters;
         var direction = _ref2.direction;
 
-        // reset results
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* ADD_NEXT_PAGETOKEN */], {
-            isCurrent: true,
-            pageToken: ''
-        });
 
         // set loading
         commit('wizard/' + __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_IS_LOADING */], true, {
@@ -61880,7 +61877,7 @@ var actions = {
         var nextPageToken = getters.siblingPageToken(direction);
 
         payload = nextPageToken ? {
-            nextPageToken: nextPageToken
+            pagetoken: nextPageToken
         } : Object.assign({}, state, {
             latitude: rootState.wizard.latitude,
             longitude: rootState.wizard.longitude
@@ -61893,8 +61890,12 @@ var actions = {
             commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["n" /* UPDATE_RESTAURANTS */], r.data.results);
 
             var nextPageToken = _.get(r, 'data.next_page_token', '');
-
             if (nextPageToken !== '') {
+                commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* ADD_NEXT_PAGETOKEN */], {
+                    isCurrent: false,
+                    nextPageToken: nextPageToken
+                });
+
                 commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* RESET_NEXT_PAGETOKEN */]);
                 commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* SET_NEXT_PAGETOKEN */], nextPageToken);
             }
@@ -61931,25 +61932,22 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
     state.restaurants = [];
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* RESET_NEXT_PAGETOKEN */], function (state) {
     state.nextPageTokens.forEach(function (pt, i) {
-        if (i == 0) {
-            state.nextPageTokens[i].isCurrent = true;
-        } else {
-            state.nextPageTokens[i].isCurrent = false;
-        }
+        state.nextPageTokens[i].isCurrent = false;
+        // state.nextPageTokens[i].isCurrent = i == 0
     });
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* SET_NEXT_PAGETOKEN */], function (state, nextPageToken) {
     state.nextPageTokens.forEach(function (pt, i) {
-        if (state.nextPageTokens[i].pageToken == pt && typeof state.nextPageTokens[i - 1] !== 'undefined') {
+        if (pt.nextPageToken == nextPageToken && typeof state.nextPageTokens[i - 1] !== 'undefined') {
             state.nextPageTokens[i - 1].isCurrent = true;
         }
     });
 }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* ADD_NEXT_PAGETOKEN */], function (state, _ref3) {
     var isCurrent = _ref3.isCurrent,
-        pageToken = _ref3.pageToken;
+        nextPageToken = _ref3.nextPageToken;
 
     state.nextPageTokens.push({
         isCurrent: isCurrent,
-        pageToken: pageToken
+        nextPageToken: nextPageToken
     });
 }), _mutations);
 

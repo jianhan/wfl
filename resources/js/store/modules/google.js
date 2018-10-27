@@ -1,5 +1,6 @@
 import * as mutationTypes from '../mutation-types'
 import * as envs from '../../.env'
+import Vue from 'vue'
 
 // initial state
 const initialState = {
@@ -9,7 +10,7 @@ const initialState = {
     restaurants: [],
     nextPageTokens: [{
         isCurrent: true,
-        pageToken: ''
+        nextPageToken: ''
     }]
 }
 
@@ -37,7 +38,7 @@ const getters = {
             return false
         }
 
-        return state.nextPageTokens[i + direction].pageToken
+        return state.nextPageTokens[i + direction].nextPageToken
     }
 }
 
@@ -51,11 +52,7 @@ const actions = {
     }, {
         direction
     }) {
-        // reset results
-        commit(mutationTypes.ADD_NEXT_PAGETOKEN, {
-            isCurrent: true,
-            pageToken: ''
-        })
+
 
         // set loading
         commit(`wizard/${mutationTypes.UPDATE_IS_LOADING}`, true, {
@@ -74,7 +71,7 @@ const actions = {
         const nextPageToken = getters.siblingPageToken(direction)
 
         payload = nextPageToken ? {
-            nextPageToken: nextPageToken
+            pagetoken: nextPageToken
         } : Object.assign({}, state, {
             latitude: rootState.wizard.latitude,
             longitude: rootState.wizard.longitude
@@ -89,8 +86,12 @@ const actions = {
             commit(mutationTypes.UPDATE_RESTAURANTS, r.data.results)
 
             const nextPageToken = _.get(r, 'data.next_page_token', '')
-
             if (nextPageToken !== '') {
+                commit(mutationTypes.ADD_NEXT_PAGETOKEN, {
+                    isCurrent: false,
+                    nextPageToken   
+                })
+                
                 commit(mutationTypes.RESET_NEXT_PAGETOKEN)
                 commit(mutationTypes.SET_NEXT_PAGETOKEN, nextPageToken)
             }
@@ -134,27 +135,24 @@ const mutations = {
     },
     [mutationTypes.RESET_NEXT_PAGETOKEN](state) {
         state.nextPageTokens.forEach((pt, i) => {
-            if (i == 0) {
-                state.nextPageTokens[i].isCurrent = true
-            } else {
-                state.nextPageTokens[i].isCurrent = false
-            }
+            state.nextPageTokens[i].isCurrent = false
+            // state.nextPageTokens[i].isCurrent = i == 0
         });
     },
     [mutationTypes.SET_NEXT_PAGETOKEN](state, nextPageToken) {
         state.nextPageTokens.forEach((pt, i) => {
-            if (state.nextPageTokens[i].pageToken == pt && typeof state.nextPageTokens[i - 1] !== 'undefined') {
+            if (pt.nextPageToken == nextPageToken && typeof state.nextPageTokens[i - 1] !== 'undefined') {
                 state.nextPageTokens[i - 1].isCurrent = true
             }
         });
     },
     [mutationTypes.ADD_NEXT_PAGETOKEN](state, {
         isCurrent,
-        pageToken
+        nextPageToken
     }) {
         state.nextPageTokens.push({
             isCurrent,
-            pageToken
+            nextPageToken
         })
     }
 }

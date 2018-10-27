@@ -14,20 +14,20 @@ class NearbyRestaurants extends Controller
 
     public function google(Request $request)
     {
-        // validate data
-        $request->validate([
-            'latitude' => ['required', 'regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'],
-            'longitude' => ['required', 'regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/'],
-            'radius' => 'required|numeric|max:50000|min:50',
-            'minprice' => 'between:0,4|lte:maxprice',
-            'maxprice' => 'between:0,4',
-        ]);
 
         // construct params
         $queryParams = [];
         if ($request->get('pagetoken', false) && $request->get('pagetoken') !== '') {
             $queryParams = ['pagetoken' => $request->get('pagetoken')];
         } else {
+            // validate data
+            $request->validate([
+                'latitude' => ['required', 'regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'],
+                'longitude' => ['required', 'regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/'],
+                'radius' => 'required|numeric|max:50000|min:50',
+                'minprice' => 'between:0,4|lte:maxprice',
+                'maxprice' => 'between:0,4',
+            ]);
             $queryParams = array_merge(
                 $request->only(['key', 'radius', 'pagetoken']),
                 ['location' => $request->get('latitude') . ',' . $request->get('longitude'), 'opennow' => true, 'type' => 'restaurant']
